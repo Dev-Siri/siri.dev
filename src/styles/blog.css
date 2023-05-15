@@ -1,0 +1,32 @@
+@tailwind components;
+@tailwind utilities;
+
+main ul {
+  @apply list-disc !important;
+}
+
+main li {
+  @apply ml-6 p-2 !important;
+}
+
+main blockquote {
+  @apply bg-semi-dark-gray mt-3 rounded-md p-5 text-gray-400 border-l-8 my-4 !important;
+}
+
+code,
+.astro-code code .line > span {
+  font-family: "Space Mono", sans-serif !important;
+}
+
+.astro-code {
+  @apply bg-semi-dark-gray rounded-md my-5 p-5 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply my-2 !important;
+}

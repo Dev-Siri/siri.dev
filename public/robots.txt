@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://siri-dev.vercel.app/sitemap-index.xml

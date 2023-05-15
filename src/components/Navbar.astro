@@ -1,0 +1,21 @@
+---
+import { Image } from "@astrojs/image/components";
+
+import logo from "../assets/logo.webp";
+
+const navLinkStyles =
+  "hover:text-gray-300 duration-200 hover:bg-semi-visible-blue hover:scale-125 border-blue-400 hover:border-2 rounded-md p-2 px-10";
+---
+
+<nav class="fixed bg-dark-gray z-20 border-b-2 border-gray-800 flex w-screen p-6">
+  <section class="flex items-center flex-1">
+    <Image src={logo} alt="Logo" height={50} width={50} class="rounded-full" />
+    <a href="/" class="text-xl ml-4">siri.dev</a>
+  </section>
+  <section class="items-center justify-around flex flex-[2]">
+    <a class={navLinkStyles} href="/about">About</a>
+    <a class={navLinkStyles} href="/blog">Blog</a>
+    <a class={navLinkStyles} href="/projects">Projects</a>
+    <a class={navLinkStyles} href="/technologies">Technologies</a>
+  </section>
+</nav>

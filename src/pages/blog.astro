@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const blogPosts = await Astro.glob("./blog/**/*.md");
+---
+
+<BaseLayout
+  title="Dev-Siri's Blog"
+  className="text-center"
+  path="/blog"
+  description="Welcome to my blog! I like to post about my life, comparison of the technologies I use and other cool stuff here."
+>
+  <h1>Dev-Siri's Blog</h1>
+  <p class="mt-6 text-2xl">
+    Welcome to my blog! I like to post about my life, comparison of the technologies I use, open source related things and other cool stuff here.
+  </p>
+  <ul class="list-[none!important] mt-10 w-full border-2 rounded-md border-gray-800">
+    {
+      blogPosts
+        .sort((prevPost, nextPost) => {
+          if (new Date(prevPost.frontmatter.publishdate) < new Date(nextPost.frontmatter.publishdate)) return 1;
+
+          return -1;
+        })
+        .map(({ frontmatter, url }) => (
+          <li>
+            {/* To remove the .html at the end of the url */}
+            <a href={url!.split(".")[0]} class="p-5 text-start">
+              <h3 class="text-2xl ml-5">{frontmatter.title}</h3>
+              <p class="text-gray-400 ml-5 mt-2">{frontmatter.description}</p>
+            </a>
+          </li>
+        ))
+    }
+  </ul>
+</BaseLayout>

@@ -1,0 +1,45 @@
+---
+import "../styles/globals.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  className?: string;
+  path?: string;
+}
+
+const {
+  title,
+  description = "I'm a Web & Flutter developer who can create blazingly fast apps that can run on any platform using the most in-demand technologies and the right tool for the right job.",
+  className,
+  path = "/",
+} = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="og:title" content={title} />
+    <meta name="og:description" content={description} />
+    <meta name="og:type" content="article" />
+    <meta name="og:site_name" content="Dev-Siri's Blog" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:site" content="@WebDev_Siri" />
+    <meta name="twitter:creator" content="@WebDev_Siri" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href=`https://siri-dev.vercel.app${path}` />
+    <title>{title}</title>
+  </head>
+  <body class="h-screen w-screen text-white bg-dark-gray">
+    <Navbar />
+    <main class=`overflow-hidden pt-36 p-32 ${className}`>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

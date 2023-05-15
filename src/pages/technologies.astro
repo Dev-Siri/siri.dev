@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Technology from "../components/Technology.astro";
+
+import { technologies } from "../data";
+---
+
+<BaseLayout title="Technologes - Dev-Siri" description="Stuff I mostly work with daily" className="text-center">
+  <h1>Technologies.</h1>
+  <p class="mt-5 text-2xl leading-relaxed ml-2">Languages & Frameworks I mostly work with everyday.</p>
+  <aside class="grid grid-cols-4 w-screen pr-32">
+    {technologies.map(technology => <Technology {...technology} />)}
+  </aside>
+</BaseLayout>

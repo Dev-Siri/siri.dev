@@ -1,0 +1,73 @@
+---
+import "../styles/globals.css";
+import "../styles/blog.css";
+
+import { Icon } from "astro-icon";
+
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+    slug: string;
+    publishdate: string;
+  };
+}
+
+const {
+  frontmatter: { title, description, slug, publishdate },
+} = Astro.props;
+
+function getFormattedTime() {
+  const date = new Date(publishdate);
+
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  const paddedMonth = month.toString().padStart(2, "0");
+  const paddedDay = day.toString().padStart(2, "0");
+
+  return `${year}-${paddedMonth}-${paddedDay}`;
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="og:title" content={title} />
+    <meta name="og:description" content={description} />
+    <meta name="og:type" content="article" />
+    <meta name="og:site_name" content="Dev-Siri's Blog" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:site" content="@WebDev_Siri" />
+    <meta name="twitter:creator" content="@WebDev_Siri" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href=`https://siri-dev.vercel.app/blog/${slug}` />
+    <title>{title}</title>
+  </head>
+  <body class="h-screen w-screen text-white bg-dark-gray">
+    <Navbar />
+    <main class="overflow-hidden pt-36 p-32">
+      <a href="/blog" class="flex p-4 bg-semi-dark-gray w-fit items-center rounded-md duration-200 hover:bg-gray-800">
+        <Icon name="mdi:arrow-left" size={20} />
+        <p class="px-2">Blogs</p>
+      </a>
+      <h1>
+        {title}
+      </h1>
+      <time class="text-gray-400 ml-1" datetime={getFormattedTime()}>
+        {publishdate}
+      </time>
+      <article class="ml-1 mt-10">
+        <slot />
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>

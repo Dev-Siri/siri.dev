@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import siri from "../assets/siri.gif";
+
+import { projects, technologies } from "../data";
+
+import Technology from "../components/Technology.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+---
+
+<BaseLayout title="Hi! I am Dev-Siri, A Web & Flutter Developer">
+  <section>
+    <img src={siri.src} alt="Siri" height={200} width={500} class="absolute ml-[56%]" />
+    <h1>
+      Hi! I am Dev-Siri <br />
+      A Fullstack Web & <br />
+      Flutter Developer.
+    </h1>
+    <p class="mt-5 text-2xl typing-text" style="--typing-width: 567px">
+      I'm a developer who can build blazingly fast apps <br />
+    </p>
+    <p class="text-2xl mt-2 typing-text invisible" style="--typing-width: 355px; animation-delay: 2s">
+      with brilliant User Experiences <br />
+    </p>
+    <p class="text-2xl mt-2 mb-9 typing-text invisible" style="--typing-width: 845px; animation-delay: 4s">
+      that can run on any platform built using the most in-demand technologies
+    </p>
+    <a href="/about" class="-mb-20 bg-blue-500 hover:bg-blue-600 p-4 rounded-md px-10 duration-200"> Learn more</a>
+  </section>
+  <section class="pt-52" id="about">
+    <h1>About Me.</h1>
+    <p class="mt-5 text-2xl leading-relaxed ml-2">
+      My name is Aarush, known on the internet as Dev-Siri. I am a Fullstack Web & <br />
+      Flutter developer from India. With a passion for coding and a keen eye for detail, I have honed my skills in developing
+      <i>blazingly</i> fast apps with brilliant User Experiences. I strive to create <br />
+      seamless and intuitive applications that can run on any platform, utilizing <br />
+      the most in-demand technologies. <br />
+    </p>
+  </section>
+  <section class="pt-52" id="contact">
+    <h1>Projects</h1>
+    <p class="mt-5 text-2xl leading-relaxed ml-2">
+      See them all <a href="/projects" class="underline">here.</a>
+    </p>
+    <aside class="grid grid-cols-3 w-screen pr-36 pl-0 p-10 gap-10">
+      {projects.slice(0, 3).map(project => <ProjectCard {...project} />)}
+    </aside>
+  </section>
+  <section class="pt-52" id="technologies">
+    <h1>Technologies.</h1>
+    <p class="mt-5 text-2xl leading-relaxed ml-2">
+      Stuff I mostly work with everyday. See all of them
+      <a href="/technologies" class="underline"> here.</a>
+    </p>
+    <aside class="grid grid-cols-4 w-screen pr-32">
+      {technologies.slice(0, 8).map(technology => <Technology {...technology} />)}
+    </aside>
+  </section>
+</BaseLayout>

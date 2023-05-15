@@ -1,0 +1,99 @@
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/SpaceMono.woff2") format("woff2");
+}
+
+* {
+  font-family: "Inter", sans-serif;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+.typing-text {
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 0.4em solid #e6e6e6;
+  animation: typing 2s steps(50, end) forwards;
+}
+
+@keyframes typing {
+  from,
+  to {
+    visibility: visible;
+  }
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--typing-width);
+    border-right-color: transparent;
+  }
+}
+
+.spin {
+  animation: spinning 3s linear infinite;
+}
+
+@keyframes spinning {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translateY(0px);
+  }
+  50% {
+    box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+  }
+  100% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translateY(0px);
+  }
+}
+
+.postcard-animation {
+  animation: float 2s ease-in-out infinite;
+}
+
+h1 {
+  @apply text-6xl font-bold leading-normal !important;
+}
+h2 {
+  @apply text-5xl font-bold leading-normal !important;
+}
+h3 {
+  @apply text-4xl font-bold leading-normal !important;
+}
+h4 {
+  @apply text-3xl font-bold leading-normal !important;
+}
+h5 {
+  @apply text-2xl font-bold leading-normal !important;
+}
+h6 {
+  @apply text-xl font-bold leading-normal !important;
+}

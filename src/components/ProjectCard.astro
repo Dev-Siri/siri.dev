@@ -1,0 +1,36 @@
+---
+import { Image } from "@astrojs/image/components";
+
+import type { Project } from "../data";
+import { Icon } from "astro-icon";
+
+interface Props extends Project {}
+
+const { name, description, source, image, link } = Astro.props;
+---
+
+<article class="postcard-animation text-left shadow-md shadow-gray-800 bg-semi-dark-gray w-fit rounded-xl">
+  <Image src={image} alt={name} height={200} width={400} class="rounded-xl aspect-video" />
+  <div class="p-5">
+    <h3>
+      {name}
+    </h3>
+    <p class="ml-1 text-gray-400">
+      {description}
+    </p>
+  </div>
+  <div class="flex p-5">
+    <a href={source} target="_blank" rel="noopener noreferrer" class="bg-gray-700 rounded-md pr-4 flex p-3 items-center">
+      <Icon name="mdi:github" height={30} />
+      <p class="ml-3">Github</p>
+    </a>
+    {
+      link && (
+        <a href={link} target="_blank" rel="noopener noreferrer" class="ml-4 bg-blue-500 rounded-md pr-4 flex p-3 items-center">
+          <Icon name="mdi:link" height={30} />
+          <p class="ml-3">Deployed URL</p>
+        </a>
+      )
+    }
+  </div>
+</article>
