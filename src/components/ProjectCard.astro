@@ -12,9 +12,9 @@ const { name, description, source, image, link } = Astro.props;
 <article class="postcard-animation text-left shadow-md shadow-gray-800 bg-semi-dark-gray w-fit rounded-xl">
   <Image src={image} alt={name} height={200} width={400} class="rounded-xl aspect-video" />
   <div class="p-5">
-    <h3>
+    <p class="text-4xl font-bold leading-normal">
       {name}
-    </h3>
+    </p>
     <p class="ml-1 text-gray-400">
       {description}
     </p>
