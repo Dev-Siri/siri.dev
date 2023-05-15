@@ -11,6 +11,8 @@ Deployed at siri-dev.vercel.app. I am too cheap to buy the siri.dev domain :(
 
 Deployed on Vercel ▲
 
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Dev-Siri/siri.dev)
+
 ## Getting Started
 
 Make sure you have Node.js v16.12.0 or higher installed on your system.
