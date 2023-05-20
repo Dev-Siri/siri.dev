@@ -1,8 +1,8 @@
-# siri.dev
+# aarush.dev
 
 My personal portfolio built with Astro and TailwindCSS.
 
-Deployed at siri-dev.vercel.app. I am too cheap to buy the siri.dev domain :(
+Deployed at arsh-dev.vercel.app. I am too cheap to buy the aarush.dev domain :(
 
 ## Technologies
 
@@ -11,7 +11,7 @@ Deployed at siri-dev.vercel.app. I am too cheap to buy the siri.dev domain :(
 
 Deployed on Vercel ▲
 
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Dev-Siri/siri.dev)
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Dev-Siri/aarush.dev)
 
 ## Getting Started
 
@@ -20,7 +20,7 @@ Make sure you have Node.js v16.12.0 or higher installed on your system.
 - Clone the repository
 
 ```sh
-$ git clone https://github.com/Dev-Siri/siri.dev.git
+$ git clone https://github.com/Dev-Siri/aarush.dev.git
 ```
 
 - Install the dependencies

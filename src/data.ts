@@ -20,7 +20,7 @@ import hooBank from "./assets/projects/hoo-bank.webp";
 import tiktik from "./assets/projects/tik-tik.webp";
 
 export interface TechnologyInfo {
-  image: ImageMetadata | string;
+  image: ImageMetadata;
   name: string;
   link: string;
   description: string;
@@ -172,7 +172,7 @@ export const socialLinks = [
 ] as const;
 
 export interface Project {
-  image: ImageMetadata | string;
+  image: ImageMetadata;
   name: string;
   description: string;
   source: `https://${string}`;

@@ -1,5 +1,5 @@
 ---
-title: Dev-Siri Blog Launch!
+title: Aarush-Dev Blog Launch!
 slug: blog-launch
 description: After 2 months of Astro, my portfolio is finally finished along with my blog!
 publishdate: May 10, 2023

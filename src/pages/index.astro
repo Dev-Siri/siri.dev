@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-import siri from "../assets/siri.gif";
+import siri from "../assets/siri.webp";
 
 import { projects, technologies } from "../data";
 
@@ -9,11 +9,11 @@ import Technology from "../components/Technology.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 ---
 
-<BaseLayout title="Hi! I am Dev-Siri, A Web & Flutter Developer">
+<BaseLayout title="Hi! I am Aarush, A Web & Flutter Developer">
   <section>
-    <img src={siri.src} alt="Siri" height={200} width={500} class="absolute ml-[56%] hidden min-[925px]:block" />
-    <h1 class="text-31px sm:text-2xl">
-      Hi! I am Dev-Siri <br />
+    <img src={siri.src} alt="Siri" height={480} width={360} class="absolute scale-125 mt-10 ml-[56%] hidden min-[925px]:block" />
+    <h1 class="pt-10">
+      Hi! I am Aarush <br />
       A Fullstack Web & <br />
       Flutter Developer.
     </h1>
@@ -26,7 +26,7 @@ import ProjectCard from "../components/ProjectCard.astro";
     <p class="text-2xl mt-2 mb-9 typing-text invisible" style="--typing-width: 845px; animation-delay: 4s">
       that can run on any platform built using the most in-demand technologies
     </p>
-    <a href="/about" class="-mb-20 bg-[rgb(1,89,167)] hover:bg-[rgb(21,149,254)] p-4 rounded-md px-10 duration-200"> More About Me</a>
+    <a href="/about" class="-mb-20 bg-accessible-blue hover:bg-[rgb(21,149,254)] p-4 rounded-md px-10 duration-200"> More About Me</a>
   </section>
   <section class="pt-52" id="about">
     <h1>About Me.</h1>
