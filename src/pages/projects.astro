@@ -5,12 +5,12 @@ import ProjectCard from "../components/ProjectCard.astro";
 import { projects } from "../data";
 ---
 
-<BaseLayout title="Projects" description="My creations showcased." className="pl-0 text-center" path="/projects">
+<BaseLayout title="Projects" description="My creations showcased." className="pl-0 flex flex-col items-center text-center" path="/projects">
   <section class="w-screen text-center">
     <h1>Projects</h1>
     <p class="mt-5 text-2xl">My creations showcased. ✨</p>
   </section>
-  <aside class="grid grid-cols-3 w-screen p-10 gap-10">
+  <aside class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-screen p-10 gap-10">
     {projects.map(project => <ProjectCard {...project} />)}
   </aside>
 </BaseLayout>

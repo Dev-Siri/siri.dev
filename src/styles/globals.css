@@ -97,3 +97,21 @@ h5 {
 h6 {
   @apply text-xl font-bold leading-normal !important;
 }
+
+@keyframes slide {
+  from {
+    transform: translateX(200px);
+  }
+  to {
+    transform: translateX(0px);
+  }
+}
+
+#menu-hidden + #side-menu {
+  display: none;
+}
+
+#menu-hidden:checked + #side-menu {
+  animation: slide 0.5s ease-in;
+  display: flex;
+}

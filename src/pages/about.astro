@@ -17,7 +17,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     solutions that push the boundaries of what's possible in the world of software development.
   </p>
   <h1 class="my-5">Social Links.</h1>
-  <section class="flex">
+  <section class="flex flex-col md:flex-row gap-2">
     {socialLinks.map(socialLink => <SocialCard {...socialLink} />)}
   </section>
 </BaseLayout>
