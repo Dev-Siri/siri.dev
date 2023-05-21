@@ -6,6 +6,7 @@ import { Icon } from "astro-icon";
 
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import SideMenu from "../components/SideMenu.astro";
 
 interface Props {
   frontmatter: {
@@ -53,6 +54,8 @@ function getFormattedTime() {
     <title>{title}</title>
   </head>
   <body class="h-screen w-screen text-white bg-dark-gray">
+    <input type="checkbox" id="menu-hidden" class="hidden" />
+    <SideMenu />
     <Navbar />
     <main class="overflow-hidden pt-36 p-8 min-[1181px]:p-32">
       <a href="/blog" class="flex p-4 bg-semi-dark-gray w-fit items-center rounded-md duration-200 hover:bg-gray-800">
