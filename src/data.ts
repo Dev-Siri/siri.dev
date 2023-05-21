@@ -217,7 +217,7 @@ export const projects: Project[] = [
   },
   {
     name: "Hoo Bank",
-    description: "A modern, fast & minimalistic banking landing page created with Preact and TailwindCSS.",
+    description: "A modern, fast & minimalistic banking landing page created with Astro and TailwindCSS.",
     image: hooBank,
     source: "https://github.com/Dev-Siri/Hoo-Bank",
     link: "https://hoo-bank-siri.netlify.app",
