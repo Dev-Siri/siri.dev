@@ -9,11 +9,11 @@ export default defineConfig({
   integrations: [
     tailwind(),
     compress(),
-    sitemap(),
     mdx(),
+    sitemap(),
     image({
       serviceEntryPoint: "@astrojs/image/sharp",
     }),
   ],
-  site: "https://arsh-dev.vercel.app",
+  site: "https://aaarush-dev.vercel.app",
 });
