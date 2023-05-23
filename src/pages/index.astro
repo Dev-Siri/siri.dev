@@ -11,7 +11,15 @@ import ProjectCard from "../components/ProjectCard.astro";
 
 <BaseLayout title="Hi! I am Aarush, A Web & Flutter Developer">
   <section>
-    <img src={siri.src} alt="Siri" height={480} width={360} class="absolute scale-125 mt-10 ml-[56%] hidden min-[925px]:block" />
+    <img
+      src={siri.src}
+      alt="Siri"
+      height={480}
+      width={360}
+      loading="lazy"
+      decoding="async"
+      class="absolute mt-10 scale-125 ml-[56%] hidden min-[925px]:block"
+    />
     <h1 class="pt-10">
       Hi! I am Aarush <br />
       A Fullstack Web & <br />

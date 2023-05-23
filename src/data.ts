@@ -1,5 +1,5 @@
 import react from "./assets/technologies/react.webp";
-import next from "./assets/technologies/next.svg";
+// import next from "./assets/technologies/next.avif";
 import node from "./assets/technologies/node.webp";
 import astro from "./assets/technologies/astro.webp";
 import typescript from "./assets/technologies/typescript.webp";
@@ -20,7 +20,7 @@ import hooBank from "./assets/projects/hoo-bank.webp";
 import tiktik from "./assets/projects/tik-tik.webp";
 
 export interface TechnologyInfo {
-  image: ImageMetadata;
+  image: any;
   name: string;
   link: string;
   description: string;
@@ -41,14 +41,14 @@ export const technologies: TechnologyInfo[] = [
     imageHeight: 70,
     imageWidth: 80,
   },
-  {
-    image: next,
-    link: "https://nextjs.org",
-    name: "Next",
-    description: "The React Framework for the Web",
-    imageClassname: "bg-white rounded-full",
-    tooltipClassname: "ml-[180%] w-[211px]",
-  },
+  // {
+  //   image: next,
+  //   link: "https://nextjs.org",
+  //   name: "Next",
+  //   description: "The React Framework for the Web",
+  //   imageClassname: "bg-white rounded-full",
+  //   tooltipClassname: "ml-[180%] w-[211px]",
+  // },
   {
     image: astro,
     link: "https://astro.build",
@@ -172,7 +172,7 @@ export const socialLinks = [
 ] as const;
 
 export interface Project {
-  image: ImageMetadata;
+  image: any;
   name: string;
   description: string;
   source: `https://${string}`;

@@ -17,5 +17,8 @@ module.exports = {
   experimental: {
     optimizeUniversalDefaults: true,
   },
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   plugins: [],
 };
