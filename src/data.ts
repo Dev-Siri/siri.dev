@@ -10,6 +10,7 @@ import Go from "./components/icons/Go.astro";
 import CSharp from "./components/icons/CSharp.astro";
 import Node from "./components/icons/Node.astro";
 import Dart from "./components/icons/Dart.astro";
+import SASS from "./components/icons/SASS.astro";
 
 import ecommerceNext from "./assets/projects/ecommerce-next.webp";
 import youtubeClone from "./assets/projects/youtube-clone.webp";
@@ -17,14 +18,12 @@ import teaShare from "./assets/projects/tea-share.webp";
 import shareMe from "./assets/projects/share-me.webp";
 import hooBank from "./assets/projects/hoo-bank.webp";
 import tiktik from "./assets/projects/tik-tik.webp";
-import SASS from "./components/icons/SASS.astro";
 
 export interface TechnologyInfo {
-  Icon?(_props: Record<string, any>): any;
+  Icon(_props: Record<string, any>): any;
   name: string;
   link: string;
   description: string;
-  imageClassname?: string;
   tooltipClassname?: string;
 }
 

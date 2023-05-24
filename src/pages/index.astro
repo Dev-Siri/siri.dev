@@ -18,13 +18,9 @@ import ProjectCard from "../components/ProjectCard.astro";
       width={360}
       loading="lazy"
       decoding="async"
-      class="absolute mt-10 scale-125 ml-[56%] hidden min-[925px]:block"
+      class="absolute scale-125 ml-[56%] hidden min-[925px]:block"
     />
-    <h1 class="pt-10">
-      Hi! I am Aarush <br />
-      A Fullstack Web & <br />
-      Flutter Developer.
-    </h1>
+    <h1 class="w-full lg:w-1/2">Hi! I am Aarush, A Fullstack Web & Flutter Developer.</h1>
     <p class="mt-5 text-2xl typing-text" style="--typing-width: 567px">
       I'm a developer who can build blazingly fast apps <br />
     </p>
@@ -61,7 +57,9 @@ import ProjectCard from "../components/ProjectCard.astro";
       Stuff I mostly work with everyday. See all of them
       <a href="/technologies" class="underline"> here.</a>
     </p>
-    <aside class="grid grid-cols-2 sm:grid-cols-3 place-items-center lg:place-items-start lg:grid-cols-4 w-screen pr-24 lg:pr-32">
+    <aside
+      class="grid grid-cols-1 min-[430px]:grid-cols-2 md:grid-cols-3 place-items-center lg:place-items-start lg:grid-cols-4 w-screen pr-24 lg:pr-32"
+    >
       {technologies.slice(0, 8).map(technology => <Technology {...technology} />)}
     </aside>
   </section>
