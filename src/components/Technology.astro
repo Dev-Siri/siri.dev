@@ -4,7 +4,7 @@ import type { TechnologyInfo } from "../data";
 
 interface Props extends TechnologyInfo {}
 
-const { image, name, link, imageClassname, imageHeight = 100, imageWidth = 100, description, tooltipClassname } = Astro.props;
+const { image, name, link, imageClassname, imageHeight = 100, imageWidth = 100, description, tooltipClassname, Icon } = Astro.props;
 ---
 
 <a
@@ -13,7 +13,8 @@ const { image, name, link, imageClassname, imageHeight = 100, imageWidth = 100, 
   rel="noopener noreferrer"
   class="bg-[#333] mt-10 rounded-full h-40 w-40 hover:scale-125 group flex duration-200 justify-center items-center"
 >
-  <Image src={image} alt={name} format="avif" class={imageClassname} height={imageHeight} width={imageWidth} />
+  {Icon && <Icon />}
+  {image && <Image src={image} alt={name} format="avif" class={imageClassname} height={imageHeight} width={imageWidth} />}
   <span class=`bg-black rounded-md absolute p-2 mb-20 scale-0 group-hover:scale-100 ${tooltipClassname}`>
     {name}
     <br />

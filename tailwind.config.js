@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
@@ -10,7 +10,7 @@ module.exports = {
         "accessible-blue": "rgb(1,89,167)",
       },
       fontSize: {
-        "31px": "31px!important",
+        "31px": "31px",
       },
     },
   },

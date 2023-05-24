@@ -1,16 +1,15 @@
-import react from "./assets/technologies/react.webp";
-// import next from "./assets/technologies/next.avif";
-import node from "./assets/technologies/node.webp";
-import astro from "./assets/technologies/astro.webp";
-import typescript from "./assets/technologies/typescript.webp";
-import svelte from "./assets/technologies/svelte.webp";
-import svelteKit from "./assets/technologies/svelte-kit.webp";
-import csharp from "./assets/technologies/c-sharp.webp";
-import c from "./assets/technologies/c.webp";
-import go from "./assets/technologies/go.webp";
-import dart from "./assets/technologies/dart.webp";
-import sass from "./assets/technologies/sass.webp";
-import flutter from "./assets/technologies/flutter.webp";
+import Astro from "./components/icons/Astro.astro";
+import TypeScript from "./components/icons/TypeScript.astro";
+import Next from "./components/icons/Next.astro";
+import React from "./components/icons/React.astro";
+import SvelteKit from "./components/icons/SvelteKit.astro";
+import Svelte from "./components/icons/Svelte.astro";
+import Flutter from "./components/icons/Flutter.astro";
+import C from "./components/icons/C.astro";
+import Go from "./components/icons/Go.astro";
+import CSharp from "./components/icons/CSharp.astro";
+import Node from "./components/icons/Node.astro";
+import Dart from "./components/icons/Dart.astro";
 
 import ecommerceNext from "./assets/projects/ecommerce-next.webp";
 import youtubeClone from "./assets/projects/youtube-clone.webp";
@@ -18,132 +17,107 @@ import teaShare from "./assets/projects/tea-share.webp";
 import shareMe from "./assets/projects/share-me.webp";
 import hooBank from "./assets/projects/hoo-bank.webp";
 import tiktik from "./assets/projects/tik-tik.webp";
+import SASS from "./components/icons/SASS.astro";
 
 export interface TechnologyInfo {
-  image: any;
+  Icon?(_props: Record<string, any>): any;
   name: string;
   link: string;
   description: string;
   imageClassname?: string;
   tooltipClassname?: string;
-  imageHeight?: number;
-  imageWidth?: number;
 }
 
 export const technologies: TechnologyInfo[] = [
   {
-    image: react,
+    name: "React",
+    Icon: React,
     description: "The library for web and native user interfaces",
     link: "https://react.dev",
-    name: "React",
-    imageClassname: "spin",
     tooltipClassname: "ml-[200%] w-[276px]",
-    imageHeight: 70,
-    imageWidth: 80,
   },
-  // {
-  //   image: next,
-  //   link: "https://nextjs.org",
-  //   name: "Next",
-  //   description: "The React Framework for the Web",
-  //   imageClassname: "bg-white rounded-full",
-  //   tooltipClassname: "ml-[180%] w-[211px]",
-  // },
   {
-    image: astro,
-    link: "https://astro.build",
+    name: "Next",
+    Icon: Next,
+    link: "https://nextjs.org",
+    description: "The React Framework for the Web",
+    tooltipClassname: "ml-[180%] w-[211px]",
+  },
+  {
     name: "Astro",
+    Icon: Astro,
+    link: "https://astro.build",
     description: "Astro is the all-in-one web framework designed for speed",
-    imageClassname: "rounded-full",
     tooltipClassname: "ml-[220%] w-[345px]",
   },
   {
-    image: typescript,
-    link: "https://typescriptlang.org",
     name: "TypeScript",
+    Icon: TypeScript,
+    link: "https://typescriptlang.org",
     description: "TypeScript is JavaScript with syntax for types.",
-    imageClassname: "bg-white rounded-full",
     tooltipClassname: "mr-[200%] w-[290px]",
   },
   {
-    image: svelte,
-    link: "https://svelte.dev",
     name: "Svelte",
+    Icon: Svelte,
+    link: "https://svelte.dev",
     description: "Cybernetically enhanced web apps.",
-    imageHeight: 80,
-    imageWidth: 68,
     tooltipClassname: "ml-[200%] w-[220px]",
   },
   {
-    image: svelteKit,
+    Icon: SvelteKit,
     link: "https://kit.svelte.dev",
     name: "SvelteKit",
     description: "Web development, streamlined.",
-    imageHeight: 200,
-    imageWidth: 200,
     tooltipClassname: "ml-[180%] w-[196px]",
   },
   {
-    image: go,
-    link: "https://go.dev",
     name: "Go",
+    Icon: Go,
+    link: "https://go.dev",
     description: "Simple, secure and scalable",
-    imageHeight: 90,
-    imageWidth: 69,
     tooltipClassname: "ml-[180%] w-[174px]",
   },
   {
-    image: csharp,
+    Icon: CSharp,
     link: "https://dotnet.microsoft.com/en-us/languages/csharp",
     name: "C#",
     description: "The modern, innovative and open-source programming language.",
-    imageHeight: 90,
-    imageWidth: 80,
     tooltipClassname: "mr-[180%] w-[390px]",
   },
   {
-    image: c,
-    link: "https://en.wikipedia.org/wiki/C_(programming_language)",
     name: "C",
+    Icon: C,
+    link: "https://en.wikipedia.org/wiki/C_(programming_language)",
     description: "My report card at school.",
-    imageHeight: 90,
-    imageWidth: 80,
     tooltipClassname: "ml-[180%] w-[160px]",
   },
   {
-    image: node,
-    link: "https://nodejs.org",
     name: "Node",
+    Icon: Node,
+    link: "https://nodejs.org",
     description: "An asynchronous, event-driven JavaScript runtime",
-    imageHeight: 80,
-    imageWidth: 80,
     tooltipClassname: "ml-[180%] w-[310px]",
   },
   {
-    image: dart,
-    link: "https://dart.dev",
     name: "Dart",
+    Icon: Dart,
+    link: "https://dart.dev",
     description: "A client-optimized language for fast apps on any platform.",
-    imageHeight: 80,
-    imageWidth: 80,
     tooltipClassname: "ml-[200%] w-[345px]",
   },
   {
-    image: flutter,
-    link: "https://flutter.dev",
     name: "Flutter",
+    Icon: Flutter,
+    link: "https://flutter.dev",
     description: "Build apps for any screen.",
-    imageHeight: 80,
-    imageWidth: 80,
     tooltipClassname: "mr-[100%] w-[170px]",
   },
   {
-    image: sass,
-    link: "https://sass-lang.com",
     name: "SASS",
+    Icon: SASS,
+    link: "https://sass-lang.com",
     description: "CSS with superpowers",
-    imageHeight: 80,
-    imageWidth: 80,
     tooltipClassname: "ml-[100%] w-[170px]",
   },
 ];
