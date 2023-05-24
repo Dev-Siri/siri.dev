@@ -2,7 +2,7 @@
 
 My personal portfolio built with Astro and TailwindCSS.
 
-Deployed at aaarush-dev.vercel.app. I am too cheap to buy the aarush.dev domain :(
+Deployed at aarush-dev.vercel.app. I am too cheap to buy the aarush.dev domain :(
 
 ## Technologies
 
