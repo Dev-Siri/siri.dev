@@ -24,7 +24,7 @@ $ pnpm create next-app
 Lazy loading can be helpful for splitting a app's bundle size into very small chunks that can be loaded on demand. But RSCs do it out-of-the-box. Trying to lazily import a Server Component can actually have negative impact on Bundle Size.
 
 ```tsx
-import lazy from "next/dynamic";
+import { lazy } from "react";
 
 // 👎
 const ServerComponent = lazy(() => import("@/components/ServerComponent"));
@@ -51,7 +51,7 @@ export default function Page() {
 
 ## Use Client components at the leaf.
 
-I have seen many code bases where static parts are included in a client component, and a small part is server components. Especially in authentication pages. Client components at the leaf of every page. Here is visual a diagram showing the structure:
+I have seen many code bases where static parts are included in a client component, and a small part is server components. Especially in authentication pages. Client components should be at the leaf (or end) of every page/component. Here is visual a diagram showing the structure:
 
 <Image
   src={nextjsLeafStructure}
@@ -193,8 +193,7 @@ The above snippet looks fine. But what if we want the the input with `name="imag
 
 ```tsx
 "use client";
-import lazy from "next/lazy";
-import { useState } from "react";
+import { useState, lazy } from "react";
 
 const Image = lazy(() => import("next/image"));
 
