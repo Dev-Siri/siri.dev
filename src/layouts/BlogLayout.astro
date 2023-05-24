@@ -21,8 +21,8 @@ const {
   frontmatter: { title, description, slug, publishdate },
 } = Astro.props;
 
-function getFormattedTime() {
-  const date = new Date(publishdate);
+function getFormattedTime(dateString: string) {
+  const date = new Date(dateString);
 
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
@@ -44,13 +44,17 @@ function getFormattedTime() {
     <meta name="og:title" content={title} />
     <meta name="og:description" content={description} />
     <meta name="og:image" content=`https://aaarush-dev.vercel.app/og/${slug}.jpg` />
-    <meta name=" og:type" content="article" />
+    <meta name="og:type" content="article" />
+    <meta name="og:url" content=`https://aaarush-dev.vercel.app/blog/${slug}` />
     <meta name="og:site_name" content="Aarush's Blog" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content=`https://aaarush-dev.vercel.app/og/${slug}.jpg` />
     <meta name="twitter:site" content="@WebDev_Siri" />
     <meta name="twitter:creator" content="@WebDev_Siri" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="article:publish_time" content={getFormattedTime(publishdate)} />
+    <meta name="article:author" content="Aarush" />
     <link rel="canonical" href=`https://aaarush-dev.vercel.app/blog/${slug}` />
     <link rel="icon" href="https://aaarush-dev.vercel.app/favicon.png" />
     <link rel="preload" href="/fonts/Inter.woff2" as="font" />
@@ -58,9 +62,9 @@ function getFormattedTime() {
     <title>{title}</title>
   </head>
   <body class="h-screen w-screen text-white bg-dark-gray">
+    <Navbar />
     <input type="checkbox" id="menu-hidden" class="hidden" />
     <SideMenu />
-    <Navbar />
     <main class="overflow-hidden pt-36 p-8 min-[1181px]:p-32">
       <a href="/blog" class="flex p-4 bg-semi-dark-gray w-fit items-center rounded-md duration-200 hover:bg-gray-800">
         <Icon name="mdi:arrow-left" size={20} />
@@ -69,7 +73,7 @@ function getFormattedTime() {
       <h1>
         {title}
       </h1>
-      <time class="text-gray-400 ml-1" datetime={getFormattedTime()}>
+      <time class="text-gray-400 ml-1" datetime={getFormattedTime(publishdate)}>
         {publishdate}
       </time>
       <article class="ml-1 mt-10">
