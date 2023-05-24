@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aarussh-dev.vercel.app/sitemap-index.xml
+Sitemap: https://aarrush-dev.vercel.app/sitemap-index.xml
