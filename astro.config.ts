@@ -15,5 +15,5 @@ export default defineConfig({
       serviceEntryPoint: "@astrojs/image/sharp",
     }),
   ],
-  site: "https://aarush-dev.vercel.app",
+  site: "https://arush-dev.vercel.app",
 });
