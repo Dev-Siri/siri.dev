@@ -9,9 +9,7 @@ Deployed at aarrush-dev.vercel.app. I am too cheap to buy the aarush.dev domain 
 - Astro
 - TailwindCSS
 
-Deployed on Vercel ▲
-
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Dev-Siri/aarush.dev)
+Deployed on Netlify
 
 ## Getting Started
 
