@@ -12,7 +12,7 @@ import Technology from "../components/Technology.astro";
 <BaseLayout title="Hi! I am Aarush, A Web & Flutter Developer">
   <section>
     <img
-      src={siri}
+      src={(siri as unknown as { src: string }).src}
       alt="Siri"
       height={480}
       width={360}
