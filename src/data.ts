@@ -1,23 +1,23 @@
 import Astro from "./components/icons/Astro.astro";
-import TypeScript from "./components/icons/TypeScript.astro";
-import Next from "./components/icons/Next.astro";
-import React from "./components/icons/React.astro";
-import SvelteKit from "./components/icons/SvelteKit.astro";
-import Svelte from "./components/icons/Svelte.astro";
-import Flutter from "./components/icons/Flutter.astro";
 import C from "./components/icons/C.astro";
-import Go from "./components/icons/Go.astro";
 import CSharp from "./components/icons/CSharp.astro";
-import Node from "./components/icons/Node.astro";
 import Dart from "./components/icons/Dart.astro";
+import Flutter from "./components/icons/Flutter.astro";
+import Go from "./components/icons/Go.astro";
+import Next from "./components/icons/Next.astro";
+import Node from "./components/icons/Node.astro";
+import React from "./components/icons/React.astro";
 import SASS from "./components/icons/SASS.astro";
+import Svelte from "./components/icons/Svelte.astro";
+import SvelteKit from "./components/icons/SvelteKit.astro";
+import TypeScript from "./components/icons/TypeScript.astro";
 
 import ecommerceNext from "./assets/projects/ecommerce-next.webp";
-import youtubeClone from "./assets/projects/youtube-clone.webp";
-import teaShare from "./assets/projects/tea-share.webp";
-import shareMe from "./assets/projects/share-me.webp";
 import hooBank from "./assets/projects/hoo-bank.webp";
+import shareMe from "./assets/projects/share-me.webp";
+import teaShare from "./assets/projects/tea-share.webp";
 import tiktik from "./assets/projects/tik-tik.webp";
+import youtubeClone from "./assets/projects/youtube-clone.webp";
 
 export interface TechnologyInfo {
   Icon(_props: Record<string, any>): any;
@@ -71,8 +71,8 @@ export const technologies: TechnologyInfo[] = [
     tooltipClassname: "ml-[180%] w-[196px]",
   },
   {
-    name: "Go",
     Icon: Go,
+    name: "Go",
     link: "https://go.dev",
     description: "Simple, secure and scalable",
     tooltipClassname: "ml-[180%] w-[174px]",
