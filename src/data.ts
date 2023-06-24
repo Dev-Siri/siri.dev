@@ -155,7 +155,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     name: "Tea Share",
-    description: "Tea Share is a social media application made for Android in Flutter and the Web with Javascript/Typescript.",
+    description: "Tea Share is a social media application made for Android in Flutter and the Web with TypeScript + SvelteKit.",
     image: teaShare,
     source: "https://github.com/Dev-Siri/Tea-Share",
     link: "https://tea-share.vercel.app",
@@ -183,7 +183,7 @@ export const projects: Project[] = [
   },
   {
     name: "Share Me",
-    description: "A Full Stack Social Media Application made with React, TailwindCSS and Sanity",
+    description: "A Full Stack Social Media Application made with React, TailwindCSS and Sanity.",
     image: shareMe,
     source: "https://github.com/Dev-Siri/ShareMe",
     link: "https://shareme-siri.netlify.app",
