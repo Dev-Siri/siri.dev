@@ -4,5 +4,5 @@ import siriSpeechAnimation from "../assets/siri-speech-animation.webp";
 
 <footer class="text-center flex flex-col items-center">
   <p class="-mb-28">Made with ❤️ by Aarush</p>
-  <img src={siriSpeechAnimation.src} alt="Siri Voice" loading="lazy" decoding="async" height={10} width={250} />
+  <img src={(siriSpeechAnimation as unknown as { src: string }).src} alt="Siri Voice" loading="lazy" decoding="async" height={10} width={250} />
 </footer>
