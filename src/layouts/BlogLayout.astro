@@ -1,11 +1,11 @@
 ---
-import "../styles/globals.css";
 import "../styles/blog.css";
+import "../styles/globals.css";
 
 import { Icon } from "astro-icon";
 
-import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
 import SideMenu from "../components/SideMenu.astro";
 
 interface Props {
@@ -55,6 +55,7 @@ function getFormattedTime(dateString: string) {
     <meta name="article:publish_time" content={getFormattedTime(publishdate)} />
     <meta name="article:author" content="Aarush" />
     <meta name="robots" content="index, follow" />
+    <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href=`https://aarush-dev.netlify.app/blog/${slug}` />
     <link rel="preload" href="/fonts/Inter.woff2" as="font" crossorigin="anonymous" />
     <link rel="sitemap" href="/sitemap-index.xml" />

@@ -1,0 +1,203 @@
+---
+title: Why I moved Tea Share from React to Svelte
+slug: why-i-moved-tea-share-from-react-to-svelte
+description: I have been working on a big project for many months called Tea Share and in the process, I switched to SvelteKit from Next.js. Find out why.
+publishdate: Jun 23, 2023
+layout: ../../layouts/BlogLayout.astro
+---
+
+import { Image } from "@astrojs/image/components";
+
+I have been working on a big project for many months called Tea Share and in the process, I switched to SvelteKit from Next.js.
+
+Now you might wonder.....
+
+## What is Tea Share?
+
+Tea Share is a social media app similar to Instagram or Twitter for the Web & Android.
+
+It is highly interactive so therefore an obvious candidate for a fullstack framework and it also needs to be fast + accessible.
+
+## Why did I make the switch?
+
+Well, I have a very stupid reason for it, **highly interactive fast apps**.
+
+Why did I call it stupid? Because it sounds stupid. I moved from React to Svelte because I want to have a highly interactive
+app without a massive client-side JavaScript bundle and get some sleep because my mind keeps thinking of the big client-side component I left in the app.
+
+<br />
+React and Svelte are both awesome frameworks for making a highly interactive blazingly fast UI. But the RSC (React Server Component) paradigm shift made
+my really paranoid to serve JavaScript to users because React itself is 51kb! + The Next.js addition for client-side routing and route-prefetching with
+many other features increase it by another 21kb.
+
+Eventually, my brain broke down and I ran out memory to handle the app with being so paranoid on JavaScript. So then, I switched to SvelteKit.
+I couldn't believe how low the bundle size was after I used it! The app with Next.js and barely User friendly state (Almost everything server-side) was 109kb (GZipped)
+but the app built with SvelteKit that now focuses on UX as well as performance, even though it was now full hydration && many features were now also client-side, the apps bundle size was **ONLY 48kb (GZipped)**
+
+## Progressively enhanced JavaScript apps are the ~~past~~ future of web development
+
+#### What is Progressive Enhancement?
+
+> Progressive enhancement is a strategy in web design that puts emphasis on web content first,
+> allowing everyone to access the basic content and functionality of a web page, whilst users
+> with additional browser features or faster Internet access receive the enhanced version instead.
+
+And thats what I really like about SvelteKit. It puts a lot of effort in helping use non-JS needed features like
+`<form>` and then adding easy APIs to progressively enhance it with client-side JavaScript to improve the UX.
+
+I remember when I started learning HTML, CSS & JS, I also tried doing progressive enhancement, and it was painful.
+
+For reference, here is vanilla JS & HTML vs SvelteKit
+
+```html
+<html lang="en">
+  <head>...<head>
+  <body>
+    <form action="/some-api" method="POST" id="login-form">
+      ...
+    </form>
+  </body>
+</html>
+```
+
+Then in the JS
+
+```js
+document.getElementById("login-form").onsubmit = async e => {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+  await fetch("https://.../some-api", {
+    method: "POST",
+    formData,
+  });
+};
+```
+
+Whatever I am showing here is just a small example, imagine this in a big codebase.
+
+But SvelteKit? The simplicity has been brought down to its minimum.
+
+```html
+<script lang="ts">
+  // Only around 1kb DECOMPRESSED!
+  import { enhance } from "$app/forms";
+</script>
+
+<!--         form action         progressive enhancement -->
+<form action="?/login" method="POST" use:enhance>...</form>
+```
+
+Thats IT! Super simple an straight-forward.
+
+#### Ok, progressive enhancement is nice, but why do I even care?
+
+[Because...](https://www.kryogenix.org/code/browser/everyonehasjs.html)
+
+But seriously, having JS to enhance is better than empowering JS to make the app collapse.
+
+## SvelteKit is nice(r) to work with
+
+To me, writing UIs in Svelte were nicer than JSX. The JavaScript (with TypeScript support) is minimal & feels like just
+vanilla JS without the pain points.
+
+The UI code when converted from React -> Svelte decreased by 33% !
+
+## Performance
+
+Like I said in the "[Why I made the switch](#why-i-made-the-switch)" section, Svelte is already faster than React. (And thats huge for me)
+I care about performance. I tried a lot on trying to get React going fast & I always came to a 200kb bundle size + the runtime performance were good enough in Next 12. (Next 13 is a different story) But Svelte **CRUSHED** it. And not only the client-side bundle size that I mentioned before, but also the server-side performance. The server bundle went down from 6MB -> 418kb. Response times became 2.3x faster, client-side bundles sat at 48kb & the bundle size increase is very minimal. (only like 3kb for 3 components)
+
+## Things I hate about Svelte
+
+### The templating language
+
+The templating language of Svelte is kind of annoying tbh. Its definetly concise, readable & gets the job done, but I really hate it. Its the #1 thing I hate about Svelte. For example, lets take React && JSX vs Svelte.
+
+{/* prettier-ignore */}
+```tsx
+async function Component() {
+  const items = await getItems();
+
+  return items.map(item =>
+    <ItemCard
+      key={item.id}
+      special={items.special.property as SpecialProperty}
+      {...item}
+    />
+  );
+}
+```
+
+Notice that type assertion? Now lets look at Svelte
+
+{/* prettier-ignore */}
+```ts
+// +page.server.ts
+export const load = async () => ({ items: await getItems() });
+```
+
+{/* prettier-ignore */}
+```html
+<!-- +page.svelte -->
+<script lang="ts">
+  export let data;
+</script>
+
+{#each data.items as item}
+  <ItemCard
+    special={items.special.property as SpecialProperty}
+    {...item}
+  />
+{/each}
+```
+
+The code looks fine & simple, but actually, this is **wrong**.
+Svelte's templating language doesn't have support for type assertions. You might think its ok, but its also really annoying to manage. And this is not just type assertions, many TS features are **NOT POSSIBLE** in Svelte.
+
+### Why +
+
+This might be me nitpicking but why do the framework specific files start with a "+".
+Its just not natural to write **+page.svelte**, its much better IMO to write **page.svelte**.
+
+### Exports lol
+
+Here are two files, **stuff.ts** && **+page.svelte**
+
+```ts
+// stuff
+import type { Garbage } from "./+page.svelte";
+```
+
+```html
+<!-- +page.svelte -->
+<script lang="ts">
+  export interface Garbage { ... }
+
+  function processGarbage(garbage: Garbage): Garbage {
+    garbage.dispose();
+  }
+</script>
+
+...
+```
+
+What will happen?
+
+- Type Error
+- Error \<- Type
+- Type Error
+- Error \<- Type
+
+I'll offload the guessing work to your brain.
+
+But now for the final question....
+
+## Will I leave React for Svelte for all my apps?
+
+#### NO.
+
+I still love using React, its still my favourite framework over Svelte. But for my apps, it really depends. If I am building a really big project, Svelte is the new way for me. Its accessibility and performance
+is all I need for a big production-grade app (Like Tea Share)
+But React is evolving rapidly and I expect more improvements in performance in the future.
+If I was given the choice of React vs Svelte for a non-performance critical app, I would choose React any day over Svelte.

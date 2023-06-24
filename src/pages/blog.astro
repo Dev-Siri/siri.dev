@@ -14,7 +14,7 @@ const blogPosts = await Astro.glob("./blog/**/*.mdx");
   <p class="mt-6 text-2xl">
     Welcome to my blog! I like to post about my life, comparison of the technologies I use, open source related things and other cool stuff here.
   </p>
-  <ul class="list-[none!important] mt-10 w-full border-2 rounded-md border-gray-800">
+  <ul class="list-[none!important] mt-10 w-full pr-5 border-2 rounded-md border-gray-800">
     {
       blogPosts
         .sort((prevPost, nextPost) => {
