@@ -10,7 +10,7 @@ export async function post({ request, redirect }: APIContext) {
 
   const session = await getSession(request);
 
-  if (!comment || comment instanceof Blob || !session || !session.user || !session.user.name) return redirect("/guestbook", 303);
+  if (typeof comment !== "string" || !session || !session.user || !session.user.name) return redirect("/guestbook", 303);
 
   await addGuestBookEntry({
     username: session.user.name,
