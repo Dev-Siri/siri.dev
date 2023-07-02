@@ -1,8 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-import siri from "../assets/siri.webp";
-
 import { projects, technologies } from "../data";
 
 import ProjectCard from "../components/ProjectCard.astro";
@@ -13,15 +11,7 @@ export const prerender = true;
 
 <BaseLayout title="Hi! I am Aarush, A Web & Flutter Developer">
   <section>
-    <img
-      src={(siri as unknown as { src: string }).src}
-      alt="Siri"
-      height={480}
-      width={360}
-      loading="lazy"
-      decoding="async"
-      class="absolute scale-125 ml-[56%] hidden min-[925px]:block"
-    />
+    <img src="/images/siri.webp" alt="Siri" height={480} width={360} loading="lazy" class="absolute scale-125 ml-[56%] hidden min-[925px]:block" />
     <h1 class="w-full lg:w-1/2">Hi! I am Aarush, A Fullstack Web & Flutter Developer.</h1>
     <p class="mt-5 text-2xl typing-text" style="--typing-width: 567px">
       I'm a developer who can build blazingly fast apps <br />

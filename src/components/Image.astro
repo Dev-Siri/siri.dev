@@ -1,0 +1,21 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+  height: number;
+  width: number;
+  loading?: "lazy" | "eager";
+  class?: string;
+}
+
+const { src, alt, height, width, loading = "lazy", class: className = "" } = Astro.props;
+---
+
+<img
+  src=`/api/image?url=${import.meta.env.PROD ? "https://aarush-dev.netlify.app" : "http://localhost:3000"}${encodeURIComponent(src)}&h=${height}`
+  {alt}
+  {height}
+  {width}
+  {loading}
+  class={className}
+/>

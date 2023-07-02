@@ -1,4 +1,3 @@
-import image from "@astrojs/image";
 import mdx from "@astrojs/mdx";
 
 // @ts-expect-error
@@ -11,16 +10,7 @@ import { defineConfig } from "astro/config";
 import auth from "auth-astro";
 
 export default defineConfig({
-  integrations: [
-    tailwind(),
-    compress(),
-    mdx(),
-    sitemap(),
-    image({
-      serviceEntryPoint: "@astrojs/image/sharp",
-    }),
-    auth(),
-  ],
+  integrations: [tailwind(), compress(), mdx(), sitemap(), auth()],
   build: {
     format: "file",
   },

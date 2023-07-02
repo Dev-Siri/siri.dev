@@ -3,8 +3,6 @@ import { getSession } from "auth-astro/server";
 import type { APIContext } from "astro";
 import { addGuestBookEntry, getGuestbookEntries } from "../../utils/guestbook";
 
-export const prerender = false;
-
 export async function post({ request, redirect }: APIContext) {
   const formData = await request.formData();
 

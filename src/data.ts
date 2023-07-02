@@ -12,13 +12,6 @@ import Svelte from "./components/icons/Svelte.astro";
 import SvelteKit from "./components/icons/SvelteKit.astro";
 import TypeScript from "./components/icons/TypeScript.astro";
 
-import ecommerceNext from "./assets/projects/ecommerce-next.webp";
-import hooBank from "./assets/projects/hoo-bank.webp";
-import shareMe from "./assets/projects/share-me.webp";
-import teaShare from "./assets/projects/tea-share.webp";
-import tiktik from "./assets/projects/tik-tik.webp";
-import youtubeClone from "./assets/projects/youtube-clone.webp";
-
 export interface TechnologyInfo {
   Icon(_props: Record<string, any>): any;
   name: string;
@@ -156,42 +149,42 @@ export const projects: Project[] = [
   {
     name: "Tea Share",
     description: "Tea Share is a social media application made for Android in Flutter and the Web with TypeScript + SvelteKit.",
-    image: teaShare,
+    image: "/images/projects/ecommerce-next.webp",
     source: "https://github.com/Dev-Siri/Tea-Share",
     link: "https://tea-share.vercel.app",
   },
   {
     name: "Tik Tik",
     description: "A Fullstack Tik Tok clone with Google Authentication made with Next.js, React & Sanity.",
-    image: tiktik,
+    image: "/images/projects/hoo-bank.webp",
     source: "https://github.com/Dev-Siri/Tik-Tik",
     link: "https://tik-tik-siri.vercel.app",
   },
   {
     name: "Next Ecommerce",
     description: "An Ecommerce application with actual payments powered by Stripe. Made with Next.js SSG and Sanity CMS.",
-    image: ecommerceNext,
+    image: "/images/projects/share-me.webp",
     source: "https://github.com/Dev-Siri/Ecommerce-Next",
     link: "https://phoenix-stores.vercel.app",
   },
   {
     name: "Youtube Clone",
     description: "A Youtube Clone made with React.js, TailwindCSS and RapidAPI.",
-    image: youtubeClone,
+    image: "/images/projects/tea-share.webp",
     source: "https://github.com/Dev-Siri/Youtube-Clone",
     link: "https://siri-youtube-app.netlify.app",
   },
   {
     name: "Share Me",
     description: "A Full Stack Social Media Application made with React, TailwindCSS and Sanity.",
-    image: shareMe,
+    image: "/images/projects/tik-tik.webp",
     source: "https://github.com/Dev-Siri/ShareMe",
     link: "https://shareme-siri.netlify.app",
   },
   {
     name: "Hoo Bank",
     description: "A modern, fast & minimalistic banking landing page created with Astro and TailwindCSS.",
-    image: hooBank,
+    image: "/images/projects/youtube-clone.webp",
     source: "https://github.com/Dev-Siri/Hoo-Bank",
     link: "https://hoo-bank-siri.netlify.app",
   },

@@ -8,9 +8,7 @@ layout: ../../layouts/BlogLayout.astro
 
 export const prerender = true;
 
-import { Image } from "@astrojs/image/components";
-
-import nextjsLeafStructure from "../../assets/blog/nextjs-leaf-structure.webp";
+import Image from "../../components/Image.astro";
 
 The App Router is a major change to Next.js. It introduced a lot of features that help in improving the overall speed of the app and reduce client-side bundle size. One of the main features that help with this is React Server Components. RSCs are just components that render only on the server and send only the generated HTML to the client. This also means that npm packages used in RSCs are not sent to the browser. This itself can reduce the bundle size a lot. But there are many other things that you do not need to do in RSCs that increase bundle size. <br />
 
@@ -56,11 +54,10 @@ export default function Page() {
 I have seen many code bases where static parts are included in a client component, and a small part is server components. Especially in authentication pages. Client components should be at the leaf (or end) of every page/component. Here is visual a diagram showing the structure:
 
 <Image
-  src={nextjsLeafStructure}
+  src="/images/blog/nextjs-leaf-structure.webp"
   alt="Leaf Diagram"
-  format="avif"
-  height={nextjsLeafStructure.height}
-  width={nextjsLeafStructure.width}
+  height={1057}
+  width={1447}
   class="my-5 p-4 rounded-md shadow-md border-2 border-semi-dark-gray"
 />
 

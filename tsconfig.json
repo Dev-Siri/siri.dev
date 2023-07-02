@@ -1,7 +1,6 @@
 {
   "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
-    "jsx": "preserve",
-    "types": ["@astrojs/image/client"]
+    "jsx": "preserve"
   }
 }

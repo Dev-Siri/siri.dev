@@ -1,6 +1,5 @@
 ---
-import { Image } from "@astrojs/image/components";
-import logo from "../assets/logo.webp";
+import Image from "./Image.astro";
 
 const navLinkStyles =
   "hover:text-gray-300 duration-200 hover:bg-semi-visible-blue hover:scale-125 border-blue-400 hover:border-2 rounded-md p-2 transform-gpu px-10";
@@ -8,7 +7,7 @@ const navLinkStyles =
 
 <nav class="fixed bg-dark-gray z-20 border-b-2 items-center border-gray-800 flex w-screen p-6">
   <a href="/" class="text-xl flex-1 flex items-center gap-4">
-    <Image src={logo} alt="Logo" format="avif" height={75} width={75} class="h-12 w-12 rounded-full" />
+    <Image src="/images/logo.webp" alt="Logo" height={75} width={75} class="h-12 w-12 rounded-full" />
     aarush.dev
   </a>
   <section class="items-center hidden lg:flex justify-around flex-[2]">

@@ -1,8 +1,8 @@
 ---
-import { Image } from "@astrojs/image/components";
+import Image from "./Image.astro";
 
-import type { Project } from "../data";
 import { Icon } from "astro-icon";
+import type { Project } from "../data";
 
 interface Props extends Project {}
 
@@ -10,7 +10,7 @@ const { name, description, source, image, link } = Astro.props;
 ---
 
 <article class="postcard-animation text-left shadow-md shadow-gray-800 bg-semi-dark-gray w-fit rounded-xl">
-  <Image src={image} alt={name} height={image.height} width={image.width} format="avif" class="rounded-xl aspect-video" />
+  <Image src={image} alt={name} height={image.height} width={image.width} class="rounded-xl aspect-video" />
   <div class="p-5">
     <p class="text-4xl font-bold leading-normal">
       {name}
