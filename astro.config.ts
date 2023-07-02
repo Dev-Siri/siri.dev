@@ -1,6 +1,9 @@
 import image from "@astrojs/image";
 import mdx from "@astrojs/mdx";
-import netlifyAdapter from "@astrojs/netlify";
+
+// @ts-expect-error
+import netlify from "@astrojs/netlify/functions";
+
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import compress from "astro-compress";
@@ -23,5 +26,5 @@ export default defineConfig({
   },
   site: "https://aarush-dev.netlify.app/",
   output: "server",
-  adapter: netlifyAdapter(),
+  adapter: netlify(),
 });
