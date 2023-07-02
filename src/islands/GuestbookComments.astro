@@ -1,0 +1,38 @@
+<guestbook-comments class="mt-10 gap-4 flex flex-col">
+  <slot />
+</guestbook-comments>
+
+<script>
+  import type { GuestBookEntry } from "../utils/guestbook";
+
+  class GuestbookComments extends HTMLElement {
+    public async addData(newEntry: GuestBookEntry) {
+      const { getFormattedTime, getRelativeTime } = await import("../utils/time");
+
+      const container = document.createElement("article");
+      container.className = "flex flex-col items-start";
+
+      const content = document.createElement("div");
+      content.className = "flex gap-2";
+
+      const username = document.createElement("p");
+      username.className = "text-gray-300";
+      username.textContent = newEntry.username;
+
+      const comment = document.createElement("p");
+      comment.textContent = newEntry.comment;
+
+      const createdAt = document.createElement("time");
+      createdAt.className = "text-xs text-gray-400 font-bold";
+      createdAt.dateTime = getFormattedTime(newEntry.createdAt);
+      createdAt.textContent = getRelativeTime(newEntry.createdAt);
+
+      content.append(username, comment);
+      container.append(content, createdAt);
+
+      this.prepend(container);
+    }
+  }
+
+  customElements.define("guestbook-comments", GuestbookComments);
+</script>

@@ -3,6 +3,8 @@ import { socialLinks } from "../data";
 
 import SocialCard from "../components/SocialCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+export const prerender = true;
 ---
 
 <BaseLayout title="About" class="text-center" path="/about">

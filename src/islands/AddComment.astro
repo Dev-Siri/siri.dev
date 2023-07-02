@@ -1,0 +1,57 @@
+---
+import { getSession } from "auth-astro/server";
+import LoadingSpinner from "../components/LoadingSpinner.astro";
+
+const session = await getSession(Astro.request);
+---
+
+<add-comment>
+  <form action="/api/add-comment" method="POST" id="add-comment-form" class="m-4 flex justify-center">
+    <input type="hidden" name="username" value={session?.user?.name} />
+    <input type="text" name="comment" class="bg-semi-dark-gray rounded-tl-md w-11/12 outline-none rounded-bl-md p-4" placeholder="Your message" />
+    <button type="submit" class="rounded-tr-md gap-2 flex rounded-br-md items-center bg-accessible-blue p-4 font-bold px-10">
+      Sign
+      <LoadingSpinner />
+    </button>
+  </form>
+</add-comment>
+
+<script>
+  import type { GuestBookEntry } from "../utils/guestbook";
+
+  class AddComment extends HTMLElement {
+    public connectedCallback() {
+      const addCommentForm = document.getElementById("add-comment-form")!;
+
+      addCommentForm.onsubmit = this.handleAddComment;
+    }
+
+    // This is Progressive enhancement.
+    // If the page has JS disabled, the form will submit like normal instead.
+    private async handleAddComment(event: SubmitEvent) {
+      event.preventDefault();
+
+      const loader = document.getElementById("loading-spinner");
+      const formData = new FormData(event.currentTarget as HTMLFormElement);
+
+      if (loader) loader.style.display = "block";
+
+      await fetch("/api/guestbook", {
+        method: "POST",
+        body: formData,
+      });
+
+      const guestbookComments: (Element & { addData(newEntry: GuestBookEntry): Promise<void> }) | null = document.querySelector("guestbook-comments");
+
+      if (guestbookComments)
+        await guestbookComments.addData({
+          username: formData.get("username") as string,
+          createdAt: new Date().toISOString(),
+          comment: formData.get("comment") as string,
+        });
+      if (loader) loader.style.display = "none";
+    }
+  }
+
+  customElements.define("add-comment", AddComment);
+</script>

@@ -3,6 +3,8 @@ import Technology from "../components/Technology.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 import { technologies } from "../data";
+
+export const prerender = true;
 ---
 
 <BaseLayout title="Technologies" description="Stuff I mostly work with daily" class="flex flex-col items-center text-center" path="/technologies">

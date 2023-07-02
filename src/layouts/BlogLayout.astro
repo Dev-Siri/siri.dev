@@ -8,6 +8,8 @@ import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
 import SideMenu from "../components/SideMenu.astro";
 
+import { getFormattedTime } from "../utils/time";
+
 interface Props {
   frontmatter: {
     title: string;
@@ -20,19 +22,6 @@ interface Props {
 const {
   frontmatter: { title, description, slug, publishdate },
 } = Astro.props;
-
-function getFormattedTime(dateString: string) {
-  const date = new Date(dateString);
-
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-
-  const paddedMonth = month.toString().padStart(2, "0");
-  const paddedDay = day.toString().padStart(2, "0");
-
-  return `${year}-${paddedMonth}-${paddedDay}`;
-}
 ---
 
 <html lang="en">
