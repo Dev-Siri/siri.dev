@@ -19,6 +19,9 @@ dependencies:
   cookie:
     specifier: ^0.5.0
     version: 0.5.0
+  sharp:
+    specifier: ^0.32.1
+    version: 0.32.1
 
 devDependencies:
   '@astrojs/netlify':
@@ -33,9 +36,6 @@ devDependencies:
   astro-compress:
     specifier: ^1.1.48
     version: 1.1.48
-  sharp:
-    specifier: ^0.32.1
-    version: 0.32.1
   tailwindcss:
     specifier: ^3.3.2
     version: 3.3.2
