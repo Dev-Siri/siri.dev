@@ -14,6 +14,9 @@ export default defineConfig({
   build: {
     format: "file",
   },
+  vite: {
+    optimizeDeps: { exclude: ["auth:config"] },
+  },
   site: "https://aarush-dev.netlify.app/",
   output: "server",
   adapter: netlify(),

@@ -12,15 +12,18 @@ export async function get({ url: { searchParams } }: APIContext) {
   const imageBuffer = await imageResponse.arrayBuffer();
 
   try {
+    const headers = new Headers();
     let optimizedImage: Buffer;
 
     if (imageResponse.headers.get("Content-Type")?.includes("image/gif")) {
       optimizedImage = await sharp(imageBuffer).resize(Number(height)).gif().toBuffer();
+      headers.append("Content-Type", "image/gif");
     } else {
       optimizedImage = await sharp(imageBuffer).resize(Number(height)).avif().toBuffer();
+      headers.append("Content-Type", "image/avif");
     }
 
-    return new Response(optimizedImage);
+    return new Response(optimizedImage, { headers });
   } catch (error) {
     console.log(error);
     // Return the original image as-is instead of silently erroring in the server console
