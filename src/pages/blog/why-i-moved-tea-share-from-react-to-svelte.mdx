@@ -22,8 +22,8 @@ It is highly interactive so therefore an obvious candidate for a fullstack frame
 
 Well, I have a very stupid reason for it, **highly interactive fast apps**.
 
-Why did I call it stupid? Because it sounds stupid. I moved from React to Svelte because I want to have a highly interactive
-app without a massive client-side JavaScript bundle and get some sleep because my mind keeps thinking of the big client-side component I left in the app.
+Why did I call it stupid? Because the statement "Moving from React to Svelte because I want highly interactive apps." is like saying "I am moving from Java to Kotlin because I want to write a JVM app.". I moved from React to Svelte because I want to have a highly interactive
+app without a massive client-side JavaScript bundle and get some sleep because my mind doesn't have to think of the big client component I left in the app.
 
 <br />
 React and Svelte are both awesome frameworks for making a highly interactive blazingly fast UI. But the RSC (React Server Component) paradigm shift made
@@ -103,20 +103,84 @@ vanilla JS without the pain points.
 
 The UI code when converted from React -> Svelte decreased by 33% !
 
+Svelte also has a lot of shorthands that make writing UIs easier. Here are only some of them in one snippet:
+
+{/* prettier-ignore-start */}
+```html
+<script lang="ts">
+  import { onMount } from "svelte";
+  import { writable } from "svelte/store";
+  import Component from "./Component.svelte";
+
+  // built in state management
+  const store = writable(null);
+  const stuff = 23;
+  const things = [];
+
+  // reactivity
+  let count = 0;
+
+  // computed state
+  $: doubled = count * 2;
+  $: {
+    // side effects
+    console.log(`Count is ${count}`);
+  }
+
+  // async mount functions
+  onMount(async () => {
+    await import("...");
+  });
+</script>
+
+<!-- managed subscription -->
+<h1>{$store}</h1>
+<!-- props shorthand -->
+<Component {stuff} />
+<!-- non-keyed fast loops -->
+{#each things as thing}
+  <div />
+{/each}
+<!-- readable in-template promise handling -->
+{#await Promise.resolve("hi")}
+  <div aria-busy>Wait</div>
+{:then data}
+  <article>{data}</article>
+{:catch}
+  <p>uhh</p>
+{/await}
+```
+{/* prettier-ignore-end */}
+
+So much stuff done in one tiny template file. Now thats a **HUGE** productivity boost.
+
 ## Performance
 
 Like I said in the "[Why I made the switch](#why-i-made-the-switch)" section, Svelte is already faster than React. (And thats huge for me)
-I care about performance. I tried a lot on trying to get React going fast & I always came to a 200kb bundle size + the runtime performance were good enough in Next 12. (Next 13 is a different story) But Svelte **CRUSHED** it. And not only the client-side bundle size that I mentioned before, but also the server-side performance. The server bundle went down from 6MB -> 418kb. Response times became 2.3x faster, client-side bundles sat at 48kb & the bundle size increase is very minimal. (only like 3kb for 3 components)
+I care about performance. I tried a lot on trying to get React going fast & I always came to a 200kb bundle size + the runtime performance were good enough in Next 12. (Next 13 is a different story)
+But Svelte **CRUSHED** it. And not only the client-side bundle size that I mentioned before, but also the server-side performance. The server bundle went down from 6MB -> 418kb.
+Response times became 2.3x faster, client-side bundles sat at 48kb & the bundle size increase is very minimal. (only like 3kb for 3 components). <br />
+
+<br />
+Svelte's compiler (especially with version 4) produces highly optimized JavaScript & it runs incredibly fast. The hydration overhead is very small. And
+speaking of hydration, since Svelte compiles to Vanilla JavaScript and does not have a Virtual DOM / Component Tree, its actually impossible to get hydration
+errors in it. In React, I remember before server components (RSCs don't hydrate so no problem using them), there were a lot of problems with hydration
+when showing a formatted time. If there was a post published 10s ago, on the server it would generate 10s Ago, but by the time the client receives the
+generated HTML, obviously the time would be now around 11-12s ago, but since the server generated HTML still has 10s, it throws a hydration error because
+we need both server & client data to be idempotent to hydrate the page correctly. But in Svelte, it doesn't matter. Since there is no component tree, the
+hydration process in SvelteKit is only attaching event-listeners to stuff, & there was no need for extra overhead of a VDOM.
 
 ## Things I hate about Svelte
 
+Svelte's isn't all great tbh. Its very nice to work with but still a little rough around the edges.
+
 ### The templating language
 
-The templating language of Svelte is kind of annoying tbh. Its definetly concise, readable & gets the job done, but I really hate it. Its the #1 thing I hate about Svelte. For example, lets take React && JSX vs Svelte.
+The templating language of Svelte is kind of annoying tbh. Its definitely concise, readable & gets the job done, but I really hate it. Its the #1 thing I hate about Svelte. For example, lets take React && JSX vs Svelte.
 
 {/* prettier-ignore */}
 ```tsx
-async function Component() {
+export default async function Page() {
   const items = await getItems();
 
   return items.map(item =>
@@ -185,9 +249,9 @@ import type { Garbage } from "./+page.svelte";
 What will happen?
 
 - Type Error
-- Error \<- Type
 - Type Error
-- Error \<- Type
+- Some of the above
+- All of the above
 
 I'll offload the guessing work to your brain.
 
