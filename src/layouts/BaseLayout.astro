@@ -14,7 +14,7 @@ interface Props {
 const {
   title,
   description = "I'm a Web & Flutter developer who can create blazingly fast apps that can run on any platform using the most in-demand technologies.",
-  class: className,
+  class: className = "",
   path = "/",
 } = Astro.props;
 ---
@@ -26,7 +26,7 @@ const {
     <meta name="description" content={description} />
     <meta name="og:title" content={title} />
     <meta name="og:description" content={description} />
-    <meta name="og:url" content=`https://aarush-dev.netlify.app/${path}` />
+    <meta name="og:url" content=`https://aarush-dev.netlify.app${path}` />
     <meta name="og:image" content="https://aarush-dev.netlify.app/og/default.jpg" />
     <meta name="og:type" content="article" />
     <meta name="og:site_name" content="Aarush's Blog" />
