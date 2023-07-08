@@ -9,7 +9,7 @@ export interface Props {
 }
 
 const { src, alt, height, width, loading = "lazy", class: className = "" } = Astro.props;
-const url = import.meta.env.PROD ? "https://aarush-dev.netlify.app" : "http://localhost:3000";
+// const url = import.meta.env.PROD ? "https://aarush-dev.netlify.app" : "http://localhost:3000";
 ---
 
-<img src=`${url}/api/image?url=${url}${encodeURIComponent(src)}&h=${height}` {alt} {height} {width} {loading} class={className} />
+<img {src} {alt} {height} {width} {loading} decoding="async" class={className} />
