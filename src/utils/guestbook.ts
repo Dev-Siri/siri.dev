@@ -1,3 +1,5 @@
+import { jsonAccessKey, jsonBinId } from "../env";
+
 export interface GuestBookEntry {
   username: string;
   createdAt: string;
@@ -16,9 +18,9 @@ interface GuestBookResponse {
 
 export async function getGuestbookEntries() {
   const headers = new Headers();
-  headers.append("X-Access-Key", import.meta.env.JSON_ACCESS_KEY!);
+  headers.append("X-Access-Key", jsonAccessKey);
 
-  const response = await fetch(`https://api.jsonbin.io/v3/b/${import.meta.env.JSON_BIN_ID}`, { headers });
+  const response = await fetch(`https://api.jsonbin.io/v3/b/${jsonBinId}`, { headers });
   const guestBookEntries = (await response.json()) as GuestBookResponse;
 
   return guestBookEntries.record;
@@ -26,12 +28,12 @@ export async function getGuestbookEntries() {
 
 export async function addGuestBookEntry(entry: GuestBookEntry) {
   const headers = new Headers();
-  headers.append("X-Access-Key", import.meta.env.JSON_ACCESS_KEY!);
+  headers.append("X-Access-Key", jsonAccessKey);
   headers.append("Content-Type", "application/json");
 
   const existingEntries = await getGuestbookEntries();
 
-  await fetch(`https://api.jsonbin.io/v3/b/${import.meta.env.JSON_BIN_ID}`, {
+  await fetch(`https://api.jsonbin.io/v3/b/${jsonBinId}`, {
     method: "PUT",
     headers,
     body: JSON.stringify([...existingEntries, entry]),

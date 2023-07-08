@@ -2,11 +2,13 @@ import GitHub from "@auth/core/providers/github";
 
 import type { AuthConfig } from "@auth/core";
 
+import { githubClientId, githubClientSecret } from "./src/env";
+
 export default {
   providers: [
     GitHub({
-      clientId: import.meta.env.GITHUB_CLIENT_ID!,
-      clientSecret: import.meta.env.GITHUB_CLIENT_SECRET!,
+      clientId: githubClientId,
+      clientSecret: githubClientSecret,
     }),
   ],
 } satisfies AuthConfig;
