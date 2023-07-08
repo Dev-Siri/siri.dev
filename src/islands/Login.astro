@@ -8,9 +8,12 @@ import { Icon } from "astro-icon";
 </button>
 
 <script>
-  document.getElementById("github-login")!.onclick = async () => {
-    const { signIn } = await import("auth-astro/client");
+  const githubLogin = document.getElementById("github-login");
 
-    signIn("github");
-  };
+  if (githubLogin)
+    githubLogin.onclick = async () => {
+      const { signIn } = await import("auth-astro/client");
+
+      signIn("github");
+    };
 </script>
