@@ -1,12 +1,12 @@
-import mdx from "@astrojs/mdx";
+import { defineConfig } from "astro/config";
 
 // @ts-expect-error
 import netlify from "@astrojs/netlify/functions";
 
+import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import compress from "astro-compress";
-import { defineConfig } from "astro/config";
 import auth from "auth-astro";
 
 export default defineConfig({

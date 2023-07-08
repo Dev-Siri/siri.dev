@@ -33,6 +33,9 @@
   from {
     width: 0;
   }
+  99% {
+    border-right-color: #e6e6e6;
+  }
   to {
     width: var(--typing-width);
     border-right-color: transparent;

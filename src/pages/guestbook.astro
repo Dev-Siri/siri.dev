@@ -1,15 +1,13 @@
 ---
-import { Icon } from "astro-icon";
-import { SignIn } from "auth-astro/components";
 import { getSession } from "auth-astro/server";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 import AddComment from "../islands/AddComment.astro";
 import GuestbookComments from "../islands/GuestbookComments.astro";
+import Login from "../islands/Login.astro";
 
 import { getGuestbookEntries } from "../utils/guestbook";
-
 import { getFormattedTime, getRelativeTime } from "../utils/time";
 
 const session = await getSession(Astro.request);
@@ -29,33 +27,30 @@ const guestbookEntries = await getGuestbookEntries();
     session ? (
       <AddComment />
     ) : (
-      <div class="w-full justify-center flex">
-        <SignIn provider="github" class="flex gap-2 bg-black p-2 px-4 rounded-md items-center self-center">
-          <Icon name="mdi:github" size={35} />
-          <p>Login with Github</p>
-        </SignIn>
-      </div>
+      <>
+        <div class="w-full justify-center flex">
+          <Login></Login>
+        </div>
+        <GuestbookComments>
+          {guestbookEntries
+            .sort((prevEntry, nextEntry) => {
+              if (new Date(prevEntry.createdAt) < new Date(nextEntry.createdAt)) return 1;
+
+              return -1;
+            })
+            .map(({ username, createdAt, comment }) => (
+              <article class="flex flex-col items-start">
+                <div class="flex gap-2">
+                  <p class="text-gray-300">{username}:</p>
+                  <p>{comment}</p>
+                </div>
+                <time class="text-xs text-gray-400 font-bold" datetime={getFormattedTime(createdAt)}>
+                  {getRelativeTime(createdAt)}
+                </time>
+              </article>
+            ))}
+        </GuestbookComments>
+      </>
     )
   }
-  <GuestbookComments>
-    {
-      guestbookEntries
-        .sort((prevEntry, nextEntry) => {
-          if (new Date(prevEntry.createdAt) < new Date(nextEntry.createdAt)) return 1;
-
-          return -1;
-        })
-        .map(({ username, createdAt, comment }) => (
-          <article class="flex flex-col items-start">
-            <div class="flex gap-2">
-              <p class="text-gray-300">{username}:</p>
-              <p>{comment}</p>
-            </div>
-            <time class="text-xs text-gray-400 font-bold" datetime={getFormattedTime(createdAt)}>
-              {getRelativeTime(createdAt)}
-            </time>
-          </article>
-        ))
-    }
-  </GuestbookComments>
 </BaseLayout>
