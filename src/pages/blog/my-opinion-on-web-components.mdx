@@ -1,0 +1,115 @@
+---
+title: My opinion on web components.
+slug: my-opinion-on-web-components
+description: What I think about web components after using them on my portfolio website.
+publishdate: Jul 10, 2023
+layout: ../../layouts/BlogLayout.astro
+---
+
+import Image from "../../components/Image.astro";
+
+export const prerender = true;
+
+Web components were on my rader as a native built-in feature that I was interested in using. But after using it,
+I have some thoughts on the technology.
+
+## What are web components?
+
+According to MDN. blah blah blah
+
+> Web Components is a suite of different technologies allowing you to create reusable custom elements
+> — with their functionality encapsulated away from the rest of your code — and utilize them in your web apps.
+
+After hearing this, I was like _"GREAT! NO MORE REACT NOR SVELTE!"_.
+But yeah uh, I was wrong, **very wrong**.
+
+## y tho
+
+<Image
+  src="/images/blog/y-tho.avif"
+  alt="Leaf Diagram"
+  height={653}
+  width={667}
+  class="my-5 p-4 rounded-md shadow-md border-2 border-semi-dark-gray"
+/>
+
+Well... lets start with my...
+
+## Experience
+
+Honestly, the experience with Web Components (atleast for me) wasn't that bad. I was using it to add progressive enhancements / small interactivity in my site's guestbook (hey btw check it out at [/guestbook](/guestbook)). But here's the thing, **I was using it all wrong**. Or atleast not the way most people would think.
+
+Here is what I did:
+
+```html
+<guestbook-comments class="mt-10 gap-4 flex flex-col">
+  <!-- child slot replaced with data fetched -->
+  <slot />
+</guestbook-comments>
+
+<script>
+  import type { GuestBookEntry } from "../utils/guestbook";
+
+  class GuestbookComments extends HTMLElement {
+    public async addEntry(newEntry: GuestBookEntry) {
+      // ...
+    }
+  }
+</script>
+```
+
+You can find the full source file on [GitHub](https://github.com/Dev-Siri/aarush.dev/blob/474c1c0288ff4bdb28e9f454cd3dea6a2c805c8a/src/islands/GuestbookComments.astro).
+
+Web components are meant to be like Framework Components (in React for example), where a component itself does everything in a [shadow-root](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot). But here is the problem....
+Web components don't support SSR, and they also lead to worse SEO. Because they need to be defined with `customElements.define()` which is only
+available in the browser `window` object. This means using shadow root as a namespace for creating elements will not render the elements if
+JavaScript is disabled. They are client-only, and this is bad for me. I like having stuff working without JavaScript and this just looks like a `useFootGun` 2.0
+
+<br />
+What I was doing with web components could be just used as regular `onsubmit` && `onclick` handlers. Yeah, I was kinda using them wrong. I was only doing
+that to get stuff like:
+
+```html
+<script>
+  class AddComment extends HTMLElement {
+    public async addComment() {
+      // types are funny
+      const guestbookComments: (Element & { addData(newEntry: GuestBookEntry): Promise<void> }) | null = document.querySelector("guestbook-comments");
+
+      // its the same method that I had defined before in the wc
+      if (guestbookComments) await guestbookComments.addEntry(stuff);
+      //                                             ^^^^^^^
+    }
+  }
+</script>
+```
+
+Although it was kind of unneccessary, I also liked this approach. Because instead of a JS-Only or HTML-Only or HTML only component, where one
+doesn't show anything with JavaScript and the other doesn't update it all, this combines the best of both in a reusable component.
+
+## What if I actually used it in a real world project?
+
+Will I ever use it in a real-world large app? heck no. But, if I had to, will I write vanilla? NEVER. I have seen the pains of writing
+low-level DOM, and therefore its just not worth it writing something inferior to just writing a React / Svelte Component. If I ever need Web
+Components, I have Svelte! I can just compile Svelte (or React) to web components and just use that instead of writing painful vanilla JavaScript.
+In fact, its so easy to compile Svelte -> Web Components, I will just show one in 2 lines:
+
+```html
+<svelte:options customElement="web-component" />
+
+<h1>Hello World</h1>
+```
+
+## Do I think Web Components are good?
+
+#### Yesn't
+
+I just think they can be better. The main issue I have with them is their API & SSR/SEO Limitations. I don't get the trend of making native features
+ridiculously difficult to work with. Web Components **don't** need to have such a hard API. Everytime a new feature comes out on the web, its either
+too low-level (like WCs) or too limited. We should have a delicate balance between the 2 tradeoffs. For small interactivity websites? Yes they are good,
+for larger websites? NO.
+
+## Conclusion
+
+Although everyone likes to trash on Web Components, I think they are pretty OK. (Yea I have also kind of spread hate about it sometimes)
+They are a convenient feature for adding component-based interactive islands with vanilla JavaScript, but not something I would use all the time.
