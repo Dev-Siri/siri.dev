@@ -8,37 +8,38 @@
   font-display: swap;
 }
 
-* {
-  font-family: "Inter", sans-serif;
-  scrollbar-width: none;
-  scroll-behavior: smooth;
+html {
+  color-scheme: dark;
 }
 
-*::-webkit-scrollbar {
-  display: none;
+/* ::-webkit-scrollbar {
+  @apply bg-dark-gray;
+} */
+
+* {
+  font-family: "Inter", sans-serif;
+  @apply scroll-smooth;
 }
 
 .typing-text {
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 0.4em solid #e6e6e6;
+  @apply whitespace-nowrap overflow-hidden border-r-[0.4em] border-[#e6e6e6];
   animation: typing 2s steps(50, end) forwards;
 }
 
 @keyframes typing {
   from,
   to {
-    visibility: visible;
+    @apply visible;
   }
   from {
     width: 0;
   }
   99% {
-    border-right-color: #e6e6e6;
+    @apply border-r-[#e6e6e6];
   }
   to {
     width: var(--typing-width);
-    border-right-color: transparent;
+    @apply border-r-transparent;
   }
 }
 
@@ -103,29 +104,29 @@ h6 {
 }
 
 #menu-hidden + #side-menu {
-  display: none;
+  @apply hidden;
 }
 
 #menu-hidden:checked + #side-menu {
   animation: slide 0.5s ease-in;
-  display: flex;
+  @apply flex;
 }
 
 @keyframes fade-in {
   from {
-    opacity: 0;
+    @apply opacity-0;
   }
   to {
-    opacity: 1;
+    @apply opacity-100;
   }
 }
 
 @keyframes fade-out {
   from {
-    opacity: 1;
+    @apply opacity-100;
   }
   to {
-    opacity: 0;
+    @apply opacity-0;
   }
 }
 
@@ -138,7 +139,7 @@ h6 {
   }
 }
 
-@keyframes slide-to-left {
+@keyframes slide-to-right {
   from {
     translate: 4rem;
   }
@@ -148,10 +149,10 @@ h6 {
 }
 
 ::view-transition-old(main) {
-  animation: fade-out 350ms cubic-bezier(0, 0, 0.2, 1), slide-to-right 350ms cubic-bezier(0, 0, 0.2, 1);
+  animation: slide-to-right 350ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 ::view-transition-new(main) {
-  animation: fade-in 350ms cubic-bezier(0, 0, 0.2, 1), slide-to-left 350ms cubic-bezier(0, 0, 0.2, 1);
+  animation: slide-to-left 350ms cubic-bezier(0, 0, 0.2, 1);
   mix-blend-mode: normal;
 }
