@@ -7,7 +7,7 @@ const session = await getSession(Astro.request);
 
 <add-comment>
   <form action="/api/add-comment" method="POST" id="add-comment-form" class="m-4 flex justify-center">
-    <input type="hidden" name="username" value={session?.user?.name} />
+    <input type="hidden" name="username" value={session?.user?.name ?? "test"} />
     <input type="text" name="comment" class="bg-semi-dark-gray rounded-tl-md w-11/12 outline-none rounded-bl-md p-4" placeholder="Your message" />
     <button type="submit" class="rounded-tr-md gap-2 flex rounded-br-md items-center bg-accessible-blue p-4 font-bold px-10">
       Sign
