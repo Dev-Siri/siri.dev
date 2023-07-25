@@ -41,7 +41,7 @@ const session = await getSession(Astro.request);
         body: formData,
       });
 
-      const guestbookComments: (Element & { addData(newEntry: GuestBookEntry): Promise<void> }) | null = document.querySelector("guestbook-comments");
+      const guestbookComments = document.querySelector<Element & { addData(newEntry: GuestBookEntry): Promise<void> }>("guestbook-comments");
 
       if (guestbookComments)
         await guestbookComments.addData({
