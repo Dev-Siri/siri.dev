@@ -12,9 +12,9 @@ html {
   color-scheme: dark;
 }
 
-/* ::-webkit-scrollbar {
-  @apply bg-dark-gray;
-} */
+*::-webkit-scrollbar {
+  @apply hidden;
+}
 
 * {
   font-family: "Inter", sans-serif;
