@@ -15,6 +15,9 @@ export default defineConfig({
     format: "file",
   },
   vite: {
+    build: {
+      modulePreload: false,
+    },
     optimizeDeps: { exclude: ["auth:config"] },
   },
   site: "https://aarush-dev.netlify.app/",
