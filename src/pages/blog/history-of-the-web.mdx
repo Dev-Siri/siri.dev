@@ -1,0 +1,193 @@
+---
+title: "History of the Web: How it went from sharing documents to a full-blown application platform."
+slug: history-of-the-web
+description: Nowadays, we aren't here for reading documents, we are here to use something that is just as interactive as it gets.
+publishdate: Aug 17, 2023
+layout: ../../layouts/BlogLayout.astro
+---
+
+export const prerender = true;
+
+My question to you, the reader is, _Have you ever used the web?_. This may sound silly because you are using it right now, but my second question is, _What are you using it for?_. There are a variety of responses I can hear
+like _"Reading content from news sites"_ or _"Using some web sites for personal use like Figma to edit photos"_ or _"Using Twitter (theres no way in heaven or hell that I'm calling it X)"_
+
+<br />
+These are just general use cases, but have you ever downloaded an app from the **web**? Yes from the web, **not app stores**. I personally have ChatGPT
+as a quicklink and Twitter as a PWA installed on my phone. These apps are used by me almost everyday.
+<br />
+But now, let me clarify why I am asking these questions in the first place. The web in the start, **wasn't expected to be this advanced**. It **WASN't**
+for running full blown applications like Twitter in it. It was never expected to rival native apps. So now the question is, **what changed?** This isn't
+a small change either, going from sharing documents to running apps is no small undertaking. There was a catalyst that caused it, over **13 years ago**.
+
+## Starting of the web
+
+In the late 1980s, an engineer named Tim Berners-Lee working for CERN was frustated at how hard it was to share information over the internet in an organised way. So he made the World Wide Web in 1989. Along with the HTTP protocol, he also made Hyper-Text-Markup-Language (HTML). _Hey! you are reading some HTML right now_.
+But this was made for sharing information in an organised way. It was never meant to be an application platform, thats why, even today, you can access FILES from a web browser. Thats because, they are just there to be shared.
+HTML is a special view-format that the browser just parses differently to show a UI instead of text.
+
+## It had potential
+
+Many companies in the early 1990s saw the potential this new emerging technology called the 'Internet' or what it was well
+known for at the as the 'information super highway'. Most well known of these companies were Netscape & Microsoft (oh god)
+
+## Netscape's role
+
+There was one problem in the early days of the web, the staticness of the pages. Originally, websites were just HTML files stored on a server. When someone made a request to get a webpage, the server would find the HTML file on its hard disk and send it back. But then later, there was a new inovation.
+
+##### What if....
+
+##### Instead of writing and sending the same HTML pages, we generated them _on the fly_?
+
+This was definitely a step in the right direction. But how to determine what to generate? Thats simple! Cookies || Headers!
+
+Soon enough, we got [PHP](https://php.net). And thats what made web development accessible to the average developer.
+
+But still, _something was missing_.
+Remember, this was the time before concepts like "event-handlers" and "client-side scripting" existed.
+There was no way to do anything on the page unless you modify the url, cookies, headers or some other thing that gets sent to the server and **RELOAD THE PAGE**.
+With these limitations on the client-side, page reloads were a primary part of the user experience. So, whats next? Well in this entire section of "Netscape's role", I have yet to mention what it did. So here it is. In the December of 1995, a guy (overdosing on caffiene) named Brendan Eich created JavaScript. Although it wasn't perfect (and it still isn't), it was another step in making the web a real application platform.
+Now instead of making completely static experiences with a round-trip to the server, you could just update the DOM directly on the page.
+
+### JavaScript's initial use wasn't ideal
+
+Instead of the intended use of JavaScript as a client-side scripting language used for enhancing the user experience, it was more used for annoying users on web pages with popups and ads.
+But, this was ok (I guess), this was just the start of something new, and there were going to be some people using it for malicous purposes.
+
+But here we need to introduce...
+
+## Microsoft
+
+MS saw a huge success with the launch of Windows 95, which was itself a significant milestone for the Operating System. But, then they saw the internet and its potential. And they **WANTED** a slice of it too.
+So, what was the easiest way to control it? Well, getting control over the users who use it. They did this by shipping Internet Explorer along with Windows.
+
+##### Oh god, this was the worst thing that could happen.
+
+Microsoft never really cared about playing by the rules. Instead of integrating Web Standards in their browser, they just did whatever the hell they wanted and came up with two abomiations, _"JScript"_ (basically proprietery JavaScript) and _"VBScript"_ (Pushing their own language to the web). This did not go well, and both of these will be removed from future versions of IE going past its market share decline. But in the 90s, it was still a huge monopoly flex for Microsoft since they controlled like 95% of the marketshare.
+
+## Things look bad for JavaScript, so what's next?
+
+Not for long. JavaScript was indeed painful to write so most developers just chose to ignore it. I mean, back then you didn't even have stuff like `document.querySelector()` or `fetch()`. JUST LOOK AT THIS CODE:
+
+```js
+function changeColor() {
+  // IE < 9 doesn't support getElementsByClassName()
+  var elements = document.getElementsByTagName("div");
+  var arr = [];
+
+  for (var i = 0; i < elements.length; i++) {
+    if (elements[i].className === "example") {
+      arr.push(elements[i]);
+    }
+  }
+
+  for (var i = 0; i < arr.length; i++) {
+    arr[i].style.backgroundColor = "red";
+  }
+}
+
+function showAlert() {
+  alert("Button was clicked!");
+}
+
+var button = document.getElementById("button");
+
+// IE < 9 only supports attachEvent(), not addEventListener()
+if (button.attachEvent) {
+  button.attachEvent("onclick", showAlert);
+} else if (button.addEventListener) {
+  button.addEventListener("click", showAlert);
+} else {
+  button.onclick = showAlert;
+}
+
+changeColor();
+```
+
+**Source**: [The past, current state & future of JavaScript frameworks](https://www.youtube.com/watch?v=5EsLj3JOdE0)
+
+Now comes the revival of JavaScript with two important technologies, AJAX and JQuery.
+
+## AJAX
+
+This was originally popularized by Google. AJAX allows you to send a HTTP request to the server **without** the need for reloading the entire page. See how valuable it is? Its like _its almost_ the thing we need to build a full-blown web app. But... the API kinda sucks. This much code just to send a request? jeez.
+
+```js
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    // Typical action to be performed when the document is ready:
+    document.getElementById("demo").innerHTML = xhttp.responseText;
+  }
+};
+xhttp.open("GET", "filename", true);
+xhttp.send();
+```
+
+Don't worry, the next big tech will fix this.
+
+## JQuery
+
+In 2006, John Resig was frustated with how hard it is to deal with cross browser issues. Like, bro, let me write code, not spend time looking on the internet to see whether its supported in Microsoft's stupid browser. So like any normal person (and most JS devs today),
+he created JQuery! JQuery was revolutionary because it allowed you to build web applications, without worrying about browser compability. No wonder people started using it for everything immediately. And now after 17 years, its still used on the majority of websites out there.
+
+## OK Cool
+
+So JavaScript at this point is not so much of a pain as it was before. (thanks to JQuery)
+But still, we cannot make a full-blown web app without it being miserably slow. JS is interpreted in the browser and way to slow to render and update UI fast enough.
+
+## What chrome helped us to achieve
+
+In 2008, Google released Chrome. But more importantly, it also introduced the V8 engine. The V8 Lars Bak for the first time actually Just-in-Time compiled the JavaScript leading to much better performance.
+This not only means that existing experiences are going to get faster, but this also opens to native-like experiences directly in a web browser. JavaScript was the only major programming language at the time that actually had stuff like state and data/control flow.
+Since JavaScript's speed problem has been fixed, it now opens doors for new more interactive experiences on the web. Sundar Pichai even mentioned in his take that he wants to "move" his tools to the web browser. (checkout the launch, I am too lazy to give you the link here :/)
+
+## Time to conquer the client
+
+In 2010, (the 13 years ago part I mentioned before) we got our first **JavaScript Frameworks**.
+Many people might think this is where things went wrong, but honestly, this is where we actually built **real applications** that rival native apps.
+
+One of the most significant frameworks of this time was [AngularJS](https://angularjs.org). I myself don't like AngularJS, but I really like the quote from its creator Miško Hevery.
+
+> "HTML & JavaScript for web-apps rather than documents"
+
+This outlines a clear picture on what the world was heading into, **web apps that get as interactive as it gets**.
+
+## \<Suspense ful\>
+
+So Facebook recently released this new framework called React, and looks like the JS community isn't very happy about its design decisions.
+
+With comments like _"React JS is interesting, but JSX, just ugh....."_, it looked like something dead on arrival.
+But then one person named _"Sophie Alpert"_ just told everyone to give it a try, and in no time, woah. Almost every site is using it.
+
+## The age of web apps
+
+Frameworks, toolchains, browsers. Everything just right to make an actual app-like experience in a website. So, lets get on it! Now we have apps like GMail, Admin UIs (in Frameworks, more snappy), YouTube, Twitter (X sucks)
+
+We can now build actual web **apps**! There was also an emerging standard called "PWA" (Progressive Web Apps) that extend web apps to just feel like native apps that can be **installed**.
+
+## Wait, I need to download 2MB of JavaScript just to use your web app? No thank you.
+
+Oh wow its 2013 all over again. This is current state of things (in 2023). We finally realized, that _yes, web apps are amazing, but we should be a little bit more performance-aware otherwise there will be more harm than good_.
+
+One of the most significant comebacks in this state is the return of **progressive enhancement**.
+If you live under a rock and don't know what this means, its basically rendering a normal HTML document where _most_ things work, but they have their default behaviour.
+Then when the JS loads, it enhances the app by preventing page reloads and making the website feel more "native".
+Honestly, this is what it should have been from the start. But anyways, I think its safe to say, we have come **full circle**.
+
+<br />
+<span class="text-lg font-bold">Static Documents</span> ->
+<span class="text-lg font-bold">SSR pages</span> ->
+<span class="text-lg font-bold">SSR pages with JQuery client</span> ->
+<span class="text-lg font-bold">Single page applications</span> ->
+<span class="text-lg font-bold">The web apps era</span> ->
+<span class="text-lg font-bold">Back to SSR pages with client-side frameworks providing app like experiences with less JavaScript</span>
+
+## The future
+
+This evolution has been a wild ride. I am excited to see the future that these technologies hold and what new inovation
+will take over the world.
+
+## HEY YOU FORGOT WASM (bonus part)
+
+I know, I know, Web Assembly is the new kid on the block that many people are excited about. I am also looking forward to it, but in this article, I am mainly here to point out the evolution of JavaScript and Server-Side languages.
+Its impressive to see JavaScript grow from a simple scripting language to a fullstack language powering isomorphic apps, and I can already imagine how more advanced the future is going to get with WASM + JavaScript. We are already seeing it in apps like Figma, and I expect more awesome stuff like this.
