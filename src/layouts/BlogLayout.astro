@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from "astro:transitions";
 import "../styles/blog.css";
 import "../styles/globals.css";
 
@@ -49,6 +50,7 @@ const {
     <link rel="canonical" href=`https://aarush-dev.netlify.app/blog/${slug}` />
     <link rel="preload" href="/fonts/Inter.woff2" as="font" crossorigin="anonymous" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <ViewTransitions />
     <title>{title}</title>
   </head>
   <body class="h-screen w-screen overflow-x-hidden text-white bg-dark-gray">
@@ -60,7 +62,7 @@ const {
         <Icon name="mdi:arrow-left" size={20} />
         <p class="px-2">Blogs</p>
       </a>
-      <h1>
+      <h1 transition:name={title}>
         {title}
       </h1>
       <time class="text-gray-400 ml-1" datetime={getFormattedTime(publishdate)}>

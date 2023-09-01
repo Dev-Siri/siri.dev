@@ -6,7 +6,7 @@ publishdate: Jul 10, 2023
 layout: ../../layouts/BlogLayout.astro
 ---
 
-import Image from "../../components/Image.astro";
+import { Image } from "astro:assets";
 
 export const prerender = true;
 
@@ -84,8 +84,8 @@ that to get stuff like:
 </script>
 ```
 
-Although it was kind of unneccessary, I also liked this approach. Because instead of a JS-Only or HTML-Only or HTML only component, where one
-doesn't show anything with JavaScript and the other doesn't update it all, this combines the best of both in a reusable component.
+Although it was kind of unneccessary, I also liked this approach. Because instead of a JS-Only or HTML-Only component, where one
+doesn't show anything without JavaScript and the other doesn't update at all, this combines the best of both in a reusable component.
 
 ## What if I actually used it in a real world project?
 

@@ -147,12 +147,3 @@ h6 {
     translate: 0rem;
   }
 }
-
-::view-transition-old(main) {
-  animation: slide-to-right 350ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-::view-transition-new(main) {
-  animation: slide-to-left 350ms cubic-bezier(0, 0, 0.2, 1);
-  mix-blend-mode: normal;
-}

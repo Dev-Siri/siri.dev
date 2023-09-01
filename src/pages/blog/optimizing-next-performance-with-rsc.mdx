@@ -6,9 +6,9 @@ publishdate: May 21, 2023
 layout: ../../layouts/BlogLayout.astro
 ---
 
-export const prerender = true;
+import { Image } from "astro:assets";
 
-import Image from "../../components/Image.astro";
+export const prerender = true;
 
 The App Router is a major change to Next.js. It introduced a lot of features that help in improving the overall speed of the app and reduce client-side bundle size. One of the main features that help with this is React Server Components. RSCs are just components that render only on the server and send only the generated HTML to the client. This also means that npm packages used in RSCs are not sent to the browser. This itself can reduce the bundle size a lot. But there are many other things that you do not need to do in RSCs that increase bundle size. <br />
 
