@@ -19,5 +19,7 @@ export default defineConfig({
   },
   site: "https://aarush-dev.netlify.app",
   output: "server",
-  adapter: netlify(),
+  adapter: netlify({
+    dist: new URL("./dist/", import.meta.url),
+  }),
 });
