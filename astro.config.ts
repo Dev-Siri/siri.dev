@@ -17,9 +17,7 @@ export default defineConfig({
     },
     optimizeDeps: { exclude: ["auth:config"] },
   },
-  site: "https://aarush-dev.netlify.app/",
+  site: "https://aarush-dev.netlify.app",
   output: "server",
-  adapter: netlify({
-    functionPerRoute: false,
-  }),
+  adapter: netlify(),
 });
