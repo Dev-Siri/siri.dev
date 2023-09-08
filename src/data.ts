@@ -20,6 +20,8 @@ export interface TechnologyInfo {
   tooltipClassname?: string;
 }
 
+export const links = ["about", "blog", "projects", "technologies", "status", "guestbook"];
+
 export const technologies: TechnologyInfo[] = [
   {
     name: "React",
@@ -217,3 +219,9 @@ export const projects: Project[] = [
     link: "https://hoo-bank-siri.netlify.app",
   },
 ];
+
+export const status = {
+  age: 13,
+  class: 7,
+  country: "India 🇮🇳",
+};
