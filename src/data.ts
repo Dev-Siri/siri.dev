@@ -156,7 +156,7 @@ export const projects: Project[] = [
     name: "Tea Share",
     description: "Tea Share is a social media application made for Android in Flutter and the Web with TypeScript + SvelteKit.",
     image: {
-      src: "/images/projects/ecommerce-next.avif",
+      src: "/images/projects/tea-share.avif",
       height: 768,
       width: 1366,
     },
@@ -167,7 +167,7 @@ export const projects: Project[] = [
     name: "Tik Tik",
     description: "A Fullstack Tik Tok clone with Google Authentication made with Next.js, React & Sanity.",
     image: {
-      src: "/images/projects/hoo-bank.avif",
+      src: "/images/projects/tik-tik.avif",
       height: 768,
       width: 1366,
     },
@@ -178,7 +178,7 @@ export const projects: Project[] = [
     name: "Next Ecommerce",
     description: "An Ecommerce application with actual payments powered by Stripe. Made with Next.js SSG and Sanity CMS.",
     image: {
-      src: "/images/projects/share-me.avif",
+      src: "/images/projects/ecommerce-next.avif",
       height: 337,
       width: 640,
     },
@@ -189,7 +189,7 @@ export const projects: Project[] = [
     name: "Youtube Clone",
     description: "A Youtube Clone made with React.js, TailwindCSS and RapidAPI.",
     image: {
-      src: "/images/projects/tea-share.avif",
+      src: "/images/projects/youtube-clone.avif",
       height: 768,
       width: 1366,
     },
@@ -198,25 +198,25 @@ export const projects: Project[] = [
   },
   {
     name: "Share Me",
-    description: "A Full Stack Social Media Application made with React, TailwindCSS and Sanity.",
+    description: "A Full Stack Social Media Application made with Next.js, TailwindCSS and Sanity.",
     image: {
-      src: "/images/projects/tik-tik.avif",
+      src: "/images/projects/share-me.avif",
       height: 768,
       width: 1366,
     },
     source: "https://github.com/Dev-Siri/ShareMe",
-    link: "https://shareme-siri.netlify.app",
+    link: "https://share-me-siri.vercel.app",
   },
   {
     name: "Hoo Bank",
     description: "A modern, fast & minimalistic banking landing page created with Astro and TailwindCSS.",
     image: {
-      src: "/images/projects/youtube-clone.avif",
+      src: "/images/projects/hoo-bank.avif",
       height: 1366,
       width: 768,
     },
     source: "https://github.com/Dev-Siri/Hoo-Bank",
-    link: "https://hoo-bank-siri.netlify.app",
+    link: "https://hoo-bank-siri.vercel.app",
   },
 ];
 
