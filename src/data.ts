@@ -148,7 +148,7 @@ export interface Project {
   name: string;
   description: string;
   source: `https://${string}`;
-  link?: `https://${string}`;
+  link?: `https://${string}` | `/${string}`;
 }
 
 export const projects: Project[] = [
@@ -217,6 +217,17 @@ export const projects: Project[] = [
     },
     source: "https://github.com/Dev-Siri/Hoo-Bank",
     link: "https://hoo-bank-siri.vercel.app",
+  },
+  {
+    name: "Secret Project",
+    description: "What could this one be?",
+    image: {
+      src: "/images/projects/secret-project.avif",
+      height: 768,
+      width: 1366,
+    },
+    source: "https://guthib.com",
+    link: "/secret",
   },
 ];
 

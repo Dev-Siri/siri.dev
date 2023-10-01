@@ -1,6 +1,8 @@
 ---
 import { status } from "../data";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+export const prerender = true;
 ---
 
 <BaseLayout title="Status" description="Where I am, what I am." path="/status" class="text-center">

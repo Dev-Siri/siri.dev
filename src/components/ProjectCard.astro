@@ -7,6 +7,13 @@ import type { Project } from "../data";
 interface Props extends Project {}
 
 const { name, description, source, image, link } = Astro.props;
+
+const linkProps = link?.includes("http")
+  ? {
+      target: "_blank",
+      rel: "noopener noreferrer",
+    }
+  : {};
 ---
 
 <article class="relative text-left w-fit h-fit rounded-xl">
@@ -16,7 +23,7 @@ const { name, description, source, image, link } = Astro.props;
     </a>
     {
       link && (
-        <a title="Deployed URL" href={link} target="_blank" rel="noopener noreferrer" class="rounded-md flex p-3 items-center">
+        <a title="Deployed URL" href={link} {...linkProps} class="rounded-md flex p-3 items-center">
           <Icon name="mdi:link" height={30} />
         </a>
       )
