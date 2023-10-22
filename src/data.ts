@@ -219,6 +219,37 @@ export const projects: Project[] = [
     link: "https://hoo-bank-siri.vercel.app",
   },
   {
+    name: "Gedis",
+    description: "A fast Redis inspired in-memory database made with Go.",
+    image: {
+      src: "/images/projects/gedis.avif",
+      height: 347,
+      width: 690, // 👀
+    },
+    source: "https://github.com/Dev-Siri/gedis",
+    link: "https://gedis.vercel.app",
+  },
+  {
+    name: "GDN",
+    description: "An extremely fast CDN written in Go.",
+    image: {
+      src: "/images/projects/gdn.avif",
+      height: 250,
+      width: 690, // 👀
+    },
+    source: "https://github.com/Dev-Siri/gdn",
+  },
+  {
+    name: "Twitter Clone",
+    description: "Fully functional Twitter Clone built with Next.js, React, Drizzle ORM, Neon & Firebase Storage",
+    image: {
+      src: "/images/projects/twitter-clone.avif",
+      height: 367,
+      width: 690, // 👀
+    },
+    source: "https://github.com/Dev-Siri/Twitter-Clone",
+  },
+  {
     name: "Secret Project",
     description: "What could this one be?",
     image: {
