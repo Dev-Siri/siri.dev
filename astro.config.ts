@@ -8,18 +8,12 @@ import auth from "auth-astro";
 
 export default defineConfig({
   integrations: [tailwind(), mdx(), sitemap(), auth()],
-  build: {
-    format: "file",
-  },
+  build: { format: "file" },
   vite: {
-    build: {
-      modulePreload: false,
-    },
+    build: { modulePreload: false },
     optimizeDeps: { exclude: ["auth:config"] },
   },
   site: "https://aarush-dev.netlify.app",
   output: "server",
-  adapter: netlify({
-    dist: new URL("./dist/", import.meta.url),
-  }),
+  adapter: netlify({ dist: new URL("./dist/", import.meta.url) }),
 });

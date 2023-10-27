@@ -1,0 +1,187 @@
+---
+title: Addressing the concerns with Server Actions in Next 14.
+slug: next-server-actions
+description: Recently there has been an outrage on Twitter about Next 14 and server actions. I want to address some of the concerns that people have been talking about.
+publishdate: Oct 27, 2023
+layout: ../../layouts/BlogLayout.astro
+---
+
+export const prerender = true;
+
+Recently, [this tweet](https://twitter.com/AdamRackis/status/1717607565260124613) blew up about Server Actions in the next conf announcement.
+
+and..., the replies were kinda rough. It's like the Server Action hate is back. Yet in between this announcement and the first introduction of them in Next.js 13.4, many people have actually had a positive experience with the API.
+
+There were many inaccurate assumptions that people made so I want to go over and clarify some of them.
+
+First let me start with the most pointed out assumption..
+
+## The code is vulnerable to SQL injection attacks
+
+This is by far the least understood part of the code. Here is the snippet shown
+
+```tsx
+function Bookmark({ slug }) {
+  return (
+    <button
+      formAction={async () => {
+        "use server";
+        await sql`INSERT INTO Bookmarks (slug) VALUES (${slug});`;
+      }}
+    >
+      <BookmarkIcon />
+    </button>
+  );
+}
+```
+
+And specifically this line
+
+```tsx
+await sql`INSERT INTO Bookmarks (slug) VALUES (${slug});`;
+```
+
+Many people pointed out "The value is directly interpolated in the template string without sanitization". But here's the thing that many people missed:
+
+```tsx
+await sql`INSERT INTO Bookmarks (slug) VALUES (${slug});`;
+         ^                                              ^
+```
+
+This isn't a regular function call, it's a tagged template literal. This means that the dynamic stuff interpolated in the template string can be extracted separately and sanitized. This code is also most probably using `@vercel/postgres`, which in it's docs even explains the use of this syntax. Here's the exact line clarifying it [from their docs](https://vercel.com/docs/storage/vercel-postgres/quickstart#add-data-to-your-table):
+
+> Isn't it a security risk to embed text into SQL queries? – Not in this case. Vercel sanitizes all queries sent to your Vercel Postgres database before executing them. The above code does not expose you to SQL injections.
+
+And uhh, who is writing raw SQL for big apps? Doesn't everyone use stuff like [Ligma](https://prisma.io) and [Breeezle](https://orm.drizzle.team) <br />
+Or communicate with other APIs? (maybe a custom backend)
+
+## Mixing SQL in HTML? Is this PHP all over again?
+
+Can also be written as "There's no separation of concerns".
+
+Well, since this was shown inline, many believed that it needs to be inline. There were many replies where I saw stuff like "I used to do this 13 years ago", completely missing the fact that Server Actions are composable. It is possible to separate them into a different files and import them into the component. <br />
+
+<br />
+
+_bookmark.ts_
+
+```tsx
+"use server"; // + you need to only put this directive once
+import { sql } from "@vercel/postgres";
+
+export async function bookmark(slug: string) {
+  await sql`INSERT INTO Bookmarks (slug) VALUES (${slug});`;
+}
+```
+
+_Bookmark.tsx_
+
+```tsx
+import { bookmark } from "@/actions/post/bookmark";
+
+export default function Bookmark({ slug }) {
+  return (
+    <button formAction={bookmark}>
+      <BookmarkIcon />
+    </button>
+  );
+}
+```
+
+Maybe now it looks more natural. An inline function was a good example during presentation, but obviously, it doesn't really work in large apps.
+
+## Why should I create an action, isn't it a good idea to separate backend & frontend?
+
+First of all, this problem is not Next specific. Other JS frameworks also have actions, but I guess React is the punching bag of every dev. Anyways... lets get back on the topic. Server Actions are not here just for your db queries to work. They enable stuff to work without JavaScript. Now everyone's going to be looking at me because I'm suggesting things to work without JavaScript. But, uhh, I'll just send you [here](https://www.kryogenix.org/code/browser/everyonehasjs.html) <br />
+
+<br />
+
+A separate backend is something I too support, but it's often missed that server actions can be a good way to call them. And excluding the use of
+Server Actions for normal mutations, what about forms? Trying to connect a frontend React form to a separate backend just doesn't sound right. And doing
+it is hard. That's the reason we have been continuously reinventing forms on the frontend for a decade now. Completely forgetting that the "action" property
+exists and just kept adding more libraries on top of another to get a simple form working. Also, let's not forget excessive `useState()` calls for tracking
+something that's automatically sent when using the `name` property. Server Actions are a great way of handling form submissions, even for sending them to another API.
+
+## "I was doing this in PHP"
+
+What are you complaining about? That just increases the chance of you getting a lambo.
+
+<br />
+...
+<br />
+
+So what? The same logic can be applied to.
+
+- Don't generate HTML on the server because PHP could do it.
+- Don't handle form submissions because PHP could do it.
+- Don't code because you could do it in PHP.
+
+## "A gateway to sql injection for juniors"
+
+This was a special reply I got, and I don't get why.
+In the tweet, it's said that juniors might think it's completely valid to do this even in non-JS or non-protected environments. My question is: "Do you think these juniors are really that blind?" Seriously, no one is THIS blind that they will copy/paste a snippet like this that already looks quite framework-specific and would probably throw a lot of type errors, lint errors, and/or syntax errors if simply just put into another language/framework blindly.
+
+## "Looks ugly"
+
+Yeah. This one. Tell me which one looks more ugly in these two examples (they do the same thing btw)
+
+<br />
+The old way.
+
+```tsx
+// pages/api/post/bookmark.ts
+
+import { sql } from "@vercel/postgres";
+
+export default async function handler(req, res) {
+  if (req.method === "POST") {
+    await sql`INSERT INTO Bookmarks (slug) VALUES (${req.query.slug})`;
+
+    res.status(201).json({ success: true });
+  }
+
+  res.status(405).json({ message: "Method not allowed" });
+}
+
+// components/Bookmark.tsx
+
+import BookmarkIcon from "./icons/BookmarkIcon";
+
+export default function Bookmark({ slug }) {
+  return (
+    <button onClick={() => fetch(`/api/post/bookmark?slug=${encodeURIComponent(slug)}`)}>
+      <BookmarkIcon />
+    </button>
+  );
+}
+```
+
+The new way.
+
+```tsx
+// components/Bookmark.tsx
+
+import { sql } from "@vercel/postgres";
+
+import BookmarkIcon from "./icons/BookmarkIcon";
+
+export default function Bookmark({ slug }) {
+  async function bookmark() {
+    "use server";
+
+    await sql`INSERT INTO Bookmarks (slug) VALUES (${slug})`;
+  }
+
+  return (
+    <button formAction={bookmark}>
+      <BookmarkIcon />
+    </button>
+  );
+}
+```
+
+If cleaner `===` more code, then Java would be the cleanest language in the world. (this is a joke)
+
+## Conclusion
+
+K. that's enough I guess. There were a lot more complains, but many of them were more "trying to find just one more reason to hate on Next.js App Router" rather than legitimate problems. These were the common ones that I mostly saw. This of course doesn't mean that Next.js App Router and Server Actions are perfect. I just wrote this to address the plain wrong.
