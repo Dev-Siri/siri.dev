@@ -132,7 +132,7 @@ export const socialLinks = [
   },
   {
     name: "Twitter",
-    handle: "@WebDev_Siri",
+    handle: "@DevSiriTweets",
     icon: "mdi:twitter",
     iconColor: "#2e77ff",
     link: "https://twitter.com/WebDev_Siri",
