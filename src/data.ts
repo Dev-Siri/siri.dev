@@ -135,7 +135,7 @@ export const socialLinks = [
     handle: "@DevSiriTweets",
     icon: "mdi:twitter",
     iconColor: "#2e77ff",
-    link: "https://twitter.com/WebDev_Siri",
+    link: "https://twitter.com/DevSiriTweets",
   },
 ] as const;
 
