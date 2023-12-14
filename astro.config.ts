@@ -1,9 +1,9 @@
-import netlify from "@astrojs/netlify/functions";
 import { defineConfig } from "astro/config";
 
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
+import vercel from "@astrojs/vercel/serverless";
 import auth from "auth-astro";
 
 export default defineConfig({
@@ -15,5 +15,5 @@ export default defineConfig({
   },
   site: "https://aarush-dev.netlify.app",
   output: "server",
-  adapter: netlify({ dist: new URL("./dist/", import.meta.url) }),
+  adapter: vercel(),
 });
