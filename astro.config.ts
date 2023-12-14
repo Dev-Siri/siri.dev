@@ -13,7 +13,7 @@ export default defineConfig({
     build: { modulePreload: false },
     optimizeDeps: { exclude: ["auth:config"] },
   },
-  site: "https://aarush-dev.netlify.app",
+  site: "https://siri-dev.vercel.app",
   output: "server",
   adapter: vercel(),
 });
