@@ -2,14 +2,14 @@
 
 My personal portfolio built with Astro and TailwindCSS.
 
-Deployed at aarush-dev.netlify.app. I am too cheap to buy the aarush.dev domain :(
+Deployed at siri-dev.vercel.app. I am too cheap to buy the siri.dev domain :(
 
 ## Technologies
 
 - Astro
 - TailwindCSS
 
-Deployed on Netlify
+Deployed on Vercel
 
 ## Getting Started
 
