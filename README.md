@@ -1,4 +1,4 @@
-# aarush.dev
+# siri.dev
 
 My personal portfolio built with Astro and TailwindCSS.
 
@@ -18,7 +18,7 @@ Make sure you have Node.js v16.12.0 or higher installed on your system.
 - Clone the repository
 
 ```sh
-$ git clone https://github.com/Dev-Siri/aarush.dev.git
+$ git clone https://github.com/Dev-Siri/siri.dev.git
 ```
 
 - Install the dependencies
