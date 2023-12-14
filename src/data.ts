@@ -20,7 +20,7 @@ export interface TechnologyInfo {
   tooltipClassname?: string;
 }
 
-export const links = ["about", "blog", "projects", "technologies", "status", "guestbook"];
+export const links = ["about", "blog", "projects", "technologies", "guestbook"];
 
 export const technologies: TechnologyInfo[] = [
   {
@@ -261,9 +261,3 @@ export const projects: Project[] = [
     link: "/secret",
   },
 ];
-
-export const status = {
-  age: 13,
-  class: 7,
-  country: "India 🇮🇳",
-};
