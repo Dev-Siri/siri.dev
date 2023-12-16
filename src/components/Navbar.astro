@@ -17,8 +17,7 @@ import AnimatedSiriLogo from "./AnimatedSiriLogo.astro";
     {
       links.map(navLink => (
         <a class="hover:text-white text-gray-300 duration-200 rounded-md p-2 transform-gpu px-10" href={`/${navLink}`}>
-          {navLink.charAt(0).toUpperCase()}
-          {navLink.slice(1)}
+          {`${navLink.charAt(0).toUpperCase()}${navLink.slice(1)}`}
         </a>
       ))
     }
