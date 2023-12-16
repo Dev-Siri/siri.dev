@@ -11,7 +11,7 @@ import AnimatedSiriLogo from "./AnimatedSiriLogo.astro";
 
 <nav class="fixed z-20 items-center flex w-screen p-2 nav-gradient">
   <a href="/" class="w-fit">
-    <AnimatedSiriLogo height={40} width={40} />
+    {Astro.url.pathname !== "/" && <AnimatedSiriLogo height={40} width={40} />}
   </a>
   <section class="items-center hidden lg:flex justify-around ml-auto">
     {
