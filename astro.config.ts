@@ -13,6 +13,7 @@ export default defineConfig({
     build: { modulePreload: false },
     optimizeDeps: { exclude: ["auth:config"] },
   },
+  trailingSlash: "ignore",
   site: "https://siri-dev.vercel.app",
   output: "server",
   adapter: vercel(),
