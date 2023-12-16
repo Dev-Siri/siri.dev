@@ -6,17 +6,12 @@ const blogPosts = await Astro.glob("./blog/**/*.mdx");
 export const prerender = true;
 ---
 
-<BaseLayout
-  title="Blog"
-  class="text-center"
-  path="/blog"
-  description="Welcome to my blog! I like to post about my life, comparison of the technologies I use and other cool stuff here."
->
-  <h1>Aarush's Blog</h1>
-  <p class="mt-6 text-2xl">
-    Welcome to my blog! I like to post about my life, comparison of the technologies I use, open source related things and other cool stuff here.
+<BaseLayout title="Blog" path="/blog" description="I like to post about my life, comparison of the technologies I use and other cool stuff here.">
+  <h2 transition:name="header-text" class="text-left leading-[1!important]">Dev-Siri's Blog</h2>
+  <p class="text-xl text-left">
+    I like to post about my life, comparison of the technologies I use, open source related things and other cool stuff here.
   </p>
-  <ul class="list-[none!important] mt-10 w-full pr-5 border-2 rounded-md border-gray-800">
+  <ul class="list-[none!important]">
     {
       blogPosts
         .sort((prevPost, nextPost) => {
@@ -26,11 +21,11 @@ export const prerender = true;
         })
         .map(({ frontmatter, url }) => (
           <li>
-            <a href={url} class="p-5 text-start">
-              <h3 class="text-2xl mx-5" transition:name={frontmatter.title}>
+            <a href={url} class="p-2 text-start">
+              <h5 class="leading-[1.5!important]" transition:name={frontmatter.title}>
                 {frontmatter.title}
-              </h3>
-              <p class="text-gray-400 ml-5 mt-2">{frontmatter.description}</p>
+              </h5>
+              <p class="text-gray-400">{frontmatter.description}</p>
             </a>
           </li>
         ))

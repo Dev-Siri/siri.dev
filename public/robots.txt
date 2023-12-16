@@ -1,4 +1,4 @@
 User-agent: *
 
-Host: https://aarush-dev.netlify.app/
-Sitemap: https://aarush-dev.netlify.app/sitemap-index.xml
+Host: https://siri-dev.vercel.app/
+Sitemap: https://siri-dev.vercel.app/sitemap-index.xml

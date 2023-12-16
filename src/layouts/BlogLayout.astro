@@ -9,6 +9,7 @@ import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
 import SideMenu from "../components/SideMenu.astro";
 
+import { socialLinks } from "../data";
 import { getFormattedTime } from "../utils/time";
 
 interface Props {
@@ -32,23 +33,23 @@ const {
     <meta name="description" content={description} />
     <meta name="og:title" content={title} />
     <meta name="og:description" content={description} />
-    <meta name="og:image" content=`https://aarush-dev.netlify.app/og/${slug}.jpg` />
+    <meta name="og:image" content=`https://siri-dev.netlify.app/og/${slug}.jpg` />
     <meta name="og:type" content="article" />
-    <meta name="og:url" content=`https://aarush-dev.netlify.app/blog/${slug}` />
-    <meta name="og:site_name" content="Aarush's Blog" />
+    <meta name="og:url" content=`https://siri-dev.netlify.app/blog/${slug}` />
+    <meta name="og:site_name" content="Dev-Siri's Blog" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content=`https://aarush-dev.netlify.app/og/${slug}.jpg` />
-    <meta name="twitter:site" content="@WebDev_Siri" />
-    <meta name="twitter:creator" content="@WebDev_Siri" />
+    <meta name="twitter:image" content=`https://siri-dev.netlify.app/og/${slug}.jpg` />
+    <meta name="twitter:site" content={socialLinks[1].handle} />
+    <meta name="twitter:creator" content={socialLinks[1].handle} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="article:publish_time" content={getFormattedTime(publishdate)} />
-    <meta name="article:author" content="Aarush" />
+    <meta name="article:author" content="Dev-Siri" />
     <meta name="robots" content="index, follow" />
     <meta name="generator" content={Astro.generator} />
     <meta name="view-transition" content="same-origin" />
-    <link rel="canonical" href=`https://aarush-dev.netlify.app/blog/${slug}` />
-    <link rel="preload" href="/fonts/Inter.woff2" as="font" crossorigin="anonymous" />
+    <link rel="canonical" href=`https://siri-dev.netlify.app/blog/${slug}` />
+    <link rel="preload" href="/fonts/Geist.woff2" as="font" crossorigin="anonymous" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <ViewTransitions />
     <title>{title}</title>

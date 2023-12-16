@@ -7,12 +7,12 @@ import { projects } from "../data";
 export const prerender = true;
 ---
 
-<BaseLayout title="Projects" description="My creations showcased." class="px-0 flex flex-col items-center text-center" path="/projects">
-  <section class="w-screen text-center">
-    <h1>Projects</h1>
-    <p class="mt-5 text-2xl">Interesting things I created.</p>
-  </section>
-  <aside class="grid grid-cols-1 md:grid-cols-2 min-[1129px]:grid-cols-3 w-screen p-10 gap-10">
+<BaseLayout title="Projects" description="My creations showcased." path="/projects">
+  <h2 transition:name="header-text" class="text-left leading-[1!important]">Projects</h2>
+  <p class="text-xl text-left mt-5">
+    <s>Interesting</s> Stupid stuff I created.
+  </p>
+  <aside class="grid grid-cols-1 md:grid-cols-2 min-[1129px]:grid-cols-3 mt-8 gap-10">
     {projects.map(project => <ProjectCard {...project} />)}
   </aside>
 </BaseLayout>

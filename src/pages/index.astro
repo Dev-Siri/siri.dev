@@ -1,62 +1,51 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-import { projects, technologies } from "../data";
+import AnimatedSiriLogo from "../components/AnimatedSiriLogo.astro";
+import SocialLinks from "../components/SocialLinks.astro";
 
-import CardsAnimation from "../components/CardsAnimation.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-import Technology from "../components/Technology.astro";
+const blogPosts = await Astro.glob("./blog/**/*.mdx");
 
 export const prerender = true;
 ---
 
-<BaseLayout title="Hi! I am Aarush, A Web & Flutter Developer">
+<BaseLayout title="Hi I'm Dev-Siri, Web & Flutter Developer">
   <section>
-    <CardsAnimation />
-    <h1 class="w-full lg:w-1/2">
-      Hi! I am Aarush, <br />
-      A Fullstack Web & Flutter Developer.
-    </h1>
-    <p class="mt-5 text-2xl typing-text" style="--typing-width: 567px">
-      I'm a developer who can build blazingly fast apps <br />
+    <div class="flex justify-center">
+      <AnimatedSiriLogo />
+    </div>
+    <h2 transition:name="header-text">Hi I'm Dev-Siri</h2>
+    <p class="mt-5 px-10 text-center text-xl">
+      Just another dude into programming. Spends a lot of his time on Twitter, writes code. what else do I even have to say here? Can go, rust, htmx,
+      the only technologies you need to know right now.
     </p>
-    <p class="text-2xl mt-2 typing-text invisible" style="--typing-width: 355px; animation-delay: 2s">
-      with brilliant User Experiences <br />
-    </p>
-    <p class="text-2xl mt-2 mb-9 typing-text invisible" style="--typing-width: 845px; animation-delay: 4s">
-      that can run on any platform built using the most in-demand technologies
-    </p>
-    <a href="/about" class="-mb-20 bg-accessible-blue hover:bg-[rgb(21,149,254)] p-4 rounded-md px-10 duration-200"> More About Me</a>
+    <div class="my-10">
+      <SocialLinks />
+    </div>
+    <a href="/blog" class="bg-semi-dark-gray p-4 rounded-full px-10">My writings →</a>
   </section>
-  <section class="pt-52" id="about">
-    <h1>About Me.</h1>
-    <p class="mt-5 text-2xl leading-relaxed ml-2">
-      My name is Aarush, known on the internet as Dev-Siri. I am a Fullstack Web & <br />
-      Flutter developer from India. With a passion for coding and a keen eye for detail, I have honed my skills in developing
-      <i>blazingly</i> fast apps with brilliant User Experiences. I strive to create <br />
-      seamless and intuitive applications that can run on any platform, utilizing <br />
-      the most in-demand technologies. <br />
-    </p>
-  </section>
-  <section class="pt-52" id="contact">
-    <h1>Projects</h1>
-    <p class="mt-5 text-2xl leading-relaxed ml-2">
-      See them all <a href="/projects" class="underline">here.</a>
-    </p>
-    <aside class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-screen pr-36 pl-0 p-10 gap-10">
-      {projects.slice(0, 3).map(project => <ProjectCard {...project} />)}
-    </aside>
-  </section>
-  <section class="pt-52" id="technologies">
-    <h1>Technologies.</h1>
-    <p class="mt-5 text-2xl leading-relaxed ml-2">
-      Stuff I mostly work with everyday. See all of them
-      <a href="/technologies" class="underline"> here.</a>
-    </p>
-    <aside
-      class="grid grid-cols-1 min-[430px]:grid-cols-2 md:grid-cols-3 place-items-center lg:place-items-start lg:grid-cols-4 w-screen pr-24 lg:pr-32"
-    >
-      {technologies.slice(0, 8).map(technology => <Technology {...technology} />)}
-    </aside>
+  <section class="pt-10" id="blog">
+    <h3 class="text-left">Recent Blog Posts</h3>
+    <ul class="list-[none!important]">
+      {
+        blogPosts
+          .sort((prevPost, nextPost) => {
+            if (new Date(prevPost.frontmatter.publishdate) < new Date(nextPost.frontmatter.publishdate)) return 1;
+
+            return -1;
+          })
+          .slice(0, 3)
+          .map(({ frontmatter, url }) => (
+            <li>
+              <a href={url} class="p-2 text-start">
+                <h5 class="leading-[1.5!important]" transition:name={frontmatter.title}>
+                  {frontmatter.title}
+                </h5>
+                <p class="text-gray-400">{frontmatter.description}</p>
+              </a>
+            </li>
+          ))
+      }
+    </ul>
   </section>
 </BaseLayout>

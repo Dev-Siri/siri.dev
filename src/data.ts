@@ -20,7 +20,7 @@ export interface TechnologyInfo {
   tooltipClassname?: string;
 }
 
-export const links = ["about", "blog", "projects", "technologies", "guestbook"];
+export const links = ["blog", "projects", "technologies", "guestbook"];
 
 export const technologies: TechnologyInfo[] = [
   {
@@ -125,17 +125,18 @@ export const socialLinks = [
     link: "https://youtube.com/@Dev-Siri",
   },
   {
-    name: "Github",
-    handle: "Dev-Siri",
-    icon: "mdi:github",
-    link: "https://github.com/Dev-Siri",
-  },
-  {
     name: "Twitter",
     handle: "@DevSiriTweets",
     icon: "mdi:twitter",
     iconColor: "#2e77ff",
     link: "https://twitter.com/DevSiriTweets",
+  },
+  {
+    name: "Github",
+    handle: "Dev-Siri",
+    icon: "mdi:github",
+    iconColor: "white",
+    link: "https://github.com/Dev-Siri",
   },
 ] as const;
 

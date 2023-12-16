@@ -2,11 +2,11 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Fira Code";
+  font-family: "Geist-Mono";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/FiraCode.woff2") format("woff2");
+  src: url("/fonts/Geist-Mono.woff2") format("woff2");
 }
 
 main ul {
@@ -23,7 +23,7 @@ main blockquote {
 
 code,
 .astro-code code .line > span {
-  font-family: "Fira Code", sans-serif;
+  font-family: "Geist-Mono", sans-serif;
 }
 
 .astro-code {

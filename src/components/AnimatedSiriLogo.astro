@@ -1,0 +1,10 @@
+---
+interface Props {
+  height?: number;
+  width?: number;
+}
+
+const { height = 192, width = 192 } = Astro.props;
+---
+
+<video src="/images/siri-logo-animation.mp4" autoplay loop {height} {width} class="rounded-full" transition:name="siri-animated-logo"></video>

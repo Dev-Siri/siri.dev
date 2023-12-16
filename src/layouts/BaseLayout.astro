@@ -5,6 +5,7 @@ import "../styles/globals.css";
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
 import SideMenu from "../components/SideMenu.astro";
+import { socialLinks } from "../data";
 
 interface Props {
   title: string;
@@ -16,7 +17,7 @@ interface Props {
 const {
   title,
   description = "I'm a Web & Flutter developer who can create blazingly fast apps that can run on any platform using the most in-demand technologies.",
-  class: className = "",
+  class: className = "text-center",
   path = "/",
 } = Astro.props;
 ---
@@ -28,21 +29,21 @@ const {
     <meta name="description" content={description} />
     <meta name="og:title" content={title} />
     <meta name="og:description" content={description} />
-    <meta name="og:url" content=`https://aarush-dev.netlify.app${path}` />
-    <meta name="og:image" content="https://aarush-dev.netlify.app/og/default.jpg" />
+    <meta name="og:url" content=`https://siri-dev.vercel.app${path}` />
+    <meta name="og:image" content="https://siri-dev.vercel.app/og/default.jpg" />
     <meta name="og:type" content="article" />
-    <meta name="og:site_name" content="Aarush's Blog" />
+    <meta name="og:site_name" content="Dev-Siri's Portfolio" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://aarush-dev.netlify.app/og/default.jpg" />
-    <meta name="twitter:site" content="@WebDev_Siri" />
-    <meta name="twitter:creator" content="@WebDev_Siri" />
+    <meta name="twitter:image" content="https://siri-dev.vercel.app/og/default.jpg" />
+    <meta name="twitter:site" content={socialLinks[1].handle} />
+    <meta name="twitter:creator" content={socialLinks[1].handle} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="view-transition" content="same-origin" />
     <meta name="robots" content="index, follow" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="canonical" href=`https://aarush-dev.netlify.app${path}` />
-    <link rel="preload" href="/fonts/Inter.woff2" as="font" crossorigin="anonymous" />
+    <link rel="canonical" href=`https://siri-dev.vercel.app${path}` />
+    <link rel="preload" href="/fonts/Geist.woff2" as="font" crossorigin="anonymous" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <ViewTransitions />
     <title>{title}</title>

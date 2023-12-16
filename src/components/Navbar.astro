@@ -1,19 +1,26 @@
 ---
-import { Image } from "astro:assets";
 
 import { links } from "../data";
+import AnimatedSiriLogo from "./AnimatedSiriLogo.astro";
 ---
 
-<nav class="fixed bg-dark-gray z-20 border-b-2 items-center border-gray-800 flex w-screen p-6">
-  <a href="/" class="text-xl flex-1 flex items-center gap-4">
-    <Image src="/images/logo.avif" alt="Logo" height={75} width={75} class="h-12 w-12 rounded-full" />
-     siri.dev
+<style>
+  .nav-gradient {
+    background: linear-gradient(to bottom, #111111, transparent);
+  }
+</style>
+
+<nav class="fixed z-20 items-center flex w-screen p-2 nav-gradient">
+  <a href="/" class="w-fit">
+    {Astro.url.pathname !== "/" && (
+      <AnimatedSiriLogo height={40} width={40} />
+    )}
   </a>
-  <section class="items-center hidden lg:flex justify-around flex-[2]">
+  <section class="items-center hidden lg:flex justify-around ml-auto">
     {
       links.map(navLink => (
         <a
-          class="hover:text-gray-300 duration-200 hover:bg-semi-visible-blue hover:scale-125 border-blue-400 hover:border-2 rounded-md p-2 transform-gpu px-10"
+          class="hover:text-white text-gray-300 duration-200 rounded-md p-2 transform-gpu px-10"
           href=`/${navLink}`
         >
           {navLink.charAt(0).toUpperCase()}
@@ -22,7 +29,7 @@ import { links } from "../data";
       ))
     }
   </section>
-  <label for="menu-hidden" class="flex cursor-pointer lg:hidden flex-col gap-1 hover:gap-2 duration-200">
+  <label for="menu-hidden" class="flex cursor-pointer lg:hidden flex-col ml-auto mr-2 gap-1 hover:gap-2 duration-200">
     <div class="h-1 rounded-md w-10 bg-gray-200"></div>
     <div class="h-1 rounded-md w-10 bg-gray-200"></div>
     <div class="h-1 rounded-md w-10 bg-gray-200"></div>

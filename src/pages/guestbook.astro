@@ -10,9 +10,7 @@ import Login from "../islands/Login.astro";
 import { getGuestbookEntries } from "../utils/guestbook";
 import { getFormattedTime, getRelativeTime } from "../utils/time";
 
-const session = await getSession(Astro.request);
-
-const guestbookEntries = await getGuestbookEntries();
+const [session, guestbookEntries] = await Promise.all([getSession(Astro.request), getGuestbookEntries()]);
 ---
 
 <BaseLayout
@@ -21,17 +19,9 @@ const guestbookEntries = await getGuestbookEntries();
   path="/guestbook"
   class="text-center"
 >
-  <h1>Guestbook</h1>
-  <p class="mt-6 mb-10 text-2xl">Communicate with people browsing the same site as you are right now <br /> around the world with simple text.</p>
-  {
-    session ? (
-      <AddComment />
-    ) : (
-      <div class="w-full justify-center flex">
-        <Login />
-      </div>
-    )
-  }
+  <h2 transition:name="header-text" class="text-left leading-[1!important]">Guestbook</h2>
+  <p class="text-xl text-left my-5">Communicate with people browsing the same site as you are right now around the world with simple text.</p>
+  {session ? <AddComment /> : <Login />}
   <GuestbookComments>
     {
       guestbookEntries
