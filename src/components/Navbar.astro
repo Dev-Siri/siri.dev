@@ -1,7 +1,8 @@
 ---
-
 import { links } from "../data";
 import AnimatedSiriLogo from "./AnimatedSiriLogo.astro";
+
+const pathname = Astro?.url?.pathname;
 ---
 
 <style>
@@ -12,17 +13,12 @@ import AnimatedSiriLogo from "./AnimatedSiriLogo.astro";
 
 <nav class="fixed z-20 items-center flex w-screen p-2 nav-gradient">
   <a href="/" class="w-fit">
-    {Astro.url.pathname !== "/" && (
-      <AnimatedSiriLogo height={40} width={40} />
-    )}
+    {pathname !== "/" && <AnimatedSiriLogo height={40} width={40} />}
   </a>
   <section class="items-center hidden lg:flex justify-around ml-auto">
     {
       links.map(navLink => (
-        <a
-          class="hover:text-white text-gray-300 duration-200 rounded-md p-2 transform-gpu px-10"
-          href=`/${navLink}`
-        >
+        <a class="hover:text-white text-gray-300 duration-200 rounded-md p-2 transform-gpu px-10" href={`/${navLink}`}>
           {navLink.charAt(0).toUpperCase()}
           {navLink.slice(1)}
         </a>
