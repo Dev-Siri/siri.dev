@@ -13,6 +13,7 @@
     "@auth/core": "^0.18.6",
     "astro": "^4.0.6",
     "astro-icon": "^0.8.2",
+    "astro-tweet": "github:Dev-Siri/astro-tweet",
     "auth-astro": "^4.0.1",
     "cookie": "^0.6.0"
   },
