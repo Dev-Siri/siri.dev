@@ -22,7 +22,7 @@ export const prerender = true;
         .map(({ frontmatter, url }) => (
           <li>
             <a href={url} class="p-2 text-start">
-              <h5 class="leading-[1.5!important]" transition:name={frontmatter.title}>
+              <h5 transition:name={frontmatter.title}>
                 {frontmatter.title}
               </h5>
               <p class="text-gray-400">{frontmatter.description}</p>
