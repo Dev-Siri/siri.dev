@@ -1,0 +1,26 @@
+---
+import GalleryPicture from "../components/GalleryPicture.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Gallery" description="Pictures I took, when touching grass." path="/gallery">
+  <h2 transition:name="header-text" class="text-left leading-[1!important]">Dev-Siri's Gallery</h2>
+  <p class="text-xl text-left leading-relaxed py-4">Pictures I took, when touching grass.</p>
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <div class="grid gap-4">
+      <GalleryPicture index={1} location="Varanasi, India" height={575} width={1280} />
+      <GalleryPicture index={2} location="Varanasi, India" height={1599} width={720} />
+      <GalleryPicture index={3} location="Varanasi, India" height={670} width={301} />
+    </div>
+    <div class="grid gap-4">
+      <GalleryPicture index={4} location="Varanasi, India" height={1600} width={719} />
+      <GalleryPicture index={5} location="Varanasi, India" height={1280} width={960} />
+      <GalleryPicture index={6} location="Varanasi, India" height={575} width={1280} />
+    </div>
+    <div class="grid gap-4">
+      <GalleryPicture index={7} location="Varanasi, India" height={575} width={1280} />
+      <GalleryPicture index={8} location="Varanasi, India" height={1599} width={720} />
+      <GalleryPicture index={9} location="Varanasi, India" height={1280} width={880} />
+    </div>
+  </div>
+</BaseLayout>

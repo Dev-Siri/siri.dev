@@ -20,7 +20,7 @@ export interface TechnologyInfo {
   tooltipClassname?: string;
 }
 
-export const links = ["blog", "projects", "technologies", "guestbook"];
+export const links = ["blog", "projects", "gallery", "technologies", "guestbook"];
 
 export const technologies: TechnologyInfo[] = [
   {

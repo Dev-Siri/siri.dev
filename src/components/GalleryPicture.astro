@@ -1,0 +1,35 @@
+---
+import Icon from "astro-icon";
+import { Image } from "astro:assets";
+
+export interface Props {
+  index: number;
+  location: string;
+  height: number;
+  width: number;
+}
+
+const { index, location, height, width } = Astro.props;
+---
+
+<a
+  href={`https://google.com/maps?q=${encodeURIComponent(location)}`}
+  target="_blank"
+  rel="noreferrer noopener"
+  class="relative group h-auto max-w-full bg-black rounded-lg cursor-pointer"
+  style={`height: ${height}; width: ${width}`}
+>
+  <Image
+    class="h-full object-cover w-full rounded-lg group-hover:opacity-10 duration-200"
+    src={`/images/gallery/gallery-${index}.avif`}
+    alt={`Gallery ${index}`}
+    {height}
+    {width}
+  />
+  <div class="hidden absolute justify-center inset-0 h-full items-center group-hover:flex">
+    <Icon name="mdi:map-marker" height={25} width={25} color="red" />
+    <p>
+      {location}
+    </p>
+  </div>
+</a>

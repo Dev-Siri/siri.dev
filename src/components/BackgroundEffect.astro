@@ -1,0 +1,48 @@
+<div class="fixed blur-[100px] h-48 w-48 -z-50 rounded-full top-1/4 blob"></div>
+<div class="fixed blur-[100px] h-48 w-48 -z-50 rounded-full top-2/4 blob"></div>
+
+<style>
+  .blob {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .blob:nth-child(1) {
+    animation:
+      moveBlob 10s infinite linear,
+      changeColor 5s infinite alternate;
+  }
+
+  .blob:nth-child(2) {
+    animation:
+      moveBlob 20s infinite linear,
+      changeColor 10s infinite alternate;
+  }
+
+  @keyframes moveBlob {
+    0%,
+    100% {
+      left: 50%;
+    }
+    25% {
+      left: 50%;
+    }
+    50% {
+      left: 40%;
+    }
+    75% {
+      left: 30%;
+    }
+    90% {
+      left: 40%;
+    }
+  }
+
+  @keyframes changeColor {
+    0% {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+    100% {
+      background-color: rgba(255, 0, 0, 0.5);
+    }
+  }
+</style>
