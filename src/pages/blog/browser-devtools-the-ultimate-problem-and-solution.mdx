@@ -5,6 +5,7 @@ description: Devtools are useful for fixing problems while silently creating new
 publishdate: Jul 23, 2023
 layout: ../../layouts/BlogLayout.astro
 ---
+import SocialMediaLink from "../../components/SocialLinks.astro";
 
 export const prerender = true;
 
@@ -22,7 +23,7 @@ I think we all know the old saying to _never trust the client_. It could go both
 So here is the thing, lets say I have this simple React app which renders this `<form>`:
 
 ```tsx
-<form action={new}>
+<form action={newEntry}>
   <label htmlFor="enable-backups">Enable Backups?</label>
   <input type="checkbox" name="enable-backups" id="enable-backups" />
   <label htmlFor="email">Account Email</label>
@@ -35,7 +36,7 @@ So here is the thing, lets say I have this simple React app which renders this `
 Now here is our server action.
 
 ```ts
-async function new(formData: FormData) {
+async function newEntry(formData: FormData) {
   "use server";
   const email = formData.get("email");
   const enabledBackups = formData.get("enable-backups");
@@ -50,26 +51,7 @@ But have you ever noticed, when you call `formData.get()`, it doesn't return a `
 ```ts
 type FormDataEntryValue = File | string;
 ```
-
-Huh, it could be a file? Interesting. Maybe if I just you know, just assert the type to something else, it will fix it:
-
-```ts
-email as string;
-```
-
-There we go. Let me add another field which is a picture
-
-```html
-<input type="file" name="logo" />
-```
-
-Oof, why is TypeScript inferring it as FormDataEntryValue again? Let me fix that:
-
-```ts
-logo as File;
-```
-
-Aight enough. So what you observed is an average JS developer trying TS. Here is the thing, the Native API definitions give you a hint on why you are wrong, this is important, **do not ignore this `FormDataEntryValue` returned from `form.get`**.
+Here is the thing, the Native API definitions give you hints about the format of the data, this is important, **do not ignore this `FormDataEntryValue` returned from `form.get`**.
 
 Obviously files can be uploaded from the browser, sent to the server, and then the server can just use it. So that is why every single time you call the get function, it returns that union. And.... really anything can be a file.
 
@@ -81,9 +63,9 @@ The same argument can be made about the `FormDataEntryValue`, It returns `string
 
 ## How it happened to YouTube
 
-Around 2 years ago, a YouTube user found that the YouTube channel creation didn't do server-side validation. Its input minlength in the HTML (Client) was set to 50 characters. He went into the devtools and removed the minlength. And guess what??? He successfully got a username that is over 50 chars.
+Around 2 years ago, a YouTube user found that the YouTube channel creation didn't do server-side validation. Its input minlength in the HTML (Client) was set to 50 characters. He went into the devtools and removed the minlength. And well, he successfully got a username that was over 50 chars.
 
-And they actually didn't add any validation until weeks later but till then, it was too late and [JSAL](https://www.youtube.com/watch?v=iqMrGb0MaKY) (btw sub to him so he can get more playbuttons) already made a channel, and he even tried to get a playbutton.
+And they actually didn't add any validation until weeks later but till then, it was too late and <SocialMediaLink username="@JackSucksAtLife" variant="youtube">JackSucksAtLife</SocialMediaLink> already made a channel, and he even tried to get a playbutton.
 
 So uh, yeah, all of this could have been fixed if they just added one more if-statment.
 

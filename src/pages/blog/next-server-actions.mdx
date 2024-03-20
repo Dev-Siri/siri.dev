@@ -10,7 +10,7 @@ import Tweet from "astro-tweet";
 
 export const prerender = true;
 
-Recently, this tweet blew up about Server Actions in the next conf announcement.
+Recently, this Tweet blew up about Server Actions in the Next.js Conf.
 
 <Tweet id="1717607565260124613" />
 
@@ -120,10 +120,12 @@ So what? The same logic can be applied to.
 - Don't handle form submissions because PHP could do it.
 - Don't code because you could do it in PHP.
 
+The main reason I'm against this "argument" against server actions is because there's nothing wrong happening with the approach. Why, why does it matter if it was being done in PHP? If it's a bad practice, yeah sure thats a fine argument, but if it literally doesn't have any consequences, then what's the problem?
+
 ## "A gateway to sql injection for juniors"
 
 This was a special reply I got, and I don't get why.
-In the tweet, it's said that juniors might think it's completely valid to do this even in non-JS or non-protected environments. My question is: "Do you think these juniors are really that blind?" Seriously, no one is THIS blind that they will copy/paste a snippet like this that already looks quite framework-specific and would probably throw a lot of type errors, lint errors, and/or syntax errors if simply just put into another language/framework blindly.
+In the Tweet, it's said that juniors might think it's completely valid to do this even in non-JS or non-protected environments. My question is: "Do you think these juniors are really that blind?" Seriously, no one will copy/paste a snippet like this that already looks quite framework-specific and would probably throw a lot of type errors, lint errors, and/or syntax errors if simply just put into another language/framework blindly.
 
 ## "Looks ugly"
 
@@ -153,7 +155,7 @@ import BookmarkIcon from "./icons/BookmarkIcon";
 
 export default function Bookmark({ slug }) {
   return (
-    <button onClick={() => fetch(`/api/post/bookmark?slug=${encodeURIComponent(slug)}`)}>
+    <button onClick={() => fetch(`/api/post/bookmark?slug=${encodeURIComponent(slug)}`, { method: "POST" })}>
       <BookmarkIcon />
     </button>
   );
@@ -184,8 +186,8 @@ export default function Bookmark({ slug }) {
 }
 ```
 
-If cleaner `===` more code, then Java would be the cleanest language in the world. (this is a joke)
+If cleaner meant more code, then Java would be the cleanest language in the world.
 
 ## Conclusion
 
-K. that's enough I guess. There were a lot more complains, but many of them were more "trying to find just one more reason to hate on Next.js App Router" rather than legitimate problems. These were the common ones that I mostly saw. This of course doesn't mean that Next.js App Router and Server Actions are perfect. I just wrote this to address the plain wrong.
+Alright. that's enough I guess. There were a lot more complains, but many of them were more "trying to find just one more reason to hate on Next.js App Router" rather than legitimate problems. These were the common ones that I mostly saw. This of course doesn't mean that Next.js App Router and Server Actions are perfect. I just wrote this to address the plain wrong.

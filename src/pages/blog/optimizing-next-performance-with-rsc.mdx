@@ -26,7 +26,7 @@ Lazy loading can be helpful for splitting a app's bundle size into very small ch
 ```tsx
 import { lazy } from "react";
 
-// 👎
+// Don't
 const ServerComponent = lazy(() => import("@/components/ServerComponent"));
 
 export default function Page() {
@@ -38,10 +38,12 @@ According to the [Next.js documentation](https://nextjs.org/docs/app/building-yo
 
 > If you dynamically import a Server Component, only the Client Components that are children of the Server Component will be lazy-loaded - not the Server Component itself.
 
+And although they say "Only the child client components", I have seen the bundle size spike up when lazy loading them in many cases.
+
 So whenever you have a Server Component, make sure you don't try to lazily load it yourself.
 
 ```tsx
-// 👍
+// Not required
 import ServerComponent from "@/components/ServerComponent";
 
 export default function Page() {

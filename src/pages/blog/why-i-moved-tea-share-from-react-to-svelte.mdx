@@ -23,26 +23,20 @@ It is highly interactive so therefore an obvious candidate for a fullstack frame
 Well, I have a very stupid reason for it, **highly interactive fast apps**.
 
 Why did I call it stupid? Because the statement "Moving from React to Svelte because I want highly interactive apps." is like saying "I am moving from Java to Kotlin because I want to write a JVM app.". I moved from React to Svelte because I want to have a highly interactive
-app without a massive client-side JavaScript bundle and get some sleep because my mind doesn't have to think of the big client component I left in the app.
+app without a massive client-side JavaScript bundle.
 
 <br />
 React and Svelte are both awesome frameworks for making a highly interactive blazingly fast UI. But the RSC (React Server Component) paradigm shift made
 my really paranoid to serve JavaScript to users because React itself is 51kb! + The Next.js addition for client-side routing and route-prefetching with
 many other features increase it by another 21kb.
 
-Eventually, my brain broke down and I ran out memory to handle the app with being so paranoid on JavaScript. So then, I switched to SvelteKit.
-I couldn't believe how low the bundle size was after I used it! The app with Next.js and barely User friendly state (Almost everything server-side) was 109kb (GZipped)
+Eventually, I couldn't handle the app with being so paranoid on JavaScript. So then, I switched to SvelteKit.
+I couldn't believe how low the bundle size was after I used it! The app with Next.js at barely user friendly state (Almost everything server-side) was 109kb (GZipped)
 but the app built with SvelteKit that now focuses on UX as well as performance, even though it was now full hydration && many features were now also client-side, the apps bundle size was **ONLY 48kb (GZipped)**
 
 ## Progressively enhanced JavaScript apps are the ~~past~~ future of web development
 
-#### What is Progressive Enhancement?
-
-> Progressive enhancement is a strategy in web design that puts emphasis on web content first,
-> allowing everyone to access the basic content and functionality of a web page, whilst users
-> with additional browser features or faster Internet access receive the enhanced version instead.
-
-And thats what I really like about SvelteKit. It puts a lot of effort in helping use non-JS needed features like
+This is one of the main reasons I really like SvelteKit. It puts a lot of effort in helping use non-JS needed features like
 `<form>` and then adding easy APIs to progressively enhance it with client-side JavaScript to improve the UX.
 
 I remember when I started learning HTML, CSS & JS, I also tried doing progressive enhancement, and it was painful.
@@ -76,7 +70,7 @@ document.getElementById("login-form").onsubmit = async e => {
 
 Whatever I am showing here is just a small example, imagine this in a big codebase.
 
-But SvelteKit? The simplicity has been brought down to its minimum.
+But SvelteKit? Its as simple as it gets.
 
 ```html
 <script lang="ts">
@@ -88,7 +82,7 @@ But SvelteKit? The simplicity has been brought down to its minimum.
 <form action="?/login" method="POST" use:enhance>...</form>
 ```
 
-Thats IT! Super simple an straight-forward.
+Thats it! Super simple an straight-forward.
 
 #### Ok, progressive enhancement is nice, but why do I even care?
 
@@ -98,8 +92,7 @@ But seriously, having JS to enhance is better than empowering JS to make the app
 
 ## SvelteKit is nice(r) to work with
 
-To me, writing UIs in Svelte were nicer than JSX. The JavaScript (with TypeScript support) is minimal & feels like just
-vanilla JS without the pain points.
+To me, writing UIs in Svelte were nicer than JSX. The JavaScript (with TypeScript support) is minimal & feels like just vanilla JS without the pain points.
 
 The UI code when converted from React -> Svelte decreased by 33% !
 
@@ -164,19 +157,19 @@ Response times became 2.3x faster, client-side bundles sat at 48kb & the bundle 
 <br />
 Svelte's compiler (especially with version 4) produces highly optimized JavaScript & it runs incredibly fast. The hydration overhead is very small. And
 speaking of hydration, since Svelte compiles to Vanilla JavaScript and does not have a Virtual DOM / Component Tree, its actually impossible to get hydration
-errors in it. In React, I remember before server components (RSCs don't hydrate so no problem using them), there were a lot of problems with hydration
-when showing a formatted time. If there was a post published 10s ago, on the server it would generate 10s Ago, but by the time the client receives the
+errors in it. In React, before server components (RSCs don't hydrate so no problem using them), there were a lot of problems with hydration
+when showing a formatted time. If there was a post published 10s ago, on the server it would generate "10s ago", but by the time the client receives the
 generated HTML, obviously the time would be now around 11-12s ago, but since the server generated HTML still has 10s, it throws a hydration error because
 we need both server & client data to be idempotent to hydrate the page correctly. But in Svelte, it doesn't matter. Since there is no component tree, the
 hydration process in SvelteKit is only attaching event-listeners to stuff, & there was no need for extra overhead of a VDOM.
 
 ## Things I hate about Svelte
 
-Svelte's isn't all great tbh. Its very nice to work with but still a little rough around the edges.
+Svelte despite its greatness still has _some_ flaws.
 
 ### The templating language
 
-The templating language of Svelte is kind of annoying tbh. Its definitely concise, readable & gets the job done, but I really hate it. Its the #1 thing I hate about Svelte. For example, lets take React && JSX vs Svelte.
+The templating language of Svelte is kind of annoying tbh. Its definitely concise, readable & gets the job done, but I really hate it because of many annoyances. For example, lets take React JSX vs Svelte.
 
 {/* prettier-ignore */}
 ```tsx
@@ -246,14 +239,7 @@ import type { Garbage } from "./+page.svelte";
 ...
 ```
 
-What will happen?
-
-- Type Error
-- Type Error
-- Some of the above
-- All of the above
-
-I'll offload the guessing work to your brain.
+This doesn't work because Svelte files are just components, and whatever you export is a prop. The `export let` syntax is used for props, but for others? Doesn't actually export anything.
 
 But now for the final question....
 

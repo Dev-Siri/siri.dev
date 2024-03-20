@@ -13,9 +13,6 @@ export default defineConfig({
     build: { modulePreload: false },
     optimizeDeps: { exclude: ["auth:config"] },
   },
-  experimental: {
-    optimizeHoistedScript: true,
-  },
   site: "https://siri-dev.vercel.app",
   output: "server",
   adapter: vercel(),

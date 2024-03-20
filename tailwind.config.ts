@@ -10,9 +10,6 @@ export default {
         "semi-visible-blue": "rgba(0, 120, 255, 0.53)",
         "accessible-blue": "rgb(1,89,167)",
       },
-      fontSize: {
-        "31px": "31px",
-      },
     },
   },
   experimental: {
