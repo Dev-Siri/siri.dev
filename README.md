@@ -13,7 +13,7 @@ Deployed on Vercel
 
 ## Getting Started
 
-Make sure you have Node.js v16.12.0 or higher installed on your system.
+Make sure you have Node.js v18.14.1+ installed on your system.
 
 - Clone the repository
 
@@ -24,18 +24,18 @@ $ git clone https://github.com/Dev-Siri/siri.dev.git
 - Install the dependencies
 
 ```sh
-$ pnpm i
+$ bun i
 ```
 
 - Run the dev server
 
 ```sh
-$ pnpm dev
+$ bun dev
 ```
 
 ## App data
 
-In `src/data.ts`, I have all of my personal info, and in `src/pages/blog`, I have all my blog posts. Make sure to remove all of it if you want to clone/fork this repository.
+In `src/data.ts`, I have all the info/content used in the website, and in `src/pages/blog`, I have all my blog posts. Make sure to remove all of it if you want to clone/fork this repository.
 
 ## License
 
