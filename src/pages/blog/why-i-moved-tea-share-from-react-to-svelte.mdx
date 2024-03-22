@@ -6,8 +6,6 @@ publishdate: Jun 23, 2023
 layout: ../../layouts/BlogLayout.astro
 ---
 
-export const prerender = true;
-
 I have been working on a big project for many months called Tea Share and in the process, I switched to SvelteKit from Next.js.
 
 Now you might wonder.....
@@ -157,11 +155,11 @@ Response times became 2.3x faster, client-side bundles sat at 48kb & the bundle 
 <br />
 Svelte's compiler (especially with version 4) produces highly optimized JavaScript & it runs incredibly fast. The hydration overhead is very small. And
 speaking of hydration, since Svelte compiles to Vanilla JavaScript and does not have a Virtual DOM / Component Tree, its actually impossible to get hydration
-errors in it. In React, before server components (RSCs don't hydrate so no problem using them), there were a lot of problems with hydration
-when showing a formatted time. If there was a post published 10s ago, on the server it would generate "10s ago", but by the time the client receives the
-generated HTML, obviously the time would be now around 11-12s ago, but since the server generated HTML still has 10s, it throws a hydration error because
-we need both server & client data to be idempotent to hydrate the page correctly. But in Svelte, it doesn't matter. Since there is no component tree, the
-hydration process in SvelteKit is only attaching event-listeners to stuff, & there was no need for extra overhead of a VDOM.
+errors in it. In React, before server components (RSCs don't hydrate so no problem using them), there were a lot of problems with hydration when showing
+a formatted time. If there was a post published 10s ago, on the server it would generate "10s ago", but by the time the client receives the generated HTML,
+obviously the time would be now around 11-12s ago, but since the server generated HTML still has 10s, it throws a hydration error because we need both
+server & client data to be idempotent to hydrate the page correctly. But in Svelte, it doesn't matter. Since there is no component tree, the hydration
+process in SvelteKit is only attaching event-listeners to stuff, & there was no need for extra overhead of a VDOM.
 
 ## Things I hate about Svelte
 

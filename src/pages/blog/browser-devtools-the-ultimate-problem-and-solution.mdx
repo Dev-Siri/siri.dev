@@ -5,9 +5,8 @@ description: Devtools are useful for fixing problems while silently creating new
 publishdate: Jul 23, 2023
 layout: ../../layouts/BlogLayout.astro
 ---
-import SocialMediaLink from "../../components/SocialLinks.astro";
 
-export const prerender = true;
+import SocialMediaLink from "../../components/SocialLinks.astro";
 
 If you are a web developer there is a 1 in 1 chance that you use the browser devtools. They are useful for debugging the 2MB of JS or 10MB of WASM you feed to it, but did you know they could create security vulnerabilities? pff yeah I am sure you do...
 
@@ -41,9 +40,9 @@ async function newEntry(formData: FormData) {
   const email = formData.get("email");
   const enabledBackups = formData.get("enable-backups");
 
-  if (!email || !enabledBackups) state = { message: "", error: "Email or backups missing" }
+  if (!email || !enabledBackups) state = { message: "", error: "Email or backups missing" };
   // ...
-};
+}
 ```
 
 But have you ever noticed, when you call `formData.get()`, it doesn't return a `string | null`, instead it returns this `FormDataEntryValue | null` union. Lets take a look at the type definitions for the native APIs:
@@ -51,6 +50,7 @@ But have you ever noticed, when you call `formData.get()`, it doesn't return a `
 ```ts
 type FormDataEntryValue = File | string;
 ```
+
 Here is the thing, the Native API definitions give you hints about the format of the data, this is important, **do not ignore this `FormDataEntryValue` returned from `form.get`**.
 
 Obviously files can be uploaded from the browser, sent to the server, and then the server can just use it. So that is why every single time you call the get function, it returns that union. And.... really anything can be a file.
@@ -105,15 +105,18 @@ Here is the `formatSchemaErrors()` function:
 
 ```ts
 export default function formatSchemaErrors(error: ZodError) {
-  return error.issues.reduce((res, error) => {
-    const {
-      path: [path],
-      message,
-    } = error;
+  return error.issues.reduce(
+    (res, error) => {
+      const {
+        path: [path],
+        message,
+      } = error;
 
-    if (path && typeof path === "string") res[path] = message;
-    return res;
-  }, {} as Record<string, string>);
+      if (path && typeof path === "string") res[path] = message;
+      return res;
+    },
+    {} as Record<string, string>,
+  );
 }
 ```
 
