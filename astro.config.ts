@@ -15,5 +15,7 @@ export default defineConfig({
   },
   site: "https://siri-dev.vercel.app",
   output: "server",
-  adapter: vercel(),
+  adapter: vercel({
+    webAnalytics: { enabled: true },
+  }),
 });
