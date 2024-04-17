@@ -22,6 +22,13 @@ export const socialLinks = [
     iconColor: "white",
     link: "https://github.com/Dev-Siri",
   },
+  {
+    name: "Chess.com",
+    handle: "dev-siri",
+    icon: "chess-com",
+    iconColor: "green",
+    link: "https://chess.com/member/dev-siri",
+  },
 ] as const;
 
 export interface Project {

@@ -10,9 +10,10 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^2.0.1",
+    "@iconify-json/mdi": "^1.1.66",
     "@vercel/analytics": "^1.2.2",
     "astro": "^4.0.6",
-    "astro-icon": "^0.8.2",
+    "astro-icon": "^1.1.0",
     "astro-tweet": "github:Dev-Siri/astro-tweet"
   },
   "devDependencies": {
