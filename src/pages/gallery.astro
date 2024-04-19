@@ -4,9 +4,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Gallery" description="Pictures I took, when touching grass." path="/gallery">
-  <h2 transition:name="header-text" class="text-left leading-[1!important]">Dev-Siri's Gallery</h2>
-  <p class="text-xl text-left leading-relaxed py-4">Pictures I took, when touching grass.</p>
-  <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+  <h4 transition:name="header-text" class="text-left leading-[1!important]">Dev-Siri's Gallery</h4>
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
     <div class="grid gap-4">
       <GalleryPicture index={1} location="Varanasi, India" height={575} width={1280} />
       <GalleryPicture index={2} location="Varanasi, India" height={1599} width={720} />

@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 
 import type { Project } from "../data";
@@ -19,12 +19,12 @@ const linkProps = link?.includes("http")
 <article class="relative text-left w-fit h-fit rounded-xl">
   <section class="absolute flex z-10 right-0 w-full justify-end">
     <a title="Source Code on Github" href={source} target="_blank" rel="noopener noreferrer" class="rounded-md flex p-3 items-center">
-      <Icon name="mdi:github" height={30} />
+      <Icon name="mdi:github" height={30} width={30} />
     </a>
     {
       link && (
         <a title="Deployed URL" href={link} {...linkProps} class="rounded-md flex p-3 items-center">
-          <Icon name="mdi:link" height={30} />
+          <Icon name="mdi:link" height={30} width={30} />
         </a>
       )
     }

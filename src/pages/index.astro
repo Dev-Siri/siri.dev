@@ -35,11 +35,9 @@ const blogPosts = await Astro.glob("./blog/**/*.mdx");
           .slice(0, 3)
           .map(({ frontmatter, url }) => (
             <li>
-              <a href={url} class="p-2 text-start">
-                <h5 class="leading-[1.5!important]" transition:name={frontmatter.title}>
-                  {frontmatter.title}
-                </h5>
-                <p class="text-gray-400">{frontmatter.description}</p>
+              <a href={url} class="text-start">
+                <h6 transition:name={frontmatter.title}>{frontmatter.title}</h6>
+                <p class="text-gray-400 -mt-5">{frontmatter.publishdate}</p>
               </a>
             </li>
           ))

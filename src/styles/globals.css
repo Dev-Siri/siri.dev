@@ -8,6 +8,10 @@
   font-display: swap;
 }
 
+::selection {
+  background-color: rgba(0, 166, 255, 0.301);
+}
+
 /* Override astro-tweet's default theme */
 .astro-tweet-theme {
   --tweet-bg-color: #1c1c1c;
