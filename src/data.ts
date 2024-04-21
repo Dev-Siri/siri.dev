@@ -1,4 +1,4 @@
-export const links = ["blog", "projects", "gallery"];
+export const links = ["blog", "projects", "gallery", "book"];
 
 export const socialLinks = [
   {
