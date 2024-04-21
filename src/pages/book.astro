@@ -6,7 +6,7 @@ import SocialMediaLink from "../components/SocialMediaLink.astro";
 
 <BaseLayout title="Get My Book" description="Get my O'Rly Book" path="/book" class="text-start">
   <h1>Get my O'Rly Book</h1>
-  <article class="flex mt-4">
+  <article class="flex flex-col md:flex-row items-start gap-5 mt-4">
     <section>
       <Image
         src="/images/orly-book-siri-shreyas.avif"
@@ -16,8 +16,8 @@ import SocialMediaLink from "../components/SocialMediaLink.astro";
         class="rounded-md"
       />
     </section>
-    <section class="ml-10">
-      <h4>Dev-Siri & Shreyas "Detecting Bot Accounts Programmatically" O'Rly Book</h4>
+    <section class="md:ml-10">
+      <h4 class="text-balance">Dev-Siri & Shreyas "Detecting Bot Accounts Programmatically" O'Rly Book</h4>
       <p class="text-xl text-gray-400 mt-2">$15.00</p>
       <div class="flex flex-col w-fit">
         <button type="button" class="bg-white text-black p-4 rounded-md my-4 hover:bg-gray-200 duration-200" id="checkout-btn">
