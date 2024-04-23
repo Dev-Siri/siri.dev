@@ -69,6 +69,18 @@ const {
       <time class="text-gray-400 ml-1" datetime={getFormattedTime(publishdate)}>
         {publishdate}
       </time>
+      <div class="w-fit mt-2">
+        <a
+          href={`https://twitter.com/intent/tweet?text="${title}" by @DevSiriTweets%0Asiri-dev.vercel.app/blog/${slug}`}
+          target="_blank"
+          rel="noreferrer noopener"
+          aria-label="Share on Twitter"
+          class="flex items-center gap-1 hover:opacity-80 duration-200"
+        >
+          <Icon name="mdi:twitter" height={25} width={25} />
+          <p class="text-base">Share on Twitter</p>
+        </a>
+      </div>
       <article class="ml-1 mt-10">
         <slot />
       </article>
