@@ -1,0 +1,155 @@
+---
+title: The Stigma Surrounding TailwindCSS
+slug: the-stigma-surrounding-tailwind
+description: The monthly hate on TailwindCSS that leads to nowhere.
+publishdate: Apr 20, 2024
+layout: ../../layouts/BlogLayout.astro
+---
+
+import Tweet from "astro-tweet";
+import { Image } from "astro:assets";
+
+import SocialMediaLink from "../../components/SocialMediaLink.astro";
+
+Being an active Twitter user, where most people come together to shout at each other, I see Tweets hating on TailwindCSS pretty much weekly at this point. All of these Tweets hating on TailwindCSS have these six things in common.
+
+- They point out the same 5 reasons why Tailwind sucks
+- The Tweet blows up
+- Someone who really likes Tailwind like <SocialMediaLink username="@t3dotgg" variant="twitter">Theo</SocialMediaLink>, notices the Tweet
+- They share why the OP is wrong
+- The OP pretty much doesn't care and continues to say Tailwind sucks
+- People forget about it until someone else posts a Tailwind hate Tweet again
+
+And this cycle pretty much continues forever. There is pretty much no point in arguing with the Tailwind haters. Most Tweets like this are just to grab attention, and it works.
+
+<br />
+The specific Tweet that made me write this blog post, was this. The rage baity-ness of these Tweets are so common that when I see them appearing on my
+timeline, I already know what's coming next.
+
+<Tweet id="1773290008570470734" />
+
+## So, what happened to that specific Tweet?
+
+As I had expected, <SocialMediaLink username="@t3dotgg" variant="twitter">Theo</SocialMediaLink> noticed the Tweet, the OP got the attention they wanted, and everyone moved one.
+
+<Tweet id="1773918764670779758" />
+
+To me, seeing all this attention gather around someone (even if with a negative view) and them not caring about it all, but further consolidating their claim about Tailwind just makes me believe that it was all they wanted.
+
+## But why Tailwind in particular?
+
+The "hate" for Tailwind, which, lets be real, is just rage bait, is always for the same reasons.
+
+- Ugly HTML
+- Build Step
+- No separation of concerns
+- Something along the lines of "pure HTML" ?
+
+Sure, there are some more, but these are the main four points that the Tailwind haters continuously use to spread hate. Now I, as a TailwindCSS user, would obviously be a little biased. I have defended the technology a lot, but still, I believe that these points are nothing more than just finding just one more reason for hating on a technology the Tailwind haters dont't use. But the question still remains, "Why Tailwind specifically?" I think the reason is mainly because of the framework-y nature of Tailwind. Tailwind, being a set of utility classes, works with component frameworks like React and Svelte, where you have separate components and can apply styles to each directly without name collisions. This however is not that big of a problem in regular HTML, where you usually just have one CSS file, and zero separation of the UI.
+
+## "Separation of concerns"
+
+This point is brought up very often when it comes to Tailwind. The haters keep saying "Tailwind has no separation of concerns" because you directly put the style in the markup, but my view towards this point has been always "I never actually cared about separation of concerns anyway, but its a good point against Tailwind so I'm going to use it against the technology" Separation of concerns is... well it depends if its good or awful depending on the problem that is being solved, but in Web Development, especially in CSS, seperation of concerns often leads to unnecessary code that are often unused styles, which get added into the CSS bundle, especially in a component-based framework. TailwindCSS's utility approach instead is atomic. You use the classes you want, you don't include the classes you don't in the CSS bundle, so you can compose a small portion of classes together for the UI of one component or page rather than repeating the same style with a slightly different look on each element that needs to be styled.
+
+## Web dev purists, their hate for frameworks, and Tailwind
+
+Most of the time the Tailwind haters are ones I like to call "web dev purists" Because they don't think "Hey, let's implement this feature in a framework to save time" or "Let's add a bit more JavaScript to make the UX better of this particular UI component" No. They only care about "Following the web standards, and doing it is much better than using a framework" Completely ignoring that the web standards are actually terrible. (Most of the time) Web Components are an example of the "bad standards" They are a fine concept, but have an awful implementation. Most of these purists will still argue that WCs are better than framework components. Why? Simply because they work without needing to bundle or are built into the browser. When building applications, most of their focus is on "How standard compliant is this?" instead of "How good does this look (styles), handle interactions, or any other metric" This hate of frameworks directly translates to the hate for Tailwind, because as I mentioned before, Tailwind works best with frameworks, with components that can be reused.
+
+### What about Web Components instead of frameworks?
+
+Web Components are fine, but they are terrible to work with. So much so, that Google themselves created two frameworks to fix them. Yeah, two frameworks (tbf one's deprecated now) to solve the problem of a flawed API of a concept that was supposed to solve the framework problem. When it comes to Tailwind, vanilla JS (or TS) + Web Components don't really work great with it. Since in JS, creating stuff manually is verbose, and especially appending stuff to the elements created is even more lengthy to write. Even for a simple component example like the one below, appending Tailwind classes aren't that intuitive. Not to mention they probably won't work with Tailwind intellisense.
+
+```ts
+// Also, imo, class based APIs suck for UI components
+class Paragraph extends HTMLElement {
+  constructor() {
+    super();
+    /* ...Initialize shadow root and stuff... */
+  }
+
+  // Runs on Component Mount
+  connectedCallback() {
+    const p = document.createElement("p");
+
+    // uncanny. Not really that great of an experience
+    p.className = "text-xl text-green-500";
+
+    /* ...Attach to shadow root... */
+  }
+}
+
+window.customElements.define("html-paragraph", Paragraph);
+```
+
+Compare this to frameworks where most of this looks like regular HTML markup.
+
+```html
+<script lang="ts">
+  // Svelte example
+</script>
+
+<p class="text-xl text-green-500">Never gonna give you up</p>
+```
+
+The styles actually feel good to write in what looks basically more HTML than WCs. For this reason, its hard for me or any Tailwind user to understand the problems that these Tailwind haters keep pointing out. It may look horrible if you just open a browser tab out of the blue on a random website and look at the markup.
+
+<br />
+Like for example, here's the markup that you would see on my site's home page
+
+<Image
+  src="/images/blog/inspected-home-page-siri-dev.avif"
+  alt="Markup of siri.dev's home page"
+  height={1057}
+  width={1447}
+  class="my-5 p-4 rounded-md shadow-md border-2 border-semi-dark-gray"
+/>
+
+Looks messy on the surface right? But the code I wrote for it looks way different.
+
+```html
+<html lang="en">
+  <head>
+    <!-- ... -->
+    <ViewTransitions />
+    <title>{title}</title>
+  </head>
+  <body class="h-screen w-screen overflow-x-hidden subpixel-antialiased text-white bg-dark-gray">
+    <Navbar />
+    <input type="checkbox" id="menu-hidden" class="hidden" />
+    <SideMenu />
+    <main class="overflow-hidden pt-36 p-8 min-[1181px]:p-32 ${className}">
+      <BackgroundEffect />
+      <slot />
+    </main>
+    <footer />
+  </body>
+</html>
+```
+
+Clearly, it isn't the mess you see in the dev tools, its separated into individual components. Like the snippet here is the `<BaseLayout />` (Layout for all pages except the blog posts)
+The `index.astro` (Home page) file uses this layout, and builds with it to create the page.
+
+This is why I believe that a straight up dev tool inspect isn't the most definitive way to prove something about a website, because with modern-day build tooling, there maybe like 10-steps before the website is deployed. You can't just pull up an inspect and tell me this is what you have to write to style stuff with Tailwind.
+
+Alright, the next point is literally against my entire notion of "You can't tell Tailwind is verbose by just looking at the page source of some random website because it had went through a build step"
+
+## The dry hate for build tooling
+
+The majority of the hate for build tooling comes from the past, when Webpack was a complete YOLO to any developer switching from a backend server framework to a frontend JS-heavy framework. The problem with Webpack is the config. Since it was, and still is to an extent the most popular bundler, it has a large eco-system of plugins. And when you go down the rabbit hole, you realize that not only do you need to configure Webpack (Which in itself is a challenge because there are just way too many "tweaks" you can make), but you also need to configure each plugin. This means endless documentation searching before getting to the point of starting to build you client application.
+
+In the current times though, this is no longer a problem. At all. Tools like Vite completely eliminate the config problem, and rarely do you need to touch the config anymore. Every framework is trying to use a unified, minimal-config tool for bundling. Like Vite which is being adoped by major frameworks, or Turbopack, which is the next gen successor to Webpack (written in Rust btw) that will also seem to have minimal or no config.
+
+But still, people have flashbacks and trauma left over from the previous times. This has resulted in the hate for build tooling. And consequently, the hate for Tailwind because it needs a build step. The Web dev purists hate build tools in general, but Tailwind, relying on it heavily (since it generates the CSS file at build time) becomes a major target for criticism for these people. Of course there have been many attempts trying to use Tailwind in a mostly non-build environment, like the [BETH stack](https://github.com/ethanniser/the-beth-stack)
+which uses the Tailwind CLI to generate the CSS file as you write your code. But still, a build step never hurt no one. Maybe you will have to wait some time before your new deployment is live, but otherwise I don't see any reason not to have a build step when necessary.
+
+## The hate is clear. But whats up with repeated attacks?
+
+The attacks as I talked about before, mostly are rage bait. If there's anything I'd like to tell you from this post, is to not engage in any rage-baity posts like this on Twitter. Because then you give the OP what they want, attention.
+
+## Does this mean Tailwind is perfect.
+
+Of course not. No technology is perfect. The reason many other styling solutions like StyleX are still emerging is because Tailwin ddoesn't work great for everyone. Dealing with styles for a large company like Meta may lead to another solution, but if it works for them better than Tailwind, its just good for them. Tailwind isn't for everyone. Some people may not like the verbose nature and may like type-safe styles instead. And I've seen that happen a lot with technologies like PandaCSS. Or people may not like the verbose HTML classes. In that case, there's no reason to stick to a technology you don't like.
+
+## Ending it
+
+TailwindCSS itself is a great technology. But the influx of haters recently on Twitter has put a negative view of it in many people who haven't themselves tried out. Tailwind itself is one of those "You can never leave" technologies. You use it once, your hate suddenly disappears, and it becomes your go-to styling solution. But of course, social media clout is desired. Some people will do anything to get the engagements, and of course, share rage bait for a technology they never used.
