@@ -54,18 +54,14 @@ const {
     <ViewTransitions />
     <title>{title}</title>
   </head>
-  <body class="h-screen w-screen overflow-x-hidden subpixel-antialiased text-white bg-dark-gray">
+  <body class="h-screen w-screen overflow-x-hidden subpixel-antialiased text-white bg-dark-gray py-16 px-10 lg:px-40">
     <Navbar />
     <input type="checkbox" id="menu-hidden" class="hidden" />
     <SideMenu />
-    <main class="overflow-hidden pt-36 p-8 min-[1181px]:p-32">
-      <a href="/blog" class="flex p-4 bg-semi-dark-gray w-fit items-center rounded-md duration-200 hover:bg-gray-800">
-        <Icon name="mdi:arrow-left" size={20} />
-        <p class="px-2">Blogs</p>
-      </a>
-      <h1 transition:name={title}>
+    <main>
+      <h3 transition:name={title}>
         {title}
-      </h1>
+      </h3>
       <time class="text-gray-400 ml-1" datetime={getFormattedTime(publishdate)}>
         {publishdate}
       </time>

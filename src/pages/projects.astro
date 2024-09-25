@@ -6,7 +6,7 @@ import { projects } from "../data";
 ---
 
 <BaseLayout title="Projects" description="My creations showcased." path="/projects">
-  <h4 transition:name="header-text" class="text-left leading-[1!important]">Projects</h4>
+  <h4 class="mt-4">Projects</h4>
   <aside class="grid grid-cols-1 md:grid-cols-2 min-[1129px]:grid-cols-3 mt-8 gap-10">
     {projects.map(project => <ProjectCard {...project} />)}
   </aside>

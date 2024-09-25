@@ -5,7 +5,7 @@ const blogPosts = await Astro.glob("./blog/**/*.mdx");
 ---
 
 <BaseLayout title="Blog" path="/blog" description="I like to post about my life, comparison of the technologies I use and other cool stuff here.">
-  <h4 transition:name="header-text" class="text-left leading-[1!important]">Dev-Siri's Blog</h4>
+  <h4>Dev-Siri's Blog</h4>
   <ul class="list-[none!important]">
     {
       blogPosts
@@ -15,7 +15,7 @@ const blogPosts = await Astro.glob("./blog/**/*.mdx");
           return -1;
         })
         .map(({ frontmatter, url }) => (
-          <li>
+          <li class="py-0">
             <a href={url} class="text-start">
               <h6 transition:name={frontmatter.title}>{frontmatter.title}</h6>
               <p class="text-gray-400 -mt-5">{frontmatter.publishdate}</p>

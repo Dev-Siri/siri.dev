@@ -1,17 +1,7 @@
 ---
-import { Image } from "astro:assets";
-
 import SocialLinks from "./SocialLinks.astro";
 ---
 
-<footer class="flex flex-col items-center px-16 pb-10 lg:px-40">
-  <section>
-    <Image src="/images/siri-speech-animation.webp" alt="Siri Voice" loading="lazy" decoding="async" height={10} width={250} class="h-20" />
-  </section>
-  <section class="flex w-full justify-between">
-    <p class="w-fit text-lg">Dev-Siri</p>
-    <div class="w-fit">
-      <SocialLinks />
-    </div>
-  </section>
+<footer class="flex flex-col items-center pb-10 mt-20">
+  <SocialLinks />
 </footer>

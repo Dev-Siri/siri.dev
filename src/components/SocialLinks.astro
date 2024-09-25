@@ -7,8 +7,8 @@ import { socialLinks } from "../data";
 <div class="flex gap-6 w-full justify-center">
   {
     socialLinks.map(socialLink => (
-      <a href={socialLink.link} target="_blank" rel="noreferrer noopener" title={socialLink.name}>
-        <Icon name={socialLink.icon} height={30} width={30} color={socialLink.iconColor} />
+      <a href={socialLink.link} target="_blank" rel="noreferrer noopener" aria-label={`${socialLink.name} Link`} title={socialLink.name}>
+        <Icon name={socialLink.icon} height={25} width={25} color={"white"} />
       </a>
     ))
   }

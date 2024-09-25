@@ -5,29 +5,19 @@ export const socialLinks = [
     name: "Youtube",
     handle: "@Dev-Siri",
     icon: "mdi:youtube",
-    iconColor: "red",
     link: "https://youtube.com/@Dev-Siri",
   },
   {
     name: "Twitter",
     handle: "@DevSiriTweets",
     icon: "mdi:twitter",
-    iconColor: "#2e77ff",
     link: "https://twitter.com/DevSiriTweets",
   },
   {
     name: "Github",
     handle: "Dev-Siri",
     icon: "mdi:github",
-    iconColor: "white",
     link: "https://github.com/Dev-Siri",
-  },
-  {
-    name: "Chess.com",
-    handle: "dev-siri",
-    icon: "chess-com",
-    iconColor: "green",
-    link: "https://chess.com/member/dev-siri",
   },
 ] as const;
 

@@ -16,11 +16,11 @@ const { index, location, height, width } = Astro.props;
   href={`https://google.com/maps?q=${encodeURIComponent(location)}`}
   target="_blank"
   rel="noreferrer noopener"
-  class="relative group h-auto max-w-full bg-black rounded-lg cursor-pointer"
+  class="relative group h-auto max-w-full bg-black rounded-2xl cursor-pointer"
   style={`height: ${height}; width: ${width}`}
 >
   <Image
-    class="h-full object-cover w-full rounded-lg group-hover:opacity-10 duration-200"
+    class="h-full object-cover w-full rounded-2xl group-hover:opacity-10 duration-200"
     src={`/images/gallery/gallery-${index}.avif`}
     alt={`Gallery ${index}`}
     {height}
