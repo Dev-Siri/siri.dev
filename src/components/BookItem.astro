@@ -24,7 +24,7 @@ const { title, authors, imageUrl, price, imageSize } = Astro.props;
     <h5 class="text-balance">{authors} "{title}" O'Rly Book</h5>
     <p class="text-md text-gray-400 mt-2">${price}</p>
     <div class="flex flex-col w-fit">
-      <button type="button" class="bg-white text-black p-2 px-4 rounded-full my-4 hover:bg-gray-200 duration-200" id="checkout-btn">
+      <button type="button" class="bg-white text-black p-2 px-4 rounded-full my-4 hover:bg-gray-200 duration-200" data-id="checkout-btn">
         Proceed to Checkout
       </button>
       <div class="flex gap-2">
@@ -33,12 +33,12 @@ const { title, authors, imageUrl, price, imageSize } = Astro.props;
       </div>
     </div>
   </section>
-
-  <script>
-    const checkoutButton = document.getElementById("checkout-btn");
-
-    const RICKROLL_URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-
-    checkoutButton?.addEventListener("click", () => window.open(RICKROLL_URL));
-  </script>
 </article>
+
+<script>
+  const checkoutButtons = document.querySelectorAll<HTMLButtonElement>("[data-id=checkout-btn]");
+
+  const RICKROLL_URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+
+  checkoutButtons.forEach(checkoutButton => checkoutButton.addEventListener("click", () => window.open(RICKROLL_URL)));
+</script>
