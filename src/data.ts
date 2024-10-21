@@ -57,7 +57,7 @@ export const projects: Project[] = [
     link: "https://tik-tik-siri.vercel.app",
   },
   {
-    name: "Next Ecommerce",
+    name: "Phoenix",
     description: "An Ecommerce application with actual payments powered by Stripe. Made with Next.js SSG and Sanity CMS.",
     image: {
       src: "/images/projects/ecommerce-next.avif",

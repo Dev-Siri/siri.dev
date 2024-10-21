@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+import SocialMediaLink from "../components/SocialMediaLink.astro";
+
+export interface Props {
+  title: string;
+  authors: string;
+  price: number;
+  imageUrl: string;
+  imageSize: {
+    height: number;
+    width: number;
+  };
+}
+
+const { title, authors, imageUrl, price, imageSize } = Astro.props;
+---
+
+<article class="flex flex-col md:flex-row items-start gap-5 mt-4">
+  <section>
+    <Image src={imageUrl} alt=`O'Rly Book titled '${title}'` {...imageSize} class="rounded-md" />
+  </section>
+  <section class="md:ml-4">
+    <h5 class="text-balance">{authors} "{title}" O'Rly Book</h5>
+    <p class="text-md text-gray-400 mt-2">${price}</p>
+    <div class="flex flex-col w-fit">
+      <button type="button" class="bg-white text-black p-2 px-4 rounded-full my-4 hover:bg-gray-200 duration-200" id="checkout-btn">
+        Proceed to Checkout
+      </button>
+      <div class="flex gap-2">
+        <span class="text-md">By</span>
+        <SocialMediaLink username="@IroncladDev" variant="twitter">IroncladDev</SocialMediaLink>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const checkoutButton = document.getElementById("checkout-btn");
+
+    const RICKROLL_URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+
+    checkoutButton?.addEventListener("click", () => window.open(RICKROLL_URL));
+  </script>
+</article>
