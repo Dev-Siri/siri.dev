@@ -3,13 +3,31 @@
 
 @font-face {
   font-family: "Geist";
-  src: url("/fonts/Geist.woff2") format("woff2");
+  font-style: normal;
   font-weight: 400;
   font-display: swap;
+  src: url("/fonts/Geist.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Geist-Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Geist-Mono.woff2") format("woff2");
 }
 
 ::selection {
   background-color: rgba(0, 166, 255, 0.301);
+}
+
+*::-webkit-scrollbar {
+  @apply hidden;
+}
+
+*:not(.astro-tweet-theme *) {
+  font-family: "Geist-Mono", sans-serif;
+  @apply scroll-smooth;
 }
 
 /* Override astro-tweet's default theme */
@@ -17,19 +35,11 @@
   --tweet-bg-color: #1c1c1c;
   --tweet-bg-color-hover: #212121;
   --tweet-border: 1px solid #3b3b3b;
+  font-family: "Geist", sans-serif !important ;
 }
 
 html {
   color-scheme: dark;
-}
-
-*::-webkit-scrollbar {
-  @apply hidden;
-}
-
-* {
-  font-family: "Geist", sans-serif;
-  @apply scroll-smooth;
 }
 
 .spin {

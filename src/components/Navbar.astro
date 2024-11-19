@@ -10,9 +10,16 @@ import AnimatedSiriLogo from "./AnimatedSiriLogo.astro";
   <section class="items-center hidden lg:flex justify-around ml-auto">
     {
       links.map(navLink => (
-        <a class="hover:text-white text-gray-300 duration-200 rounded-md p-2 transform-gpu px-10" href={`/${navLink}`}>
-          {`${navLink.charAt(0).toUpperCase()}${navLink.slice(1)}`}
-        </a>
+        <div class="relative">
+          <a class="hover:text-white text-gray-300 duration-200 rounded-md p-2 transform-gpu px-10" href={`/${navLink}`}>
+            {navLink}
+          </a>
+          {Astro.url.pathname === `/${navLink}` && (
+            <span transition:name="indicator" class={`absolute inset-0 left-[37%] top-[90%] text-gray-300`}>
+              ^^^
+            </span>
+          )}
+        </div>
       ))
     }
   </section>

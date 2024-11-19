@@ -27,9 +27,15 @@ const { index, location, height, width } = Astro.props;
     {width}
   />
   <div class="hidden absolute justify-center inset-0 h-full items-center group-hover:flex">
-    <Icon name="mdi:map-marker" height={25} width={25} color="red" />
-    <p>
-      {location}
+    <Icon name="mdi:map-marker-outline" height={25} width={25} />
+    <p aria-label={location} class="gallery-picture-location ml-1">
+      {location.toLowerCase()}
     </p>
   </div>
 </a>
+
+<style>
+  .gallery-picture-location {
+    word-spacing: -5px;
+  }
+</style>

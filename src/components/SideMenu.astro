@@ -4,11 +4,11 @@ import { links } from "../data";
 
 <aside
   id="side-menu"
-  class="flex animate-slide flex-col items-center bg-dark-gray w-2/4 sm:w-1/4 pt-10 ml-[50%] sm:ml-[75%] h-screen gap-2 mt-[100px] fixed z-50 border-l-2 border-t-2 border-semi-dark-gray rounded-l-md"
+  class="flex animate-slide pr-[4%] flex-col items-center bg-dark-gray w-2/4 sm:w-1/4 pt-4 ml-[50%] sm:ml-[75%] h-screen gap-2 mt-[100px] fixed z-50 border-l-2 border-t-2 border-semi-dark-gray rounded-l-md"
 >
   {
     links.map(navLink => (
-      <a class="p-4 bg-black w-3/4 rounded-full justify-center hover:scale-105 duration-200 flex" href={`/${navLink}`}>
+      <a class="p-4 w-3/4 rounded-full justify-center hover:scale-105 duration-200 flex" href={`/${navLink}`}>
         {`${navLink.charAt(0).toUpperCase()}${navLink.slice(1)}`}
       </a>
     ))

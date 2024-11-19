@@ -1,4 +1,10 @@
 ---
+import { Icon } from "astro-icon/components";
+
+import { designation, location } from "../data";
+
+import AnimatedText from "../islands/AnimatedText.svelte";
+import HoverTextAnimation from "../islands/HoverTextAnimation.svelte";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const blogPosts = await Astro.glob("./blog/**/*.mdx");
@@ -6,14 +12,31 @@ const blogPosts = await Astro.glob("./blog/**/*.mdx");
 
 <BaseLayout title="Hi I'm Dev-Siri, Web & Flutter Developer">
   <section>
-    <h4>Hi I'm Dev-Siri</h4>
+    <h4>
+      <AnimatedText client:load text="hi i'm" />
+      <b>
+        <AnimatedText client:load text="dev-siri" />
+      </b>
+    </h4>
+    <div class="flex items-center gap-1 text-gray-400 mb-2">
+      <Icon name="mdi:map-marker-outline" height={20} width={20} />
+      <p aria-label={location} class="cursor-default">
+        {location.toLowerCase()}
+      </p>
+    </div>
+    <div class="flex items-center gap-1 text-gray-400 mb-4">
+      <Icon name="mdi:domain" height={20} width={20} />
+      <p aria-label={`${designation.default} / ${designation.alternative}`} class="cursor-default">
+        <HoverTextAnimation client:load defaultText={designation.default.toLowerCase()} replaceText={designation.alternative.toLowerCase()} />
+      </p>
+    </div>
     <p class="text-lg mb-6">
-      Just another dude into programming. Spends a lot of his time on Twitter, writes code. what else do I even have to say here? Can go, rust, htmx,
+      just another dude into programming. spends a lot of his time on twitter, writes code. what else do i even have to say here? can go, rust, htmx,
       the only technologies you need to know right now.
     </p>
   </section>
   <section id="blog">
-    <h4>Recent Blog Posts</h4>
+    <h4>recent blog posts</h4>
     <ul class="list-[none!important]">
       {
         blogPosts
@@ -26,8 +49,8 @@ const blogPosts = await Astro.glob("./blog/**/*.mdx");
           .map(({ frontmatter, url }) => (
             <li class="py-0">
               <a href={url}>
-                <h6 transition:name={frontmatter.title}>{frontmatter.title}</h6>
-                <p class="text-gray-400 -mt-5">{frontmatter.publishdate}</p>
+                <h6 transition:name={frontmatter.title}>{frontmatter.title.toLowerCase()}</h6>
+                <p class="text-gray-400 -mt-5">{frontmatter.publishdate.toLowerCase()}</p>
               </a>
             </li>
           ))

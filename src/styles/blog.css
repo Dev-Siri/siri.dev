@@ -1,14 +1,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Geist-Mono";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/Geist-Mono.woff2") format("woff2");
-}
-
 main ul {
   @apply list-disc;
 }
@@ -19,11 +11,6 @@ main li {
 
 main blockquote {
   @apply bg-semi-dark-gray mt-3 rounded-md p-5 text-gray-400 border-l-8 my-4;
-}
-
-code,
-.astro-code code .line > span {
-  font-family: "Geist-Mono", sans-serif;
 }
 
 .astro-code {

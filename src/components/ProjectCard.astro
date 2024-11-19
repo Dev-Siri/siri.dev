@@ -30,11 +30,11 @@ const linkProps = link?.includes("http")
     }
   </section>
   <section class="p-4 absolute z-10 mt-auto bottom-0 h-32">
-    <p class="text-4xl font-bold leading-normal">
-      {name}
+    <p class="text-3xl mt-3 font-bold leading-normal">
+      {name.toString()}
     </p>
-    <p class="ml-1 text-gray-400 w-full" title={description}>
-      {description.length >= 60 ? `${description.slice(0, 60)}...` : description}
+    <p class="ml-1 text-sm text-gray-400 w-full" title={description}>
+      {description.length >= 55 ? `${description.slice(0, 55)}...` : description}
     </p>
   </section>
   <section class="relative h-full">

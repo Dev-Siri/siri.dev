@@ -1,12 +1,18 @@
 ---
 import ProjectCard from "../components/ProjectCard.astro";
+import AnimatedText from "../islands/AnimatedText.svelte";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 import { projects } from "../data";
 ---
 
 <BaseLayout title="Projects" description="My creations showcased." path="/projects">
-  <h4 class="mt-4">Projects</h4>
+  <h4 class="mt-4">
+    dev-siri's
+    <span class="font-semibold">
+      <AnimatedText client:load text="projects" animationSpeed={50} />
+    </span>
+  </h4>
   <aside class="grid grid-cols-1 md:grid-cols-2 min-[1129px]:grid-cols-3 mt-8 gap-10">
     {projects.map(project => <ProjectCard {...project} />)}
   </aside>

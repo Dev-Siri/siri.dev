@@ -4,6 +4,8 @@ My personal portfolio built with Astro and TailwindCSS.
 
 Deployed at siri-dev.vercel.app. I am too cheap to buy the siri.dev domain :(
 
+Design heavily inspired by [nexxel](https://nexxel.dev)'s site
+
 ## Technologies
 
 - Astro

@@ -1,10 +1,16 @@
 ---
 import GalleryPicture from "../components/GalleryPicture.astro";
+import AnimatedText from "../islands/AnimatedText.svelte";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Gallery" description="Pictures I took, when touching grass." path="/gallery">
-  <h4 class="mt-2">Dev-Siri's Gallery</h4>
+  <h4 class="mt-2">
+    dev-siri's
+    <span class="font-semibold">
+      <AnimatedText client:load text="gallery" animationSpeed={50} />
+    </span>
+  </h4>
   <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
     <div class="grid gap-4">
       <GalleryPicture index={1} location="Varanasi, India" height={575} width={1280} />

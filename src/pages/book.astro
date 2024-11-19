@@ -1,10 +1,16 @@
 ---
 import BookItem from "../components/BookItem.astro";
+import AnimatedText from "../islands/AnimatedText.svelte";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Get My Book" description="Get my O'Rly Book" path="/book" class="text-start">
-  <h4 class="mt-2">Get my O'Rly Books</h4>
+  <h4 class="mt-2">
+    dev-siri's
+    <span class="font-semibold">
+      <AnimatedText client:load text="books" animatedSpeed={50} />
+    </span>
+  </h4>
   <BookItem
     title="BaguetteMaxxing Deepfakes 🥖🇫🇷"
     authors="Dev-Siri"

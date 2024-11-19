@@ -1,5 +1,11 @@
 export const links = ["blog", "projects", "gallery", "book"];
 
+export const location = "Kolkata, India";
+export const designation = {
+  default: "CEO @ htmx.org (multi-billion)",
+  alternative: "CTO @ Twitter Shitposting Org™",
+};
+
 export const socialLinks = [
   {
     name: "Youtube",
