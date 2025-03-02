@@ -1,9 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+import type { BlogPost } from "../types";
+
 import AnimatedText from "../islands/AnimatedText.svelte";
 
-const blogPosts = await Astro.glob("./blog/**/*.mdx");
+const blogPosts = Object.values(import.meta.glob<BlogPost>("./blog/**/*.mdx", { eager: true }));
 ---
 
 <BaseLayout title="Blog" path="/blog" description="I like to post about my life, comparison of the technologies I use and other cool stuff here.">

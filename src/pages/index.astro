@@ -1,13 +1,15 @@
 ---
 import { Icon } from "astro-icon/components";
 
+import type { BlogPost } from "../types";
+
 import { designation, location } from "../data";
 
 import AnimatedText from "../islands/AnimatedText.svelte";
 import HoverTextAnimation from "../islands/HoverTextAnimation.svelte";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const blogPosts = await Astro.glob("./blog/**/*.mdx");
+const blogPosts = Object.values(import.meta.glob<BlogPost>("./blog/**/*.mdx", { eager: true }));
 ---
 
 <BaseLayout title="Hi I'm Dev-Siri, Web & Flutter Developer">

@@ -1,5 +1,6 @@
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@config "../../tailwind.config.ts";
 
 @font-face {
   font-family: "Geist";
@@ -56,22 +57,22 @@ html {
 }
 
 h1 {
-  @apply text-[42px] font-medium leading-relaxed sm:text-6xl sm:leading-normal !important;
+  @apply text-[42px]! font-medium! leading-relaxed! sm:text-6xl! sm:leading-normal!;
 }
 h2 {
-  @apply text-4xl font-medium leading-normal sm:text-5xl sm:leading-normal !important;
+  @apply text-4xl! font-medium! leading-normal! sm:text-5xl! sm:leading-normal!;
 }
 h3 {
-  @apply text-4xl font-medium leading-normal !important;
+  @apply text-4xl! font-medium! leading-normal!;
 }
 h4 {
-  @apply text-3xl font-medium leading-normal !important;
+  @apply text-3xl! font-medium! leading-normal!;
 }
 h5 {
-  @apply text-2xl font-medium leading-normal !important;
+  @apply text-2xl! font-medium! leading-normal!;
 }
 h6 {
-  @apply text-xl font-medium leading-normal !important;
+  @apply text-xl! font-medium! leading-normal!;
 }
 
 @keyframes slide {
@@ -94,19 +95,19 @@ h6 {
 
 @keyframes fade-in {
   from {
-    @apply opacity-0;
+    opacity: 0;
   }
   to {
-    @apply opacity-100;
+    opacity: 100;
   }
 }
 
 @keyframes fade-out {
   from {
-    @apply opacity-100;
+    opacity: 100;
   }
   to {
-    @apply opacity-0;
+    opacity: 0;
   }
 }
 

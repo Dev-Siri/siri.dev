@@ -12,10 +12,5 @@ export default {
       },
     },
   },
-  experimental: {
-    optimizeUniversalDefaults: true,
-  },
-  future: {
-    hoverOnlyWhenSupported: true,
-  },
+  future: { hoverOnlyWhenSupported: true },
 } satisfies Config;

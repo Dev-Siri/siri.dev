@@ -1,5 +1,6 @@
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@config "../../tailwind.config.ts";
 
 main ul {
   @apply list-disc;
@@ -24,7 +25,7 @@ h4,
 h5,
 h6 {
   text-wrap: balance;
-  @apply my-6 !important;
+  @apply my-6!;
 }
 
 p a {
