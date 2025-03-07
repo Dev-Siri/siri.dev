@@ -8,24 +8,17 @@ layout: ../../layouts/BlogLayout.astro
 
 import { Image } from "astro:assets";
 
-Web components were on my rader as a native built-in feature that I was interested in using. But after using it,
-I have some thoughts on the technology.
+Web components were on my rader as a native built-in feature that I was interested in using. But after using it, I have some thoughts on the technology.
 
 ## y tho
 
-<Image
-  src="/images/blog/y-tho.avif"
-  alt="Leaf Diagram"
-  height={653}
-  width={667}
-  class="my-5 p-4 rounded-md shadow-md border-2 border-semi-dark-gray"
-/>
+<Image src="/images/blog/y-tho.avif" alt="Y Tho?" height={653} width={667} class="my-5 p-4 rounded-md shadow-md border-2 border-semi-dark-gray" />
 
-Well... lets start with my...
+Well, lets start with my...
 
 ## Experience
 
-Honestly, the experience with Web Components (atleast for me) wasn't that bad. I was using it to add progressive enhancements / small interactivity in my site's guestbook (hey btw check it out at [/guestbook](/guestbook)). But here's the thing, **I was using it all wrong**. Or atleast not the way most people would think.
+Honestly, the experience with Web Components (Atleast for me) wasn't that bad. I was using it to add progressive enhancements / small interactivity in my site's guestbook (Check it out at [/guestbook](/guestbook)). However, I was not using it the way most people would think.
 
 Here is what I did:
 
@@ -48,23 +41,23 @@ Here is what I did:
 
 You can find the full source file on [GitHub](https://github.com/Dev-Siri/siri.dev/blob/474c1c0288ff4bdb28e9f454cd3dea6a2c805c8a/src/islands/GuestbookComments.astro).
 
-Web components are meant to be like Framework Components (in React for example), where a component itself does everything in a [shadow-root](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot). But here is the problem....
+Web components are meant to be like framework components (Like in React for example), where a component itself does everything in a [shadow-root](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot). However, a problem arises this way.
 Web components don't support SSR, and they also lead to worse SEO. Because they need to be defined with `customElements.define()` which is only
 available in the browser `window` object. This means using shadow root as a namespace for creating elements will not render the elements if
-JavaScript is disabled. They are client-only, and this is bad for me. I like having stuff working without JavaScript and this just looks like a `useFootGun` 2.0
+JavaScript is disabled. They are client-only, and this is a deal breaker for me. These are meant to be small interactive bits, essentially an `addEventListener()` call, not a fully "SPA-Like" component.
 
 <br />
-What I was doing with web components could be just used as regular `onsubmit` && `onclick` handlers. Yeah, I was kinda using them wrong. I was only doing
-that to get stuff like:
+What I was doing with web components could be just used as regular `onsubmit` && `onclick` handlers. The only advantage with using Web Components for
+usual event listeners, was writing code where you have custom methods defined on an element.
 
 ```html
 <script>
   class AddComment extends HTMLElement {
     public async addComment() {
-      // types are funny
+      // Types are funny
       const guestbookComments: (Element & { addData(newEntry: GuestBookEntry): Promise<void> }) | null = document.querySelector("guestbook-comments");
 
-      // its the same method that I had defined before in the wc
+      // Its the same method that I had defined before in the WC
       if (guestbookComments) await guestbookComments.addEntry(stuff);
       //                                             ^^^^^^^
     }
@@ -72,32 +65,14 @@ that to get stuff like:
 </script>
 ```
 
-Although it was kind of unneccessary, I also liked this approach. Because instead of a JS-Only or HTML-Only component, where one
-doesn't show anything without JavaScript and the other doesn't update at all, this combines the best of both in a reusable component.
+## Do I think Web Components are good though?
 
-## What if I actually used it in a real world project?
+#### Mostly negative.
 
-Will I ever use it in a real-world large app? heck no. But, if I had to, will I write vanilla? NEVER. I have seen the pain of writing
-low-level DOM, and therefore its just not worth writing something inferior to just writing a React / Svelte Component. If I ever need Web
-Components, I have Svelte! I can just compile it to web components and just use that instead of writing painful vanilla JavaScript.
-In fact, its so easy to compile Svelte -> Web Components, I will just show one in 2 lines:
-
-```html
-<svelte:options customElement="web-component" />
-
-<h1>Hello World</h1>
-```
-
-## Do I think Web Components are good?
-
-#### Yesn't
-
-I just think they can be better. The main issue I have with them is their API & SSR/SEO Limitations. I don't get the trend of making native features
-ridiculously difficult to work with. Web Components **don't** need to have such a hard API. Everytime a new feature comes out on the web, its either
-too low-level (like WCs) or too limited. We should have a delicate balance between the 2 tradeoffs. For small interactivity websites? Yes they are good,
-for larger websites? NO.
+I just think they can be better. The main issue I have with them is their API & SSR/SEO Limitations. I don't get the trend of making native features ridiculously difficult to work with. Web Components **don't** need to have a API that makes it difficult to work with them. Everytime a new feature comes out on the web, its either
+too low-level (like WCs) or too limited. There should be a balance between the 2 tradeoffs. For small interactivity websites? Meh, they can work. For larger website however? Absolutely not.
 
 ## Conclusion
 
-Although everyone likes to trash on Web Components, I think they are pretty OK. (Yea I have also kind of spread hate about it sometimes)
-They are a convenient feature for adding component-based interactive islands with vanilla JavaScript, but not something I would use all the time.
+Although everyone likes to trash on Web Components, I think they are pretty alright, but only in rare scenarios. (I'll admit that even I too have said crap about it before)
+They are a convenient feature for adding "interactivity" with vanilla JavaScript. Their utility is strengthened further when it comes to frameworks like Astro with the Islands architecture, however they still fail to show their pros.
