@@ -41,19 +41,8 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    name: "Tea Share",
-    description: "Tea Share is a social media application made for Android in Flutter and the Web with TypeScript + SvelteKit.",
-    image: {
-      src: "/images/projects/tea-share.avif",
-      height: 768,
-      width: 1366,
-    },
-    source: "https://github.com/Dev-Siri/Tea-Share",
-    link: "https://tea-share.vercel.app",
-  },
-  {
     name: "Tik Tik",
-    description: "A Fullstack Tik Tok clone with Google Authentication made with Next.js, React & Sanity.",
+    description: "A Fullstack Tik Tok clone with Google Authentication made with React + Next.js & Sanity.",
     image: {
       src: "/images/projects/tik-tik.avif",
       height: 768,
@@ -64,7 +53,7 @@ export const projects: Project[] = [
   },
   {
     name: "Phoenix",
-    description: "An Ecommerce application with actual payments powered by Stripe. Made with Next.js SSG and Sanity CMS.",
+    description: "An Ecommerce application with actual payments powered by Stripe. Made with React + Next.js and Sanity CMS.",
     image: {
       src: "/images/projects/ecommerce-next.avif",
       height: 337,
@@ -75,7 +64,7 @@ export const projects: Project[] = [
   },
   {
     name: "Youtube Clone",
-    description: "A Youtube Clone made with React, TailwindCSS and RapidAPI.",
+    description: "Youtube Clone made with React, TailwindCSS and RapidAPI.",
     image: {
       src: "/images/projects/youtube-clone.avif",
       height: 768,
@@ -86,7 +75,7 @@ export const projects: Project[] = [
   },
   {
     name: "Share Me",
-    description: "A Full Stack Social Media Application made with Next.js, TailwindCSS and Sanity.",
+    description: "Full Stack Social Media Application made with React + Next.js, TailwindCSS and Sanity.",
     image: {
       src: "/images/projects/share-me.avif",
       height: 768,
@@ -97,7 +86,7 @@ export const projects: Project[] = [
   },
   {
     name: "Hoo Bank",
-    description: "A modern, fast & minimalistic banking landing page created with Astro and TailwindCSS.",
+    description: "Modern, fast & minimalistic banking landing page created with Astro and TailwindCSS.",
     image: {
       src: "/images/projects/hoo-bank.avif",
       height: 1366,
@@ -108,11 +97,11 @@ export const projects: Project[] = [
   },
   {
     name: "Gedis",
-    description: "A fast Redis inspired in-memory database made with Go.",
+    description: "Fast, Redis inspired, in-memory database written in Go.",
     image: {
       src: "/images/projects/gedis.avif",
       height: 347,
-      width: 690, // 👀
+      width: 690,
     },
     source: "https://github.com/Dev-Siri/gedis",
     link: "https://gedis.vercel.app",
@@ -123,17 +112,17 @@ export const projects: Project[] = [
     image: {
       src: "/images/projects/gdn.avif",
       height: 250,
-      width: 690, // 👀
+      width: 690,
     },
     source: "https://github.com/Dev-Siri/gdn",
   },
   {
     name: "Twitter Clone",
-    description: "Fully functional Twitter Clone built with Next.js, React, Drizzle ORM, Neon & Firebase Storage",
+    description: "Twitter Clone built with Next.js + React, Drizzle ORM, Neon & Firebase Storage",
     image: {
       src: "/images/projects/twitter-clone.avif",
       height: 367,
-      width: 690, // 👀
+      width: 690,
     },
     source: "https://github.com/Dev-Siri/Twitter-Clone",
   },
