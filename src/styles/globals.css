@@ -39,6 +39,10 @@
   font-family: "Geist", sans-serif !important ;
 }
 
+:root {
+  view-transition-name: none;
+}
+
 html {
   color-scheme: dark;
 }
