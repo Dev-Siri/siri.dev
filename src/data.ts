@@ -1,4 +1,4 @@
-export const links = ["blog", "projects", "gallery", "book"];
+export const links = ["blog", "projects", "book"];
 
 export const location = "Kolkata, India";
 export const designation = {
