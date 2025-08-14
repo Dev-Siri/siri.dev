@@ -8,7 +8,7 @@ layout: ../../layouts/BlogLayout.astro
 
 import { Image } from "astro:assets";
 
-Web components were on my rader as a native built-in feature that I was interested in using. But after using it, I have some thoughts on the technology.
+Web components were on my rader as a native built-in feature that I was interested in using. However, after using it, I have some thoughts on the technology.
 
 ## y tho
 
@@ -18,7 +18,7 @@ Well, lets start with my...
 
 ## Experience
 
-Honestly, the experience with Web Components (Atleast for me) wasn't that bad. I was using it to add progressive enhancements / small interactivity in my site's guestbook (Check it out at [/guestbook](/guestbook)). However, I was not using it the way most people would think.
+Honestly, the experience with Web Components (Atleast for me) wasn't that bad. I was using it to add small interactivity in my site's guestbook (Check it out at [/guestbook](/guestbook)). However, I was not using it the way most people would think.
 
 Here is what I did:
 
@@ -47,8 +47,8 @@ available in the browser `window` object. This means using shadow root as a name
 JavaScript is disabled. They are client-only, and this is a deal breaker for me. These are meant to be small interactive bits, essentially an `addEventListener()` call, not a fully "SPA-Like" component.
 
 <br />
-What I was doing with web components could be just used as regular `onsubmit` && `onclick` handlers. The only advantage with using Web Components for
-usual event listeners, was writing code where you have custom methods defined on an element.
+What I was doing with web components could be just used as regular `onsubmit` && `onclick` handlers. The only advantage I got using Web Components for
+event listeners, was writing code where you have custom methods defined on an element.
 
 ```html
 <script>
@@ -65,14 +65,14 @@ usual event listeners, was writing code where you have custom methods defined on
 </script>
 ```
 
-## Do I think Web Components are good though?
+## Are Web Components good though, in my opinion?
 
-#### Mostly negative.
+#### Well, eh.. no.
 
-I just think they can be better. The main issue I have with them is their API & SSR/SEO Limitations. I don't get the trend of making native features ridiculously difficult to work with. Web Components **don't** need to have a API that makes it difficult to work with them. Everytime a new feature comes out on the web, its either
-too low-level (like WCs) or too limited. There should be a balance between the 2 tradeoffs. For small interactivity websites? Meh, they can work. For larger website however? Absolutely not.
+I just think they can be way better. The main issue I have with them is their API & SSR/SEO Limitations. I don't get the trend of making native web features ridiculously difficult to work with. Web Components **don't** need to have a API that makes it difficult to work with them. What I've noticed is, whenever a new feature comes out on the Web Platform, its either
+too low-level, like Web Components, or too limited, of which there are many examples of. This is a weird trend that I can't see the rationale behind. When it comes to Web Components, I'll say for small interactivity websites, they can work. However for larger website, Web Components are best to not even be thought of.
 
 ## Conclusion
 
-Although everyone likes to trash on Web Components, I think they are pretty alright, but only in rare scenarios. (I'll admit that even I too have said crap about it before)
-They are a convenient feature for adding "interactivity" with vanilla JavaScript. Their utility is strengthened further when it comes to frameworks like Astro with the Islands architecture, however they still fail to show their pros.
+Although everyone likes to trash on Web Components, I think they are pretty alright, but only in rare scenarios.
+They are a convenient feature for adding interactivity with vanilla JavaScript and their utility is strengthened even further in frameworks like Astro, with the Islands architecture. However, I think they are not the best solution for larger websites. They are a good feature, but not a great one. I hope that in the future, Web Components will be improved to be more developer-friendly and better suited for SSR/SEO. For right now, the cons outweigh the pros by a large margin.
