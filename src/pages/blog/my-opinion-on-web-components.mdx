@@ -1,24 +1,24 @@
 ---
-title: My opinion on web components.
+title: My Opinion On Web Components
 slug: my-opinion-on-web-components
-description: What I think about web components after using them on my portfolio website.
+description: What I think about Web Components after using them on my website.
 publishdate: July 10, 2023
 layout: ../../layouts/BlogLayout.astro
 ---
 
 import { Image } from "astro:assets";
 
-Web components were on my rader as a native built-in feature that I was interested in using. However, after using it, I have some thoughts on the technology.
+Web Components were on my rader as a native built-in feature that I was interested in using. However, after using it, I have some thoughts on the technology.
 
 ## y tho
 
 <Image src="/images/blog/y-tho.avif" alt="Y Tho?" height={653} width={667} class="my-5 p-4 rounded-md shadow-md border-2 border-semi-dark-gray" />
 
-Well, lets start with my...
+Well, let's start with my...
 
 ## Experience
 
-Honestly, the experience with Web Components (Atleast for me) wasn't that bad. I was using it to add small interactivity in my site's guestbook (Check it out at [/guestbook](/guestbook)). However, I was not using it the way most people would think.
+Honestly, the experience with Web Components (Atleast for me) wasn't that bad. I was using it to add small interactivity in my site's guestbook. (Check it out at [/guestbook](/guestbook)) However, I was not using it the way most people would think.
 
 Here is what I did:
 
@@ -41,23 +41,23 @@ Here is what I did:
 
 You can find the full source file on [GitHub](https://github.com/Dev-Siri/siri.dev/blob/474c1c0288ff4bdb28e9f454cd3dea6a2c805c8a/src/islands/GuestbookComments.astro).
 
-Web components are meant to be like framework components (Like in React for example), where a component itself does everything in a [shadow-root](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot). However, a problem arises this way.
-Web components don't support SSR, and they also lead to worse SEO. Because they need to be defined with `customElements.define()` which is only
+Web Components are meant to be like framework components (Like in React for example), where a component itself does everything in a [shadow-root](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot). However, a problem arises this way.
+Web Components don't support SSR, and they also lead to worse SEO. Because they need to be defined with `customElements.define()` which is only
 available in the browser `window` object. This means using shadow root as a namespace for creating elements will not render the elements if
 JavaScript is disabled. They are client-only, and this is a deal breaker for me. These are meant to be small interactive bits, essentially an `addEventListener()` call, not a fully "SPA-Like" component.
 
 <br />
-What I was doing with web components could be just used as regular `onsubmit` && `onclick` handlers. The only advantage I got using Web Components for
+What I was doing with Web Components could be just used as regular `onsubmit` && `onclick` handlers. The only advantage I got using Web Components for
 event listeners, was writing code where you have custom methods defined on an element.
 
 ```html
 <script>
   class AddComment extends HTMLElement {
     public async addComment() {
-      // Types are funny
+      // Types are funny.
       const guestbookComments: (Element & { addData(newEntry: GuestBookEntry): Promise<void> }) | null = document.querySelector("guestbook-comments");
 
-      // Its the same method that I had defined before in the WC
+      // Its the same method that I had defined before in the Web Component.
       if (guestbookComments) await guestbookComments.addEntry(stuff);
       //                                             ^^^^^^^
     }
@@ -65,12 +65,11 @@ event listeners, was writing code where you have custom methods defined on an el
 </script>
 ```
 
-## Are Web Components good though, in my opinion?
+## Are Web Components Good Though, In My Opinion?
 
-#### Well, eh.. no.
+#### Well, Eh... No
 
-I just think they can be way better. The main issue I have with them is their API & SSR/SEO Limitations. I don't get the trend of making native web features ridiculously difficult to work with. Web Components **don't** need to have a API that makes it difficult to work with them. What I've noticed is, whenever a new feature comes out on the Web Platform, its either
-too low-level, like Web Components, or too limited, of which there are many examples of. This is a weird trend that I can't see the rationale behind. When it comes to Web Components, I'll say for small interactivity websites, they can work. However for larger website, Web Components are best to not even be thought of.
+I just think they can be way better. The main issue I have with them is their API and SSR/SEO limitations. I don't get the trend of making native web features ridiculously difficult to work with. Web Components **don't** need to have a API that makes it difficult to work with them. What I've noticed is, whenever a new feature comes out on the Web Platform, it's either too low-level, like Web Components, or too limited, of which there are many examples of. This is a weird trend that I can't see the rationale behind. When it comes to Web Components, I'll say for small interactivity websites, they can work. However for larger website, Web Components are best to not even be thought of.
 
 ## Conclusion
 

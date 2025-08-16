@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import "../styles/globals.css";
 
 import Footer from "../components/Footer.astro";
@@ -45,7 +45,7 @@ const {
     <link rel="canonical" href=`https://siri-dev.vercel.app${path}` />
     <link rel="preload" href="/fonts/Geist.woff2" as="font" crossorigin="anonymous" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <ViewTransitions />
+    <ClientRouter />
     <title>{title}</title>
   </head>
   <body class="h-screen w-screen overflow-x-hidden subpixel-antialiased text-white bg-dark-gray py-16 px-10 lg:px-40">

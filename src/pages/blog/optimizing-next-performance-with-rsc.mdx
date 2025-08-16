@@ -1,14 +1,14 @@
 ---
-title: Optimizing Next.js performance with React Server Components
+title: Optimizing Next.js Performance With React Server Components
 slug: optimizing-next-performance-with-rsc
-description: Instead of looking at the more traditional ways of code splitting, we will use some new RSC patterns that can help reduce bundle size of a Next app.
+description: Instead of looking at the more traditional ways of code splitting, we will use some new RSC patterns that can help reduce bundle size of a Next.js app.
 publishdate: May 21, 2023
 layout: ../../layouts/BlogLayout.astro
 ---
 
 import { Image } from "astro:assets";
 
-The App Router is a major change to Next.js. It introduced a lot of features that help in improving the overall speed of the app and reduce client-side bundle size. One of the main features that help with this is React Server Components. RSCs are just components that render only on the server and send only the generated HTML to the client. This also means that npm packages used in RSCs are not sent to the browser. This itself can reduce the bundle size a lot. But there are many other things that you do not need to do in RSCs that increase bundle size. <br />
+The App Router is a major change to Next.js. It introduced a lot of features that help in improving the overall speed of the app and reduce the client-side bundle size. One of the main features that help with this is React Server Components. RSCs are just components that render only on the server and send only the generated HTML to the client. This also means that npm packages used in RSCs are not sent to the browser. This itself can reduce the bundle size a lot. But there are many other things that you do not need to do in RSCs that increase bundle size. <br />
 
 <br />
 Lets start by creating a new Next App.
@@ -61,7 +61,7 @@ I have seen many code bases where static parts are included in a client componen
   class="my-5 p-4 rounded-md shadow-md border-2 border-semi-dark-gray"
 />
 
-This make sures you ship **ONLY** the JS for the interactive elements. In this case, the `<AddToCard />` and `<DropDown />` are the only interactive elements. But they were at the end of the tree for a reason. When you import a Server Component in a Client Component directly, the Server Component actually now actually works like a Client Component. This means it ships its JavaScript to the browser. Most of the time, it is better to put client components at the end/leaf of the component tree. Sometimes, its not possible to put a interactive element at the end because it either hurts the UX or Needs interactivity itself. To Solve this, we can use `children` or `props`.
+This make sures you ship **ONLY** the JS for the interactive elements. In this case, the `<AddToCard />` and `<DropDown />` are the only interactive elements. But they were at the end of the tree for a reason. When you import a Server Component in a Client Component directly, the Server Component actually now actually works like a Client Component. This means it ships its JavaScript to the browser. Most of the time, it is better to put client components at the end/leaf of the component tree. Sometimes, it's not possible to put a interactive element at the end because it either hurts the UX or Needs interactivity itself. To Solve this, we can use `children` or `props`.
 
 > **NOTE**: This can make the code a little more confusing, so use it wisely
 
@@ -161,7 +161,7 @@ export default function LikeButton({ isLiked, likedIcon, unlikedIcon }: Props) {
 
 ## Client Chunks + Server Actions + RSCs = 💎
 
-Normally when creating a form with the new Next.js 13.4 Server Actions, we can use a Server Component. This has an advantage of working without JavaScript and also shipping less JS to the client.
+Normally when creating a form with the new Next.js 13.4 Server Actions, we can use a Server Component. This has an advantage of working without JavaScript and also shipping less JavaScript to the client.
 
 ```tsx
 export default function Create() {
@@ -188,7 +188,7 @@ export default function Create() {
 }
 ```
 
-The above snippet looks fine. But what if we want the the input with `name="image"` to show a preview in the browser when an image is selected? The obvious approach would be to put `"use client"` at the top of the file to make it a client component and then `useState()`. The pitfall of this approach would be more client-side JS and inability to put the server action inside the component file. As I said, we should only ship what is interactive, and to fix this, we can instead seperate the image input into a different `<PreviewImage />` component
+The above snippet looks fine. But what if we want the the input with `name="image"` to show a preview in the browser when an image is selected? The obvious approach would be to put `"use client"` at the top of the file to make it a client component and then `useState()`. The pitfall of this approach would be more client-side JavaScript and inability to put the server action inside the component file. As I said, we should only ship what is interactive, and to fix this, we can instead seperate the image input into a different `<PreviewImage />` component
 
 ```tsx
 "use client";

@@ -15,7 +15,7 @@ const blogPosts = Object.values(import.meta.glob<BlogPost>("./blog/**/*.mdx", { 
       <AnimatedText client:load text="blog" animationSpeed={50} />
     </span>
   </h4>
-  <ul class="list-[none!important]">
+  <ul>
     {
       blogPosts
         .sort((prevPost, nextPost) => {
@@ -26,7 +26,7 @@ const blogPosts = Object.values(import.meta.glob<BlogPost>("./blog/**/*.mdx", { 
         .map(({ frontmatter, url }) => (
           <li class="py-0">
             <a href={url} class="text-start">
-              <h6 transition:name={frontmatter.title}>{frontmatter.title.toLowerCase()}</h6>
+              <h6>{frontmatter.title.toLowerCase()}</h6>
               <p class="text-gray-400 -mt-5">{frontmatter.publishdate.toLowerCase()}</p>
             </a>
           </li>
