@@ -1,5 +1,5 @@
 ---
-title: Addressing the concerns with Server Actions in Next 14.
+title: Addressing The Concerns With Server Actions In Next 14.
 slug: next-server-actions
 description: Recently there has been an outrage on Twitter about Next 14 and server actions. I want to address some of the concerns that people have been talking about.
 publishdate: October 27, 2023
@@ -12,15 +12,15 @@ Recently, this Tweet blew up about Server Actions in the Next.js Conf.
 
 <Tweet id="1717607565260124613" />
 
-and..., the replies were kinda rough. It's like the Server Action hate is back. Yet in between this announcement and the first introduction of them in Next.js 13.4, many people have actually had a positive experience with the API.
+and... the replies were kinda... critical. It's like the hate for Server Actions is back, yet in between this announcement and the first introduction of them in Next.js 13.4, many people have actually had a positive experience with the API.
 
-There were many inaccurate assumptions that people made so I want to go over and clarify some of them.
+There were many inaccurate assumptions that people made, so I want to go over and clarify some of them.
 
 First let me start with the most pointed out assumption..
 
-## The code is vulnerable to SQL injection attacks
+## The Code Is Vulnerable To SQL Injection Attacks
 
-This is by far the least understood part of the code. Here is the snippet shown
+This is by far the least understood part of the code. Here is the snippet shown.
 
 ```tsx
 function Bookmark({ slug }) {
@@ -37,38 +37,36 @@ function Bookmark({ slug }) {
 }
 ```
 
-And specifically this line
+Specifically, it's this line.
 
 ```tsx
 await sql`INSERT INTO Bookmarks (slug) VALUES (${slug});`;
 ```
 
-Many people pointed out "The value is directly interpolated in the template string without sanitization". But here's the thing that many people missed:
+Many people pointed out that the value is directly interpolated in the template string without sanitization, but here's the thing that many people missed:
 
 ```tsx
 await sql`INSERT INTO Bookmarks (slug) VALUES (${slug});`;
-         ^                                              ^
+//       ^                                              ^
 ```
 
-This isn't a regular function call, it's a tagged template literal. This means that the dynamic stuff interpolated in the template string can be extracted separately and sanitized. This code is also most probably using `@vercel/postgres`, which in it's docs even explains the use of this syntax. Here's the exact line clarifying it [from their docs](https://vercel.com/docs/storage/vercel-postgres/quickstart#add-data-to-your-table):
+This isn't a regular function call, it's a tagged template literal. This means that the dynamic stuff interpolated in the template string can be extracted separately and sanitized. This code is also most probably using `@vercel/postgres`, which in it's documentation even explains the use of this syntax. Here's the exact line clarifying it [from their docs](https://vercel.com/docs/storage/vercel-postgres/quickstart#add-data-to-your-table):
 
 > Isn't it a security risk to embed text into SQL queries? – Not in this case. Vercel sanitizes all queries sent to your Vercel Postgres database before executing them. The above code does not expose you to SQL injections.
 
-And uhh, who is writing raw SQL for big apps? Doesn't everyone use stuff like [Ligma](https://prisma.io) and [Breeezle](https://orm.drizzle.team) <br />
-Or communicate with other APIs? (maybe a custom backend)
+Also, who is writing raw SQL queries for large apps? Doesn't everyone use ORMs like [Ligma](https://prisma.io) and [Drizzle](https://orm.drizzle.team), or communicate with other APIs? (Like a custom backend) I know that in production apps, raw SQL is still a good option, I'm just mentioning this because the users of React/Next.js usually have an all-TypeScript stack, and prefer using ORMs.
 
-## Mixing SQL in HTML? Is this PHP all over again?
+## Mixing SQL In HTML? Is This PHP All Over Again?
 
-Can also be written as "There's no separation of concerns".
-
-Well, since this was shown inline, many believed that it needs to be inline. There were many replies where I saw stuff like "I used to do this 13 years ago", completely missing the fact that Server Actions are composable. It is possible to separate them into different files and import them into the component. <br />
+This can also be written as "There's no separation of concerns". A lot of comments were made like "I used to do this 13 years ago." or "This is PHP all over again". I don't get why this is a problem. The code does not need to mix SQL in HTML, unless you want to of course, and even then, you're still technically not mixing anything, you're just writing a handler. It's just using a tagged template literal to write SQL queries. It's not like the SQL query is being executed in the browser, it's being executed on the server.
+Since this was shown inline, many believed that it needs to be inline. Its wild that this even needs clarification. People completely missed the fact that Server Actions are composable and that it is possible to separate them into different files and import them into the component.
 
 <br />
 
 _bookmark.ts_
 
 ```tsx
-"use server"; // + you need to only put this directive once
+"use server"; // And you only need to put this directive once.
 import { sql } from "@vercel/postgres";
 
 export async function bookmark(slug: string) {
@@ -92,42 +90,25 @@ export default function Bookmark({ slug }) {
 
 Maybe now it looks more natural. An inline function was a good example during presentation, but obviously, it doesn't really work in large apps.
 
-## Why should I create an action, isn't it a good idea to separate backend & frontend?
+## Why Should I Create An Action, Isn't It A Good Idea To Separate The Backend & The Frontend?
 
-First of all, this problem is not Next specific. Other JS frameworks also have actions, but I guess React is the punching bag of every dev. Anyways... lets get back on the topic. Server Actions are not here just for your db queries to work. They enable stuff to work without JavaScript. Now everyone's going to be looking at me because I'm suggesting things to work without JavaScript. But, uhh, I'll just send you [here](https://www.kryogenix.org/code/browser/everyonehasjs.html) <br />
+First of all, this "problem" is not Next.js specific. Other JavaScript frameworks also have actions, but I guess React is the punching bag of every dev, ain't it? Server Actions are not here just for your database queries to work, they enable stuff to work without JavaScript. Now everyone is going to be awkwardly looking at me because I'm suggesting to implement things to not work with JavaScript available too. I'll just like to send you [here](https://www.kryogenix.org/code/browser/everyonehasjs.html).
+A separate backend is something I support too, but it's often missed that Server Actions can be a really good way to call them. And excluding the use of Server Actions for normal mutations, what about forms? Trying to connect a frontend React form to a separate backend just doesn't sound or look intuitive on the surface, and doing it is hard. That's the reason we have been continuously reinventing forms on the frontend for a decade now. Completely forgetting that the "action" property exists and kept adding more libraries on top of each other to get a simple form working. Server Actions are a great way of handling form submissions, even for sending them to another API, and they are a great way to handle mutations in general. They are not here to replace your backend, but to make it easier to work with it.
 
-<br />
+## "I Was Doing This In PHP"
 
-A separate backend is something I too support, but it's often missed that server actions can be a good way to call them. And excluding the use of
-Server Actions for normal mutations, what about forms? Trying to connect a frontend React form to a separate backend just doesn't sound right. And doing
-it is hard. That's the reason we have been continuously reinventing forms on the frontend for a decade now. Completely forgetting that the "action" property
-exists and just kept adding more libraries on top of another to get a simple form working. Also, let's not forget excessive `useState()` calls for tracking
-something that's automatically sent when using the `name` property. Server Actions are a great way of handling form submissions, even for sending them to another API.
+Kind of feels like a repetition of the previous "Mixing SQL In HTML? Is This PHP All Over Again?" section, but I want to address this separately. I saw a lot of comments like "I was doing this in PHP 13 years ago" or "This is just PHP all over again". I don't get why this is a problem. If you were doing it in PHP, then you were doing it in PHP. Why does it matter if it's being done in Next.js now?
+And why should you be complaining about it? It just increases the chances of you getting a Lambo.
+The main reason I'm against this "argument" against Server Actions is because there's literally no problem with it. If it was a bad practice, yeah sure, thats a fine argument, but if it literally doesn't have any consequences, then what's the problem? Sure, PHP let you write bad code, but so does JavaScript, Python, Ruby, and like every other language in existence. It's not that Next.js is forcing you to write bad code, the snippet shown in the Conf was just written like that for the sake of simplicity. You can write it in a way that is more maintainable and readable, like I showed in the previous section.
 
-## "I was doing this in PHP"
+## "A Gateway To SQL Injection For Juniors"
 
-What are you complaining about? That just increases the chance of you getting a lambo.
+This was a special reply I got, and I don't understand how.
+In the Tweet, it's said that juniors might think that it's completely valid to do this even in non-JavaScript or unprotected environments. My question is: "Do you think these juniors are really that blind?" Seriously, no one will copy and paste a snippet like this that already looks quite framework-specific and would probably throw a lot of type errors, lint errors, or syntax errors if simply just thrown into another language or framework blindly.
 
-<br />
-...
-<br />
+## "Looks Ugly"
 
-So what? The same logic can be applied to.
-
-- Don't generate HTML on the server because PHP could do it.
-- Don't handle form submissions because PHP could do it.
-- Don't code because you could do it in PHP.
-
-The main reason I'm against this "argument" against server actions is because there's nothing wrong happening with the approach. Why, why does it matter if it was being done in PHP? If it's a bad practice, yeah sure thats a fine argument, but if it literally doesn't have any consequences, then what's the problem?
-
-## "A gateway to sql injection for juniors"
-
-This was a special reply I got, and I don't get why.
-In the Tweet, it's said that juniors might think it's completely valid to do this even in non-JS or non-protected environments. My question is: "Do you think these juniors are really that blind?" Seriously, no one will copy/paste a snippet like this that already looks quite framework-specific and would probably throw a lot of type errors, lint errors, and/or syntax errors if simply just put into another language/framework blindly.
-
-## "Looks ugly"
-
-Yeah. This one. Tell me which one looks more ugly in these two examples (they do the same thing btw)
+Yeah. This one. Tell me which one looks uglier in these two examples. They do the same thing by the way.
 
 <br />
 The old way.
@@ -184,8 +165,11 @@ export default function Bookmark({ slug }) {
 }
 ```
 
+Sure, one is a client-side button, the other is a button with a form action, so it needs to be in a form. But the point is that the new way is cleaner, more readable, and arguably more maintainable. The old way requires you to create an API route, which is just another hoop you need to jump through for something that can be done in a single function with the new method. Also, please keep out the "_Ackshually_, the first one is better because you can reuse the API route for other clients like a mobile app. ☝️🤓", we are NOT talking about that in this discussion. That's a completely different requirement, for which, a lot of the time, the implementation of the API route would not even be written in the same Next.js app. If you had the requirement for the APIs to be used outside the Next.js app, you'd most likely go for creating a custom backend in TypeScript, Go, JDSL, C#, Brainfuck, Dreamberd, or whatever language your heart desires.
+
+<br />
 If cleaner meant more code, then Java would be the cleanest language in the world.
 
 ## Conclusion
 
-Alright. that's enough I guess. There were a lot more complains, but many of them were more "trying to find just one more reason to hate on Next.js App Router" rather than legitimate problems. These were the common ones that I mostly saw. This of course doesn't mean that Next.js App Router and Server Actions are perfect. I just wrote this to address the plain wrong.
+Alright, that's enough I guess. There were a lot more complains, but many of them were more of just trying to find one more reason to hate on Next.js' App Router than legitimate problems. These were the common ones that I mostly saw. This of course doesn't mean that Next.js App Router and Server Actions are perfect. I just wrote this to address the plain wrong.
