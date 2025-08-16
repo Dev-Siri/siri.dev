@@ -2,7 +2,7 @@
 title: Why I moved Tea Share from React to Svelte
 slug: why-i-moved-tea-share-from-react-to-svelte
 description: I have been working on a big project for many months called Tea Share and in the process, I switched to SvelteKit from Next.js. Find out why.
-publishdate: Jun 23, 2023
+publishdate: June 23, 2023
 layout: ../../layouts/BlogLayout.astro
 ---
 
@@ -24,9 +24,9 @@ Why did I call it stupid? Because the statement "Moving from React to Svelte bec
 app without a massive client-side JavaScript bundle.
 
 <br />
-React and Svelte are both awesome frameworks for making a highly interactive blazingly fast UI. But the RSC (React Server Component) paradigm shift made
-my really paranoid to serve JavaScript to users because React itself is 51kb! + The Next.js addition for client-side routing and route-prefetching with
-many other features increase it by another 21kb.
+React and Svelte are both awesome frameworks for making a highly interactive blazingly fast UI. But the RSC (React Server Component) paradigm shift
+made my really paranoid to serve JavaScript to users because React itself is 51kb! + The Next.js addition for client-side routing and
+route-prefetching with many other features increase it by another 21kb.
 
 Eventually, I couldn't handle the app with being so paranoid on JavaScript. So then, I switched to SvelteKit.
 I couldn't believe how low the bundle size was after I used it! The app with Next.js at barely user friendly state (Almost everything server-side) was 109kb (GZipped)
@@ -153,13 +153,14 @@ But Svelte **CRUSHED** it. And not only the client-side bundle size that I menti
 Response times became 2.3x faster, client-side bundles sat at 48kb & the bundle size increase is very minimal. (only like 3kb for 3 components). <br />
 
 <br />
-Svelte's compiler (especially with version 4) produces highly optimized JavaScript & it runs incredibly fast. The hydration overhead is very small. And
-speaking of hydration, since Svelte compiles to Vanilla JavaScript and does not have a Virtual DOM / Component Tree, its actually impossible to get hydration
-errors in it. In React, before server components (RSCs don't hydrate so no problem using them), there were a lot of problems with hydration when showing
-a formatted time. If there was a post published 10s ago, on the server it would generate "10s ago", but by the time the client receives the generated HTML,
-obviously the time would be now around 11-12s ago, but since the server generated HTML still has 10s, it throws a hydration error because we need both
-server & client data to be idempotent to hydrate the page correctly. But in Svelte, it doesn't matter. Since there is no component tree, the hydration
-process in SvelteKit is only attaching event-listeners to stuff, & there was no need for extra overhead of a VDOM.
+Svelte's compiler (especially with version 4) produces highly optimized JavaScript & it runs incredibly fast. The hydration overhead is very small.
+And speaking of hydration, since Svelte compiles to Vanilla JavaScript and does not have a Virtual DOM / Component Tree, its actually impossible to
+get hydration errors in it. In React, before server components (RSCs don't hydrate so no problem using them), there were a lot of problems with
+hydration when showing a formatted time. If there was a post published 10s ago, on the server it would generate "10s ago", but by the time the client
+receives the generated HTML, obviously the time would be now around 11-12s ago, but since the server generated HTML still has 10s, it throws a
+hydration error because we need both server & client data to be idempotent to hydrate the page correctly. But in Svelte, it doesn't matter. Since
+there is no component tree, the hydration process in SvelteKit is only attaching event-listeners to stuff, & there was no need for extra overhead of a
+VDOM.
 
 ## Things I hate about Svelte
 

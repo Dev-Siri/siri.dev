@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import "../styles/blog.css";
 import "../styles/globals.css";
 
@@ -51,7 +51,7 @@ const {
     <link rel="canonical" href=`https://siri-dev.vercel.app/blog/${slug}` />
     <link rel="preload" href="/fonts/Geist.woff2" as="font" crossorigin="anonymous" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <ViewTransitions />
+    <ClientRouter />
     <title>{title}</title>
   </head>
   <body class="h-screen w-screen overflow-x-hidden subpixel-antialiased text-white bg-dark-gray py-16 px-10 lg:px-40">
@@ -59,10 +59,10 @@ const {
     <input type="checkbox" id="menu-hidden" class="hidden" />
     <SideMenu />
     <main>
-      <h3 transition:name={title}>
+      <h3 transition:name={title} class="text-balance">
         {title}
       </h3>
-      <time class="text-gray-400 ml-1" datetime={getFormattedTime(publishdate)}>
+      <time class="text-gray-400 ml-1 text-sm" datetime={getFormattedTime(publishdate)}>
         {publishdate}
       </time>
       <div class="w-fit mt-2">

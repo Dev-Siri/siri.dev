@@ -14,9 +14,9 @@ const blogPosts = Object.values(import.meta.glob<BlogPost>("./blog/**/*.mdx", { 
 
 <BaseLayout title="Hi I'm Dev-Siri, Web & Flutter Developer">
   <section>
-    <h4>
+    <h4 class="font-normal!">
       <AnimatedText client:load text="hi i'm" />
-      <b>
+      <b class="font-black">
         <AnimatedText client:load text="dev-siri" />
       </b>
     </h4>
@@ -37,9 +37,9 @@ const blogPosts = Object.values(import.meta.glob<BlogPost>("./blog/**/*.mdx", { 
       the only technologies you need to know right now.
     </p>
   </section>
-  <section id="blog">
-    <h4>recent blog posts</h4>
-    <ul class="list-[none!important]">
+  <section id="blog" class="mt-10">
+    <h4 class="pb-4">recent blog posts</h4>
+    <ul>
       {
         blogPosts
           .sort((prevPost, nextPost) => {
@@ -48,8 +48,8 @@ const blogPosts = Object.values(import.meta.glob<BlogPost>("./blog/**/*.mdx", { 
             return -1;
           })
           .slice(0, 3)
-          .map(({ frontmatter, url }) => (
-            <li class="py-0">
+          .map(({ frontmatter, url }, i) => (
+            <li class={`py-0 ${i === 0 ? "pt-0!" : ""}`}>
               <a href={url}>
                 <h6 transition:name={frontmatter.title}>{frontmatter.title.toLowerCase()}</h6>
                 <p class="text-gray-400 -mt-5">{frontmatter.publishdate.toLowerCase()}</p>
