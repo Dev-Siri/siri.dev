@@ -8,18 +8,16 @@ layout: ../../layouts/BlogLayout.astro
 
 import { Image } from "astro:assets";
 
-The App Router is a major change to Next.js. It introduced a lot of features that help in improving the overall speed of the app and reduce the client-side bundle size. One of the main features that help with this is React Server Components. RSCs are just components that render only on the server and send only the generated HTML to the client. This also means that npm packages used in RSCs are not sent to the browser. This itself can reduce the bundle size a lot. But there are many other things that you do not need to do in RSCs that increase bundle size. <br />
-
-<br />
-Lets start by creating a new Next App.
+The App Router is a major change to Next.js. It introduced a lot of features that help in improving the overall speed of the app and reduce the client-side bundle size. One of the main features that help with this is React Server Components. RSCs are just components that render only on the server and send only the generated HTML to the client. This also means that npm packages used in RSCs are not sent to the browser. This itself can reduce the bundle size a lot. But there are many other things that you do not need to do in RSCs that increase bundle size.
+Lets start by creating a new Next.js app:
 
 ```sh
 $ pnpm create next-app
 ```
 
-## Avoid Lazy Loading Server Components.
+## Avoid Lazy Loading Server Components
 
-Lazy loading can be helpful for splitting a app's bundle size into very small chunks that can be loaded on demand. But RSCs do it out-of-the-box. Trying to lazily import a Server Component can actually have negative impact on Bundle Size.
+Lazy loading can be helpful for splitting a app's bundle size into very small chunks that can be loaded on demand. However, RSCs do it out-of-the-box. Trying to lazily import a Server Component can actually have negative impact on the bundle size.
 
 ```tsx
 import { lazy } from "react";
@@ -32,13 +30,11 @@ export default function Page() {
 }
 ```
 
-According to the [Next.js documentation](https://nextjs.org/docs/app/building-your-application/optimizing/lazy-loading#importing-server-components)
+According to the [Next.js documentation](https://nextjs.org/docs/app/building-your-application/optimizing/lazy-loading#importing-server-components).
 
 > If you dynamically import a Server Component, only the Client Components that are children of the Server Component will be lazy-loaded - not the Server Component itself.
 
-And although they say "Only the child client components", I have seen the bundle size spike up when lazy loading them in many cases.
-
-So whenever you have a Server Component, make sure you don't try to lazily load it yourself.
+Although they say "Only the child Client Components", I have seen the bundle size spike up when lazy loading them in many cases. So whenever you have a Server Component, make sure you don't try to lazily load it yourself.
 
 ```tsx
 // Not required
@@ -49,9 +45,9 @@ export default function Page() {
 }
 ```
 
-## Use Client components at the leaf.
+## Use Client Components At The Leaf
 
-I have seen many code bases where static parts are included in a client component, and a small part is server components. Especially in authentication pages. Client components should be at the leaf (or end) of every page/component. Here is visual a diagram showing the structure:
+I have seen many code bases where static parts are included in a Client Component, and a small part is Server Components, especially in authentication pages. Client Components should be at the leaf (Or end) of every page/component. Here is a visual diagram showing the structure:
 
 <Image
   src="/images/blog/nextjs-leaf-structure.avif"
@@ -61,12 +57,10 @@ I have seen many code bases where static parts are included in a client componen
   class="my-5 p-4 rounded-md shadow-md border-2 border-semi-dark-gray"
 />
 
-This make sures you ship **ONLY** the JS for the interactive elements. In this case, the `<AddToCard />` and `<DropDown />` are the only interactive elements. But they were at the end of the tree for a reason. When you import a Server Component in a Client Component directly, the Server Component actually now actually works like a Client Component. This means it ships its JavaScript to the browser. Most of the time, it is better to put client components at the end/leaf of the component tree. Sometimes, it's not possible to put a interactive element at the end because it either hurts the UX or Needs interactivity itself. To Solve this, we can use `children` or `props`.
-
-> **NOTE**: This can make the code a little more confusing, so use it wisely
+This make sures you ship only the JavaScript for the interactive elements. In this case, the `<AddToCard />` and `<DropDown />` are the only interactive elements. But they were at the end of the tree for a reason. When you import a Server Component in a Client Component directly, the Server Component now actually works like a Client Component. This means it ships its JavaScript to the browser. Most of the time, it is better to put Client Components at the end/leaf of the component tree. Sometimes, it's not possible to put a interactive element at the end because it either hurts the User Experience or needs interactivity itself. To Solve this, we can use `children` or `props`. This can make the code a little more confusing, so use it only when necessary.
 
 ```tsx
-// This is worth 1.7kb of JavaScript
+// This is worth 1.7kb of JavaScript.
 import { IoMdThumbsUp } from "@react-icons/all-files/io/IoMdThumbsUp";
 
 import getPost from "@/services/posts";
@@ -134,7 +128,7 @@ export default function Page() {
 }
 ```
 
-And then in `<LikeButton />`, we can use the props to change the icon when state changes. This approach gives a responsive & fast UI on the frontend, while keeping icons & business logic on the backend.
+Then in `<LikeButton />`, we can use the props to change the icon when state changes. This approach gives a responsive & fast UI on the frontend, while keeping icons & business logic on the backend.
 
 ```tsx
 "use client";
@@ -159,9 +153,9 @@ export default function LikeButton({ isLiked, likedIcon, unlikedIcon }: Props) {
 }
 ```
 
-## Client Chunks + Server Actions + RSCs = 💎
+## Client Chunks, Server Actions and RSCs
 
-Normally when creating a form with the new Next.js 13.4 Server Actions, we can use a Server Component. This has an advantage of working without JavaScript and also shipping less JavaScript to the client.
+Normally when creating a form with the new Next.js 13.4's Server Actions, we can use a Server Component. This has an advantage of working without JavaScript and also shipping less JavaScript to the client.
 
 ```tsx
 export default function Create() {
@@ -188,7 +182,7 @@ export default function Create() {
 }
 ```
 
-The above snippet looks fine. But what if we want the the input with `name="image"` to show a preview in the browser when an image is selected? The obvious approach would be to put `"use client"` at the top of the file to make it a client component and then `useState()`. The pitfall of this approach would be more client-side JavaScript and inability to put the server action inside the component file. As I said, we should only ship what is interactive, and to fix this, we can instead seperate the image input into a different `<PreviewImage />` component
+The above snippet looks fine. But what if we want the input with `name="image"` to show a preview in the browser when an image is selected? The obvious approach would be to put `"use client"` at the top of the file to make it a Client Component and then add an `useState()` call. The pitfall of this approach would be more client-side JavaScript and inability to put the server action inside the component file. As I said, we should only ship what is interactive, and to fix this, we can instead seperate the image input into a different `<PreviewImage />` component.
 
 ```tsx
 "use client";
@@ -213,10 +207,8 @@ export default function PreviewImage() {
 }
 ```
 
-This approach gives the best of both worlds. A awesome responsive frontend UX with React & a form that does most of the work on the server. Since the `<input name="image" />` is prerendered on the server, if JavaScript is disabled, then the form would still work, just the preview image won't be displayed. You can even do the same with the submit button. Create a seperate `<SubmitButton />` component that uses `experimental_useFormStatus()` to display a loading spinner while the form is doing stuff. So when a normal user clicks it, it shows a loading spinner inside the button, but if JavaScript is disabled, then the browser itself will reload the page. Either way, it can provide a better UX & working form for both JavaScript enabled/disabled users.
+This approach gives the best of both worlds. An awesome responsive frontend UX with React and a form that does most of the work on the server. Since the `<input name="image" />` is prerendered on the server, if JavaScript is disabled, then the form would still work, just the preview image won't be displayed. You can even do the same with the submit button. Create a seperate `<SubmitButton />` component that uses `experimental_useFormStatus()` to display a loading spinner while the form is performing the action. So when a normal user clicks it, it shows a loading spinner inside the button, but if JavaScript is disabled, the browser itself will reload the page. Either way, it can provide a better UX & working form for both JavaScript enabled/disabled users.
 
 ## Conclusion
 
-Although the tips I provided above can reduce the client-side JavaScript bundle size, you should use it only when you **KNOW** it won't hurt the UX.
-
-You should always prioritize UX > Performance. If any of my tips hurt the UX, then **DON'T** use it. JavaScript is not something to avoid all the time. The website may feel faster but no one is going to use it if the UX is bad. But if my tips don't hurt the UX, then go ahead, optimize it as much as your heart desires! For more tips on optimizations, you can check out the [Next.js Docs](https://nextjs.org/docs)
+Although the tips I provided above can reduce the client-side JavaScript bundle size, you should use it only when you know it won't hurt the UX. You should always prioritize UX over performance. If any of my suggestions hurt the UX, then it's better to avoid them and instead focus on a better experience. JavaScript is not something to avoid all the time when you're using a JavaScript framework. For more tips on optimizing for the smallest size, you can check out the [Next.js documentation](https://nextjs.org/docs).
